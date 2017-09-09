@@ -15,6 +15,7 @@ namespace Dominio
         public List<TipoEvento> Eventos { get; set; }
 
         #endregion
+
         #region Metdos
         public Servicio(string unNombre,string unaDescripcion) {
             this.Nombre = unNombre;
@@ -22,6 +23,9 @@ namespace Dominio
             this.Imagen = null;
             this.Eventos = new List<TipoEvento>();
         }
+
+        //public void GuardarServiciosEnTxt() { }
+        //public void CargarServiciosDesdeTxt() { }
         #endregion
 
     }
