@@ -9,13 +9,13 @@ namespace Dominio
     public class ServicioContratado
     {
         #region Atributos y Properties
-        //public Proveedor Proveedor{ get; set; }
+        public Proveedor Proveedor{ get; set; }
         public List<Servicio> ListaServicios { get; set; }
         #endregion
 
         #region Metodos
-        public ServicioContratado(/*Proveedor unProveedor,*/ List<Servicio> unaListaDeServicios) {
-            //this.Proveedor = unProveedor;
+        public ServicioContratado(Proveedor unProveedor, List<Servicio> unaListaDeServicios) {
+            this.Proveedor = unProveedor;
             this.ListaServicios = unaListaDeServicios;
         }
 
