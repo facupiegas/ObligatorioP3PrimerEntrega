@@ -24,7 +24,8 @@ namespace Dominio
         public List<Servicio> ServiciosOfrecidos { get; set; }
         public Usuario Usuario { get; set; }
         #endregion
-        #region Constructor
+
+        #region Constructores
         public Proveedor(string unRut,string unNomFantasia,string unEmail,string unTelefono,DateTime unaFecha,bool esVip,Usuario unUsuario) {
             this.Rut = unRut;
             this.NomFantasia = unNomFantasia;
@@ -44,12 +45,18 @@ namespace Dominio
             }
         }
 
+        public Proveedor() //Creo un constructor sin parametros para crear un objeto temporal
+        {
+        }
+
         #endregion
+
         #region Otros Metodos
         public int Guardar()
         {
             //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
-            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
             SqlConnection connection = new SqlConnection(conString);
             int filasAfectadas = 0;
             try
@@ -83,6 +90,40 @@ namespace Dominio
             return filasAfectadas;
         }
 
+        public static List<Proveedor> ListarProveedores()
+        {
+            List<Proveedor> lstTmp = new List<Proveedor>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Proveedor_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23";
+            SqlConnection conn = new SqlConnection(sConnectionString);
+            SqlDataReader drResults; cmd.Connection = conn; conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                Proveedor provTmp = new Proveedor();
+                provTmp.Rut = drResults["rut"].ToString();
+                provTmp.NomFantasia = drResults["nomFantasia"].ToString();
+                provTmp.Email = drResults["email"].ToString();
+                provTmp.Telefono = drResults["telefono"].ToString();
+                provTmp.Fecha = (DateTime) drResults["fecha"];
+                provTmp.Vip = (bool)drResults["vip"];
+               // provTmp.PorcentajePorVip = (double) drResults["porcentajePorVip"];
+                provTmp.Activo = (bool)drResults["activo"];
+                //provTmp.Usuario.Nombre = drResults["nomUsuario"].ToString();
+                lstTmp.Add(provTmp);
+            }
+            drResults.Close();
+            conn.Close();
+            return lstTmp;
+        }
+
+        public override string ToString()
+        {
+            return ("RUT: " + this.Rut) ;
+        }
         #endregion
     }
 }
