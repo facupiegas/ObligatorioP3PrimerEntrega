@@ -17,7 +17,7 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Usuario(EnumRol unRol, string unNombre, string unaPass)
+        public Usuario(string unNombre, string unaPass,EnumRol unRol)
         {
             this.Rol = unRol;
             this.Nombre = unNombre;

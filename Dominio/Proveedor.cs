@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Dominio
 {
@@ -43,6 +46,42 @@ namespace Dominio
 
         #endregion
         #region Otros Metodos
+        public int Guardar()
+        {
+              
+            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            SqlConnection connection = new SqlConnection(conString);
+            int filasAfectadas = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;//asignar conexion al commando a ejecutar 
+                    cmd.CommandText = "Proveedor_Insert";//Sentencia a ejecutar 
+                    cmd.CommandType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
+                    cmd.Parameters.Add(new SqlParameter("@Rut", this.Rut));
+                    cmd.Parameters.Add(new SqlParameter("@nomFantasia", this.NomFantasia));
+                    cmd.Parameters.Add(new SqlParameter("@email", this.Email));
+                    cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
+                    cmd.Parameters.Add(new SqlParameter("@fecha", this.Fecha));
+                    cmd.Parameters.Add(new SqlParameter("@vip", this.Vip));
+                    cmd.Parameters.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
+                    cmd.Parameters.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
+                    connection.Open();//abrimos la conexion 
+                    filasAfectadas = cmd.ExecuteNonQuery();//ejecutamos consulta 
+                    
+                }//fin using
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                connection.Close(); //cerramos conexion 
+            }
+            return filasAfectadas;
+        }
         #endregion
     }
 }
