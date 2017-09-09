@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
+
 
 namespace Dominio
 {
@@ -48,7 +48,7 @@ namespace Dominio
         #region Otros Metodos
         public int Guardar()
         {
-              
+            //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
             string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
             SqlConnection connection = new SqlConnection(conString);
             int filasAfectadas = 0;
@@ -82,6 +82,7 @@ namespace Dominio
             }
             return filasAfectadas;
         }
+
         #endregion
     }
 }
