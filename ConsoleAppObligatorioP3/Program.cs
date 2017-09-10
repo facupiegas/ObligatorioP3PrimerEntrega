@@ -30,7 +30,7 @@ namespace ConsoleAppObligatorioP3
             foreach (Usuario tmpUsuario in listaUsuarios) {
                 Console.WriteLine("- nombre: "+tmpUsuario.Nombre+" Password: "+tmpUsuario.Pass+" | Rol: "+tmpUsuario.Rol);
             }
-            Console.WriteLine("\nprobar validar usuario\n");
+            Console.WriteLine("\n------------Validar Usuario------------------\n");
             Console.WriteLine("Ingrese nombre: ");
             string unNombre = Console.ReadLine();
             Console.WriteLine("Ingrese pass: ");
@@ -38,7 +38,14 @@ namespace ConsoleAppObligatorioP3
             Usuario aux = new Usuario();
             aux.Nombre = unNombre; 
             aux.Pass = unPass;
-            aux.ValidarUsuarioInstancia();
+
+            if (aux.ValidarUsuarioInstancia())
+            {
+                Console.WriteLine("usuario validado");
+            }
+            else {
+                Console.WriteLine("usuario no validado ");
+            }
 
             Console.ReadLine();            
         }

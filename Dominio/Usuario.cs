@@ -91,16 +91,18 @@ namespace Dominio
             cmd.Connection = connection;
             cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
             connection.Open();
-            Usuario aux = (Usuario)cmd.ExecuteScalar();            
-            if (this.Nombre == aux.Nombre && this.Pass == aux.Pass)
+            SqlDataReader drResults;
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
             {
-                Console.WriteLine(aux.Nombre + aux.Pass + aux.Rol);
+                if (this.Nombre == drResults["nombre"].ToString() && this.Pass == drResults["pass"].ToString())
+                {
+                    retorno = true;
+                } 
             }
-            else {
-                Console.WriteLine("nope");
-            }
-
+            drResults.Close();
             connection.Close();
+
             return retorno;
         }
        
