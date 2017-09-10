@@ -18,7 +18,7 @@ namespace Dominio
         public EnumRol Rol { set; get; }
         #endregion
 
-        #region Constructor
+        #region Constructores
         public Usuario(string unNombre, string unaPass,EnumRol unRol)
         {
             
@@ -26,13 +26,14 @@ namespace Dominio
             this.Pass = unaPass;
             this.Rol = unRol;
         }
+        public Usuario() { }
         #endregion
         #region Otros metodos
         public EnumRol obtenerTipo()
         {
             return this.Rol;
         }
-
+        
         public static List<Usuario> DevolverUsuarios()
         {
             List<Usuario> ListaAux = new List<Usuario>();
@@ -77,6 +78,30 @@ namespace Dominio
             }
             return retorno;
 
+        }
+        public bool ValidarUsuarioInstancia() {
+            bool retorno = false;
+
+            string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Usuarios_SelectByNombre"; //indico el nombre del procedimiento almacenado a ejecutar
+            cmd.Connection = connection;
+            cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
+            connection.Open();
+            Usuario aux = (Usuario)cmd.ExecuteScalar();            
+            if (this.Nombre == aux.Nombre && this.Pass == aux.Pass)
+            {
+                Console.WriteLine(aux.Nombre + aux.Pass + aux.Rol);
+            }
+            else {
+                Console.WriteLine("nope");
+            }
+
+            connection.Close();
+            return retorno;
         }
        
 
