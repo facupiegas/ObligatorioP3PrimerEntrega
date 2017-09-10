@@ -21,7 +21,6 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        esto es una prueba para qeu veas que estoy escribiendo desde la izquierda hdp
     </p>
     <p>
     </p>
