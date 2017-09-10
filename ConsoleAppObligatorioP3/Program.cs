@@ -17,12 +17,18 @@ namespace ConsoleAppObligatorioP3
             Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
             Console.WriteLine(prov.Guardar());*/
 
-            List<Proveedor> lista = Proveedor.ListarProveedores();
-            foreach (Proveedor pTmp in lista)
+            List<Proveedor> listaProveedores = Proveedor.DevolverProveedores();
+            Console.WriteLine("\n------------Listado Proveedores------------------\n");
+            foreach (Proveedor pTmp in listaProveedores)
             {
-                Console.WriteLine("Nombre Proveedor: " + pTmp.NomFantasia + "\n" + 
+                Console.WriteLine("- Nombre Fantasia: " + pTmp.NomFantasia + "\n" + 
                                   "RUT: " + pTmp.Rut + "\n" +
                                   "Vip: " + pTmp.Vip);
+            }
+            List<Usuario> listaUsuarios = Usuario.DevolverUsuarios();
+            Console.WriteLine("\n------------Listado Usuarios------------------\n");
+            foreach (Usuario tmpUsuario in listaUsuarios) {
+                Console.WriteLine("- nombre: "+tmpUsuario.Nombre+" Password: "+tmpUsuario.Pass+" | Rol: "+tmpUsuario.Rol);
             }
             Console.ReadLine();            
         }

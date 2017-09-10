@@ -64,7 +64,7 @@ namespace Dominio
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;//asignar conexion al commando a ejecutar 
-                    cmd.CommandText = "Proveedor_Insert";//Sentencia a ejecutar 
+                    cmd.CommandText = "Proveedores_Insert";//Sentencia a ejecutar 
                     cmd.CommandType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
                     cmd.Parameters.Add(new SqlParameter("@Rut", this.Rut));
                     cmd.Parameters.Add(new SqlParameter("@nomFantasia", this.NomFantasia));
@@ -90,14 +90,14 @@ namespace Dominio
             return filasAfectadas;
         }
 
-        public static List<Proveedor> ListarProveedores()
+        public static List<Proveedor> DevolverProveedores()
         {
             List<Proveedor> lstTmp = new List<Proveedor>();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Proveedor_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
-            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23";
+            cmd.CommandText = "Proveedores_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23";
             SqlConnection conn = new SqlConnection(sConnectionString);
             SqlDataReader drResults; cmd.Connection = conn; conn.Open();
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
