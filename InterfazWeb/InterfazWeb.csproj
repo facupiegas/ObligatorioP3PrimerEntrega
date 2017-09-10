@@ -66,7 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Alta_Proveedor.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Listado_Proveedores.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
@@ -82,8 +84,22 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alta_Proveedor.aspx.cs">
+      <DependentUpon>Alta_Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alta_Proveedor.aspx.designer.cs">
+      <DependentUpon>Alta_Proveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Listado_Proveedores.aspx.cs">
+      <DependentUpon>Listado_Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Listado_Proveedores.aspx.designer.cs">
+      <DependentUpon>Listado_Proveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
