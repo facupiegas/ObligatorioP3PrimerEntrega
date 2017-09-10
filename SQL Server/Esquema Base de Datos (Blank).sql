@@ -2,37 +2,46 @@ set dateformat dmy;
 
 create database ObligatorioP3PrimerEntrega
 use ObligatorioP3PrimerEntrega
-
-create table Usuario(nombre char(20),
+/*
+drop table Servicio
+drop table TipoEvento
+drop table ServicioTipoEvento
+drop table Usuarios
+drop table Organizador
+drop table Proveedor
+drop table ServicioDeProveedor
+drop table Evento
+*/
+create table Usuarios(nombre varchar(20),
 					pass varchar(20),
 					rol varchar(20),
-					constraint PK_Usuario primary key(nombre),
-					constraint CK_RolUsuario check(rol in ('Administrador','Proveedor','Organizador')))
+					constraint PK_Usuarios primary key(nombre),
+					constraint CK_RolUsuarios check(rol in ('Administrador','Proveedor','Organizador')))
 
-create table Organizador(nombre char(20),
+create table Organizadores(nombre varchar(20),
 						email varchar(30),
 						telefono varchar(15),
-						nomUsuario char(20),
-						constraint PK_Organizador primary key(nombre),
-						constraint UK_Email_Organizador unique(email),
-						constraint FK_NomUsuario_Organizador foreign key(nomUsuario) references Usuario(nombre))
+						nomUsuario varchar(20),
+						constraint PK_Organizadores primary key(nombre),
+						constraint UK_Email_Organizadores unique(email),
+						constraint FK_NomUsuario_Organizadores foreign key(nomUsuario) references Usuarios(nombre))
 
-create table TipoEvento(nombre char(20),
+create table TiposEventos(nombre varchar(20),
 						descripcion varchar(150),
-						constraint PK_TipoEvento primary key(nombre))
+						constraint PK_TiposEventos primary key(nombre))
 
-create table Servicio(nombre char(20),
+create table Servicios(nombre varchar(20),
 					 descripcion varchar(150),
 					 imagen varchar(100),
-					 constraint PK_Servicio primary key(nombre))
+					 constraint PK_Servicios primary key(nombre))
 
-create table ServicioTipoEvento(nombreServicio char(20),
-							    nombreTipoEvento char(20),
-							    constraint PK_ServicioTipoEvento primary key(nombreServicio,nombreTipoEvento),
-								constraint FK_NomServ_ServicioTipoEvento foreign key(nombreServicio) references Servicio(nombre),
-								constraint FK_NomTipEv_ServicioTipoEvento foreign key(nombreTipoEvento) references TipoEvento(nombre))
+create table ServiciosTipoEventos(nombreServicio varchar(20),
+							    nombreTipoEvento varchar(20),
+							    constraint PK_ServicioTipoEventos primary key(nombreServicio,nombreTipoEvento),
+								constraint FK_NomServ_ServicioTipoEventos foreign key(nombreServicio) references Servicios(nombre),
+								constraint FK_NomTipEv_ServicioTipoEventos foreign key(nombreTipoEvento) references TiposEventos(nombre))
 
-create table Proveedor(rut char(15),
+create table Proveedores(rut varchar(15),
 					   nomFantasia varchar(30),
 					   email varchar(30),
 					   telefono varchar(10),
@@ -40,22 +49,22 @@ create table Proveedor(rut char(15),
 					   activo bit,
 					   vip bit,
 					   porcentajePorVip decimal(10),
-					   nomUsuario char(20),
-					   constraint PK_Proveedor primary key(rut),
-					   constraint FK_NomUsuario_Proveedor foreign key(nomUsuario) references Usuario(nombre),
-					   constraint UK_Email_Proveedor unique(email))
+					   nomUsuario varchar(20),
+					   constraint PK_Proveedores primary key(rut),
+					   constraint FK_NomUsuario_Proveedores foreign key(nomUsuario) references Usuarios(nombre),
+					   constraint UK_Email_Proveedores unique(email))
 
-create table ServicioDeProveedor(nomServicio char(20),
-								 rutProveedor char(15),
-								 constraint PK_ServicioDeProveedor primary key(nomServicio,rutProveedor),
-								 constraint FK_NomSer_ServicioDeProveedor foreign key(nomServicio) references Servicio(nombre),
-								 constraint FK_RutProveedor_ServicioDeProveedor foreign key(rutProveedor) references Proveedor(rut))
+create table ServiciosDeProveedores(nomServicio varchar(20),
+								 rutProveedor varchar(15),
+								 constraint PK_ServiciosDeProveedores primary key(nomServicio,rutProveedor),
+								 constraint FK_NomSer_ServiciosDeProveedores foreign key(nomServicio) references Servicios(nombre),
+								 constraint FK_RutProveedor_ServiciosDeProveedores foreign key(rutProveedor) references Proveedores(rut))
 /*La tabla ServicioDeProveedor tambien se utiliza para la clase asociativa ServicioContratado*/
 
-create table Evento(nombre char(20),
+create table Eventos(nombre varchar(20),
 					fecha date,
-					tipo char(20),
+					tipo varchar(20),
 					direccion varchar(30),
-					constraint PK_Evento primary key(nombre),
-					constraint FK_Tipo_Evento foreign key(tipo) references TipoEvento(nombre))
+					constraint PK_Eventos primary key(nombre),
+					constraint FK_Tipo_Eventos foreign key(tipo) references TiposEventos(nombre))
 
