@@ -28,6 +28,11 @@ namespace Dominio
         }
         #endregion
         #region Otros metodos
+        public EnumRol obtenerTipo()
+        {
+            return this.Rol;
+        }
+
         public static List<Usuario> DevolverUsuarios()
         {
             List<Usuario> ListaAux = new List<Usuario>();
@@ -58,6 +63,22 @@ namespace Dominio
             connection.Close();
             return ListaAux;
         }
+        public static Usuario ValidarUsuario(string unNombre, string unPass) {
+            Usuario retorno = null;
+            List<Usuario> listaUsuarios = Usuario.DevolverUsuarios();
+            int aux = 0;
+            bool encontre = false;
+            while (aux < listaUsuarios.Count && !encontre) {
+                if (listaUsuarios[aux].Nombre == unNombre && listaUsuarios[aux].Pass == unPass) {
+                    encontre = true;
+                    retorno = listaUsuarios[aux];
+                }
+                aux++;
+            }
+            return retorno;
+
+        }
+       
 
         #endregion
     }
