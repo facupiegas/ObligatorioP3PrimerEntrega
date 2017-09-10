@@ -55,8 +55,8 @@ namespace Dominio
         public int Guardar()
         {
             //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
-            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
             SqlConnection connection = new SqlConnection(conString);
             int filasAfectadas = 0;
             try
@@ -110,9 +110,10 @@ namespace Dominio
                 provTmp.Telefono = drResults["telefono"].ToString();
                 provTmp.Fecha = (DateTime) drResults["fecha"];
                 provTmp.Vip = (bool)drResults["vip"];
-               // provTmp.PorcentajePorVip = (double) drResults["porcentajePorVip"];
+                provTmp.PorcentajePorVip = Convert.ToDouble(drResults["porcentajePorVip"].ToString());
                 provTmp.Activo = (bool)drResults["activo"];
-                //provTmp.Usuario.Nombre = drResults["nomUsuario"].ToString();
+                Usuario aux = new Usuario() { Nombre = drResults["nomUsuario"].ToString() };
+                provTmp.Usuario= aux;
                 lstTmp.Add(provTmp);
             }
             drResults.Close();
