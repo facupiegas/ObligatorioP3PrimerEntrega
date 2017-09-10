@@ -37,10 +37,10 @@
         Vip <asp:RadioButton ID="radVipN" runat="server" Text="NO" />
         <asp:RadioButton ID="radVipS" runat="server" GroupName="vip" Text="SI" />
 &nbsp;
-        <asp:Label ID="lbErrorlVip" runat="server" Text="Label" Visible="False"></asp:Label>
+        <asp:Label ID="lbErrorlVip" runat="server" Visible="False" ForeColor="Red"></asp:Label>
     </p>
     <p>
-        <asp:Button ID="btnGuardar" runat="server" Text="Crear" />
+        <asp:Button ID="btnGuardar" runat="server" Text="Crear" OnClick="btnGuardar_Click" />
     </p>
     <p>
         <asp:Label ID="lblMensaje" runat="server" Visible="False"></asp:Label>

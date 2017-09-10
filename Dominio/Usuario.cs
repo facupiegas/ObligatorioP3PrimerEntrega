@@ -64,6 +64,7 @@ namespace Dominio
             connection.Close();
             return ListaAux;
         }
+
         public static Usuario ValidarUsuario(string unNombre, string unPass) {
             Usuario retorno = null;
             List<Usuario> listaUsuarios = Usuario.DevolverUsuarios();
@@ -79,6 +80,7 @@ namespace Dominio
             return retorno;
 
         }
+
         public bool ValidarUsuarioInstancia() {
             bool retorno = false;
 
@@ -105,7 +107,40 @@ namespace Dominio
 
             return retorno;
         }
-       
+
+        public int Guardar()
+        {
+            //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
+            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            SqlConnection connection = new SqlConnection(conString);
+            int filasAfectadas = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;//asignar conexion al commando a ejecutar 
+                    cmd.CommandText = "Usuarios_Insert";//Sentencia a ejecutar 
+                    cmd.CommandType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
+                    cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@pass", this.Pass));
+                    cmd.Parameters.Add(new SqlParameter("@rol", this.Rol.ToString()));
+                    connection.Open();//abrimos la conexion 
+                    filasAfectadas = cmd.ExecuteNonQuery();//ejecutamos consulta 
+
+                }//fin using
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                connection.Close(); //cerramos conexion 
+            }
+            return filasAfectadas;
+        }
+
 
         #endregion
     }
