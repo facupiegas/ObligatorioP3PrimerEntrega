@@ -68,3 +68,5 @@ create table Eventos(nombre varchar(20),
 					constraint PK_Eventos primary key(nombre),
 					constraint FK_Tipo_Eventos foreign key(tipo) references TiposEventos(nombre))
 
+
+alter table Proveedores add constraint UK_nomUsuario_Proveedores unique(nomUsuario)
