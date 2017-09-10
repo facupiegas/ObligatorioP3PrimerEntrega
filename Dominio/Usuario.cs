@@ -40,8 +40,8 @@ namespace Dominio
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
             cmd.CommandText = "Usuarios_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar
-            //string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23";
+            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = facundo23";
             SqlConnection connection = new SqlConnection(sConnectionString);
             SqlDataReader drResults;
             cmd.Connection = connection;
