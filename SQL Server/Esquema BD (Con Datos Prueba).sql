@@ -68,6 +68,7 @@ create table Eventos(nombre varchar(20),
 					constraint PK_Eventos primary key(nombre),
 					constraint FK_Tipo_Eventos foreign key(tipo) references TiposEventos(nombre))
 
+
 alter table Proveedores add constraint UK_nomUsuario_Proveedores unique(nomUsuario)
 
 
@@ -86,3 +87,18 @@ insert into TiposEventos values('Casamiento','Fiesta para festejar un casamiento
 
 /*Inserto datos en Proveedor*/
 insert into Proveedores values('210000123477','Almacen de la esquina','almacenDeLaEsquina@almacen.com','24090000','12/12/2017',1,1,50,'prov')
+/*Inserto datos en tablas de servicios*/
+insert into Servicios
+values('Lunch','Servicio de catering','')
+insert into Servicios
+values('Fotografia','Servicio de fotografia','')
+
+insert into ServiciosTipoEventos
+values('Lunch','Fiesta de quince')
+insert into ServiciosTipoEventos
+values('Fotografia','Fiesta de quince')
+
+insert into ServiciosDeProveedores 
+values('Lunch','210000123477')
+insert into ServiciosDeProveedores 
+values('Fotografia','210000123477')

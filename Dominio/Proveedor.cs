@@ -97,7 +97,8 @@ namespace Dominio
             cmd.CommandText = "Proveedores_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
             string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
             SqlConnection conn = new SqlConnection(sConnectionString);
-            SqlDataReader drResults; cmd.Connection = conn;
+            SqlDataReader drResults;
+            cmd.Connection = conn;
             conn.Open();
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (drResults.Read())
@@ -118,6 +119,29 @@ namespace Dominio
             drResults.Close();
             conn.Close();
             return lstTmp;
+        }
+
+        public List<string> DevolverServicios() {
+            List<string> retorno = new List<string>();
+
+            SqlConnection connection = new SqlConnection();
+            string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver
+            connection.ConnectionString = connectionString;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ServiciosDeProveedores_SelectServiciosByRut";
+            cmd.Parameters.Add(new SqlParameter("@rut", this.Rut));
+            SqlDataReader drResults;
+            connection.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read()) {
+                string aux = drResults["nomServicio"].ToString();
+                retorno.Add(aux);
+            }
+            drResults.Close();
+            connection.Close();
+            return retorno;
         }
 
         public override string ToString()
