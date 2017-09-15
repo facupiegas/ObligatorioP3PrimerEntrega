@@ -12,16 +12,15 @@ namespace Dominio
         public string Nombre { get; set; }
         public string Imagen { get; set; }
         public string Descripcion { get; set; }
-        public List<TipoEvento> Eventos { get; set; }
-
+        public TipoServicio TipoServicio { get; set; }
         #endregion
 
-        #region Metdos
-        public Servicio(string unNombre,string unaDescripcion) {
+        #region Constructor
+        public Servicio(string unNombre,string unaDescripcion,TipoServicio unTipoServicio) {
             this.Nombre = unNombre;
             this.Descripcion = unaDescripcion;
             this.Imagen = null;
-            this.Eventos = new List<TipoEvento>();
+            this.TipoServicio = unTipoServicio;
         }
 
         //public void GuardarServiciosEnTxt() { }

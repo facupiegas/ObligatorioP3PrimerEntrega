@@ -47,6 +47,7 @@
     <Compile Include="Servicio.cs" />
     <Compile Include="ServicioContratado.cs" />
     <Compile Include="TipoEvento.cs" />
+    <Compile Include="TipoServicio.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
