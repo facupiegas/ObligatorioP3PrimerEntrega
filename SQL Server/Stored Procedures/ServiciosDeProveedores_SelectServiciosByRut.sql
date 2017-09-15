@@ -1,8 +1,8 @@
-create procedure ServiciosDeProveedores_SelectServiciosByRut
+create procedure Servicios_SelectServiciosByRut
 	@rut varchar(20)
 as
 begin
-	select nomServicio 
-	from ServiciosDeProveedores
+	select nombre,descripcion,tipoServicio 
+	from Servicios
 	where rutProveedor = @rut
 end
