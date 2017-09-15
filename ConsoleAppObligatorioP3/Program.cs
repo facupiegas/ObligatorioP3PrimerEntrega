@@ -30,9 +30,9 @@ namespace ConsoleAppObligatorioP3
                 if (pTmp.Vip) {
                     Console.WriteLine("Porcentaje por vip: " +pTmp.PorcentajePorVip);
                 }
-                List<string> listaSer = pTmp.DevolverServicios();
+                List<Servicio> listaSer = pTmp.DevolverServicios();
                 Console.WriteLine("Servicios ofrecidos: ");
-                foreach (string tmp in listaSer) {
+                foreach (Servicio tmp in listaSer) {
                     Console.WriteLine("* - "+tmp);
                 }
                 Console.WriteLine("\n");

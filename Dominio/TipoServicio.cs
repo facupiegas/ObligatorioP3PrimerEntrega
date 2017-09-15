@@ -13,10 +13,13 @@ namespace Dominio
         public string Descripcion { get; set; }
         public List<TipoEvento> TipoEventos { get; set; }
         #endregion
-        #region Constructor
+        #region Constructores
         public TipoServicio(string unNombre, string unaDescripcion) {
             this.Nombre = unNombre;
             this.Descripcion = unaDescripcion;
+            this.TipoEventos = new List<TipoEvento>();
+        }
+        public TipoServicio() {
             this.TipoEventos = new List<TipoEvento>();
         }
         #endregion
