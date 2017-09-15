@@ -24,5 +24,12 @@ namespace InterfazWeb
             grdListadoProveedores.DataSource = listaProveedores;
             grdListadoProveedores.DataBind();
         }
+        protected void grdServicios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string rut = grdListadoProveedores.SelectedRow.Cells[1].Text;
+            Proveedor aux = new Proveedor() { Rut=rut};
+            grdServicios.DataSource = aux.DevolverServicios();
+            grdServicios.DataBind();
+        }
     }
 }

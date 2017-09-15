@@ -123,8 +123,9 @@ namespace Dominio
             return lstTmp;
         }
 
-        public List<string> DevolverServicios() {
-            List<string> retorno = new List<string>();
+        public List<Servicio> DevolverServicios() {
+            //List<string> retorno = new List<string>();
+            List<Servicio> retorno = new List<Servicio>();
 
             SqlConnection connection = new SqlConnection();
             //string connectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
@@ -139,8 +140,9 @@ namespace Dominio
             connection.Open();
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (drResults.Read()) {
-                string aux = drResults["nombre"].ToString() + " | " + drResults["descripcion"].ToString()+" | "+drResults["tipoServicio"].ToString();
-                retorno.Add(aux);
+                //string aux = drResults["nombre"].ToString() + " | " + drResults["descripcion"].ToString()+" | "+drResults["tipoServicio"].ToString();
+                Servicio auxSer = new Servicio(){Nombre = drResults["nombre"].ToString(), Descripcion= drResults["descripcion"].ToString(),TipoServicio = new TipoServicio() {Nombre= drResults["tipoServicio"].ToString() } };
+                retorno.Add(auxSer);
             }
             drResults.Close();
             connection.Close();
