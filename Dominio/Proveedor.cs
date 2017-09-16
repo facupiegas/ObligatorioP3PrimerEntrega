@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Dominio
 {
-    public class Proveedor
+    public class Proveedor:Persistente<Proveedor>
     {
         #region Atributos y Properties
         public string Rut { get; set; }
@@ -52,85 +52,43 @@ namespace Dominio
         #endregion
 
         #region Otros Metodos
-        public int Guardar()
+        public override string ToString()
         {
+            return ("RUT: " + this.Rut);
+        }
+        public override bool Guardar()
+        {
+            SqlConnection conn = this.ObtenerConexion();
+            string cmdText = "Proveedores_Insert";//Sentencia a ejecutar 
+            CommandType cmdType = CommandType.StoredProcedure;
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Rut", this.Rut));
+            parametros.Add(new SqlParameter("@nomFantasia", this.NomFantasia));
+            parametros.Add(new SqlParameter("@email", this.Email));
+            parametros.Add(new SqlParameter("@telefono", this.Telefono));
+            parametros.Add(new SqlParameter("@fecha", this.Fecha));
+            parametros.Add(new SqlParameter("@vip", this.Vip));
+            parametros.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
+            parametros.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
+            return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros)!=0;
+
             //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
             //string conString = @"Server =SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            SqlConnection connection = new SqlConnection(conString);
-            int filasAfectadas = 0;
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = connection;//asignar conexion al commando a ejecutar 
-                    cmd.CommandText = "Proveedores_Insert";//Sentencia a ejecutar 
-                    cmd.CommandType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
-                    cmd.Parameters.Add(new SqlParameter("@Rut", this.Rut));
-                    cmd.Parameters.Add(new SqlParameter("@nomFantasia", this.NomFantasia));
-                    cmd.Parameters.Add(new SqlParameter("@email", this.Email));
-                    cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
-                    cmd.Parameters.Add(new SqlParameter("@fecha", this.Fecha));
-                    cmd.Parameters.Add(new SqlParameter("@vip", this.Vip));
-                    cmd.Parameters.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
-                    cmd.Parameters.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
-                    connection.Open();//abrimos la conexion 
-                    filasAfectadas = cmd.ExecuteNonQuery();//ejecutamos consulta 
-                    
-                }//fin using
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-            }
-            finally
-            {
-                connection.Close(); //cerramos conexion 
-            }
-            return filasAfectadas;
+            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+
+           
         }
 
-        public static List<Proveedor> DevolverProveedores()
-        {
-            List<Proveedor> lstTmp = new List<Proveedor>();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Proveedores_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
-            //string sConnectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            SqlConnection conn = new SqlConnection(sConnectionString);
-            SqlDataReader drResults;
-            cmd.Connection = conn;
-            conn.Open();
-            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            while (drResults.Read())
-            {
-                Proveedor provTmp = new Proveedor();
-                provTmp.Rut = drResults["rut"].ToString();
-                provTmp.NomFantasia = drResults["nomFantasia"].ToString();
-                provTmp.Email = drResults["email"].ToString();
-                provTmp.Telefono = drResults["telefono"].ToString();
-                provTmp.Fecha = (DateTime) drResults["fecha"];
-                provTmp.Vip = (bool)drResults["vip"];
-                provTmp.PorcentajePorVip = Convert.ToDouble(drResults["porcentajePorVip"].ToString());
-                provTmp.Activo = (bool)drResults["activo"];
-                Usuario aux = new Usuario() { Nombre = drResults["nomUsuario"].ToString() };
-                provTmp.Usuario= aux;
-                lstTmp.Add(provTmp);
-            }
-            drResults.Close();
-            conn.Close();
-            return lstTmp;
-        }
+       
 
         public List<Servicio> DevolverServicios() {
-            //List<string> retorno = new List<string>();
             List<Servicio> retorno = new List<Servicio>();
+            SqlConnection connection = this.ObtenerConexion();
 
-            SqlConnection connection = new SqlConnection();
             //string connectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver
-            connection.ConnectionString = connectionString;
+            //string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver
+            //connection.ConnectionString = connectionString;
+
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
             cmd.CommandType = CommandType.StoredProcedure;
@@ -149,9 +107,88 @@ namespace Dominio
             return retorno;
         }
 
-        public override string ToString()
+        
+
+        public override bool Leer()
         {
-            return ("RUT: " + this.Rut) ;
+            bool retorno = false;
+            SqlConnection conn = null;
+            SqlDataReader reader = null;
+            try
+            {
+                conn = this.ObtenerConexion();
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                parametros.Add(new SqlParameter("@rut", this.Rut));
+                reader = this.EjecutarReader(conn, "Proveedores_SelectByRut", CommandType.StoredProcedure, parametros);
+
+                if (reader.Read())
+                {
+                    this.NomFantasia = reader["nomFantasia"].ToString();
+                    this.Email = reader["email"].ToString();
+                    this.Telefono = reader["telefono"].ToString();
+                    this.Vip = (bool)reader["vip"];
+                    this.Fecha = (DateTime)reader["fecha"];
+                    this.PorcentajePorVip = Convert.ToDouble(reader["porcentajePorVip"].ToString());
+                    this.Activo = (bool)reader["activo"];
+                    Usuario aux = new Usuario() { Nombre = reader["nomUsuario"].ToString() };
+                    aux.Leer();
+                    this.Usuario = aux;
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                if (conn != null && conn.State == ConnectionState.Open) conn.Close();
+                if (reader != null) reader.Close();
+            }
+
+            return retorno;
+        }
+        public override List<Proveedor> TraerTodo()
+        {
+            List<Proveedor> lstTmp = new List<Proveedor>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Proveedores_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            //string sConnectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            SqlConnection conn = this.ObtenerConexion();
+            SqlDataReader drResults;
+            cmd.Connection = conn;
+            conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                Proveedor provTmp = new Proveedor();
+                provTmp.Rut = drResults["rut"].ToString();
+                provTmp.NomFantasia = drResults["nomFantasia"].ToString();
+                provTmp.Email = drResults["email"].ToString();
+                provTmp.Telefono = drResults["telefono"].ToString();
+                provTmp.Fecha = (DateTime)drResults["fecha"];
+                provTmp.Vip = (bool)drResults["vip"];
+                provTmp.PorcentajePorVip = Convert.ToDouble(drResults["porcentajePorVip"].ToString());
+                provTmp.Activo = (bool)drResults["activo"];
+                Usuario aux = new Usuario() { Nombre = drResults["nomUsuario"].ToString() };
+                provTmp.Usuario = aux;
+                lstTmp.Add(provTmp);
+            }
+            drResults.Close();
+            conn.Close();
+            return lstTmp;
+        }
+
+        public override bool Modificar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Eliminar()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

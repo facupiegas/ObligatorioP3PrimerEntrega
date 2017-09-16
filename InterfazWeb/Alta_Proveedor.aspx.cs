@@ -34,24 +34,25 @@ namespace InterfazWeb
                 {
                     esVip = true;
                 }
-                Usuario tmpUser = new Usuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor);
+                Usuario tmpUser = Fachada.AltaUsuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor);
                 if (stringEsSoloNumeros(unRut) && stringEsSoloNumeros(unTelProov))
                 {
-                    Proveedor tmpProv = new Proveedor(unRut, unNomFantasiaProov, unMailProov, unTelProov, DateTime.Now.Date, esVip, tmpUser);
-                    int saveUser = tmpUser.Guardar();
-                    int saveProov = tmpProv.Guardar();
-                    if (saveUser != 0 && saveProov != 0){
+                    
+                    Proveedor tmpProv = Fachada.AltaProveedor(unRut, unNomFantasiaProov, unMailProov, unTelProov, DateTime.Now.Date, esVip, tmpUser);
+                    bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
+                    bool saveProov = Fachada.GuardarProveedorEnBD(tmpProv);
+                    if (saveUser && saveProov){
                         lblMensaje.Text = "Proveedor Creado con Éxito";
                         lblMensaje.ForeColor = System.Drawing.Color.Green;
                         lblMensaje.Visible = true;
                     }
-                    else if(saveUser == 0)
+                    else if(!saveUser)
                     {
                         lblMensaje.Text = "(*) El nombre de usuario ingresado ya ha sido utilizado";
                         lblMensaje.ForeColor = System.Drawing.Color.Red;
                         lblMensaje.Visible = true;
                     }
-                    else if (saveProov == 0)
+                    else if (!saveProov)
                     {
                         lblMensaje.Text = "(*) El proveedor ya existe en el sistema (RUT)";
                         lblMensaje.ForeColor = System.Drawing.Color.Red;

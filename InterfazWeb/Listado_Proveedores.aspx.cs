@@ -20,7 +20,8 @@ namespace InterfazWeb
         }
         protected void CargarListadoProveedores()
         {
-            List<Proveedor> listaProveedores = Proveedor.DevolverProveedores();
+            Proveedor tmpProv = new Proveedor();
+            List<Proveedor> listaProveedores = tmpProv.TraerTodo();
             grdListadoProveedores.DataSource = listaProveedores;
             grdListadoProveedores.DataBind();
         }

@@ -18,9 +18,9 @@ namespace ConsoleAppObligatorioP3
             Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
             Console.WriteLine(prov.Guardar());
             */
-            
 
-            List<Proveedor> listaProveedores = Proveedor.DevolverProveedores();
+            Proveedor tmpProv = new Proveedor();
+            List<Proveedor> listaProveedores = tmpProv.TraerTodo();
             Console.WriteLine("\n------------Listado Proveedores------------------\n");
             foreach (Proveedor pTmp in listaProveedores)
             {
@@ -37,7 +37,8 @@ namespace ConsoleAppObligatorioP3
                 }
                 Console.WriteLine("\n");
             }
-            List<Usuario> listaUsuarios = Usuario.DevolverUsuarios();
+            Usuario tmpUser = new Usuario();
+            List<Usuario> listaUsuarios = tmpUser.TraerTodo();
             Console.WriteLine("\n------------Listado Usuarios------------------\n");
             foreach (Usuario tmpUsuario in listaUsuarios) {
                 Console.WriteLine("- nombre: "+tmpUsuario.Nombre+" Password: "+tmpUsuario.Pass+" | Rol: "+tmpUsuario.Rol);
@@ -51,7 +52,7 @@ namespace ConsoleAppObligatorioP3
             aux.Nombre = unNombre; 
             aux.Pass = unPass;
 
-            if (aux.ValidarUsuarioInstancia())
+            if (Fachada.ValidarUsuario(aux.Nombre,aux.Pass)!=null)
             {
                 Console.WriteLine("usuario validado");
             }
