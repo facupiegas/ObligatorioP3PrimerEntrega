@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Dominio
 {
-    public class Usuario
+    public class Usuario:Persistente<Usuario>
     {
         #region Atributos y Properties
 
@@ -29,12 +29,74 @@ namespace Dominio
         public Usuario() { }
         #endregion
         #region Otros metodos
-        public EnumRol obtenerTipo()
+        public EnumRol ObtenerTipo()
         {
             return this.Rol;
         }
         
-            public static List<Usuario> DevolverUsuarios()
+        
+
+        
+
+        public override bool Guardar()
+        {
+            //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
+            //string conString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            SqlConnection connection = this.ObtenerConexion();
+            string cmdText = "Usuarios_Insert";
+            CommandType cmdType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@nombre", this.Nombre));
+            parametros.Add(new SqlParameter("@pass", this.Pass));
+            parametros.Add(new SqlParameter("@rol", this.Rol.ToString()));
+            return this.EjecutarNoQuery(connection, cmdText, cmdType,parametros)!=0;
+        }
+
+        public override bool Leer()
+        {
+            bool retorno = false;
+            SqlConnection conn = null;
+            SqlDataReader reader = null;
+            try
+            {
+                conn = this.ObtenerConexion();
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                parametros.Add(new SqlParameter("@nombre", this.Nombre));
+                reader = this.EjecutarReader(conn, "Usuarios_SelectByNombre", CommandType.StoredProcedure, parametros);
+
+                if (reader.Read())
+                {
+                    this.Nombre = reader["nombre"].ToString();
+                    this.Pass = reader["pass"].ToString();
+                    switch (reader["rol"].ToString()) {
+                        case "Administrador":
+                            this.Rol = EnumRol.Administrador;
+                            break;
+                        case "Proveedor":
+                            this.Rol = EnumRol.Proveedor;
+                            break;
+                        case "Organizador":
+                            this.Rol = EnumRol.Organizador;
+                            break;
+                    }
+                    retorno = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                if (conn != null && conn.State == ConnectionState.Open) conn.Close();
+                if (reader != null) reader.Close();
+            }
+
+            return retorno;
+        }
+
+        public override List<Usuario> TraerTodo()
         {
             List<Usuario> ListaAux = new List<Usuario>();
             SqlCommand cmd = new SqlCommand();
@@ -54,7 +116,7 @@ namespace Dominio
                     rol = EnumRol.Administrador;
                 else if (drResults["rol"].ToString() == "Proveedor")
                     rol = EnumRol.Proveedor;
-                else 
+                else
                     rol = EnumRol.Organizador;
 
                 Usuario tmpUsuario = new Usuario(drResults["nombre"].ToString(), drResults["pass"].ToString(), rol);
@@ -65,80 +127,14 @@ namespace Dominio
             return ListaAux;
         }
 
-        public static Usuario ValidarUsuario(string unNombre, string unPass) {
-            Usuario retorno = null;
-            List<Usuario> listaUsuarios = Usuario.DevolverUsuarios();
-            int aux = 0;
-            bool encontre = false;
-            while (aux < listaUsuarios.Count && !encontre) {
-                if (listaUsuarios[aux].Nombre == unNombre && listaUsuarios[aux].Pass == unPass) {
-                    encontre = true;
-                    retorno = listaUsuarios[aux];
-                }
-                aux++;
-            }
-            return retorno;
-
-        }
-
-        public bool ValidarUsuarioInstancia() {
-            bool retorno = false;
-
-            //string connectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Usuarios_SelectByNombre"; //indico el nombre del procedimiento almacenado a ejecutar
-            cmd.Connection = connection;
-            cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
-            connection.Open();
-            SqlDataReader drResults;
-            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            while (drResults.Read())
-            {
-                if (this.Nombre == drResults["nombre"].ToString() && this.Pass == drResults["pass"].ToString())
-                {
-                    retorno = true;
-                } 
-            }
-            drResults.Close();
-            connection.Close();
-
-            return retorno;
-        }
-
-        public int Guardar()
+        public override bool Modificar()
         {
-            //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
-            //string conString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            SqlConnection connection = new SqlConnection(conString);
-            int filasAfectadas = 0;
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = connection;//asignar conexion al commando a ejecutar 
-                    cmd.CommandText = "Usuarios_Insert";//Sentencia a ejecutar 
-                    cmd.CommandType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
-                    cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
-                    cmd.Parameters.Add(new SqlParameter("@pass", this.Pass));
-                    cmd.Parameters.Add(new SqlParameter("@rol", this.Rol.ToString()));
-                    connection.Open();//abrimos la conexion 
-                    filasAfectadas = cmd.ExecuteNonQuery();//ejecutamos consulta 
+            throw new NotImplementedException();
+        }
 
-                }//fin using
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-            }
-            finally
-            {
-                connection.Close(); //cerramos conexion 
-            }
-            return filasAfectadas;
+        public override bool Eliminar()
+        {
+            throw new NotImplementedException();
         }
 
 

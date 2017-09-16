@@ -19,8 +19,7 @@ namespace InterfazWeb
         {
             string unNombreUsuario = controlLogin.UserName.ToString();
             string unPass = controlLogin.Password.ToString();
-
-            Usuario Usuario = Usuario.ValidarUsuario(unNombreUsuario, unPass);
+            Usuario Usuario = Fachada.ValidarUsuario(unNombreUsuario, unPass);
 
             if (Usuario != null)
             {
