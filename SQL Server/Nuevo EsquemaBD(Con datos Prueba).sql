@@ -88,6 +88,7 @@ insert into Usuarios values('admin','123','Administrador')
 insert into Usuarios values('administrador','admin','Administrador')
 insert into Usuarios values('prov','123','Proveedor')
 insert into Usuarios values('prov2','123','Proveedor')
+insert into Usuarios values('prov3','123','Proveedor')
 insert into Usuarios values('org','123','Organizador')
 insert into Usuarios values('org2','123','Organizador')
 
@@ -98,18 +99,26 @@ insert into TiposEventos values('Casamiento','Fiesta para festejar un casamiento
 
 /*Inserto datos en Proveedor*/
 insert into Proveedores values('210000123477','Almacen de la esquina','almacenDeLaEsquina@almacen.com','24090000','12/12/2017',1,1,50,'prov')
+insert into Proveedores values('210000123400','Carniceria Carnasa','carne@carnasa.com','24090021','08/10/2017',1,1,50,'prov2')
+insert into Proveedores values('210000123401','Farmacia del Pepe','farma@delpepe.com','24092026','05/07/2017',1,1,50,'prov3')
 /*Inserto datos en tablas de servicios*/
 insert into TipoServicios
 values('Lunch','Servicio de catering')
 insert into TipoServicios
 values('Fotografia','Servicio de fotografia')
+insert into TipoServicios
+values('Aprovisionamiento','Servicio para reponer productos')
 
 insert into ServiciosTipoEventos
 values('Lunch','Fiesta de quince')
 insert into ServiciosTipoEventos
 values('Fotografia','Fiesta de quince')
+insert into ServiciosTipoEventos
+values('Aprovisionamiento','Asado')
 
 insert into Servicios 
 values('210000123477','El Gloton','Mucha comida','','Lunch')
 insert into Servicios 
 values('210000123477','Fotasas','Las mejores fotos','','Fotografia')
+insert into Servicios 
+values('210000123400','Asado del Pepe','Los mejores cortes de carne','','Aprovisionamiento')
