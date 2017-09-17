@@ -125,6 +125,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaFachada\CapaFachada.csproj">
+      <Project>{6e543a27-ff30-469c-9f4a-69331f3d656a}</Project>
+      <Name>CapaFachada</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{b4ecb037-8814-446c-8c9e-aeb28c1cf882}</Project>
       <Name>Dominio</Name>
