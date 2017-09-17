@@ -9,11 +9,9 @@ using Dominio;
 using CapaFachada;
 
 namespace ServiciosObligatorioWCF
-{
-   
+{ 
     public class RetornarServicios : IRetornarServicios
     {
-
         DTOServicio[] IRetornarServicios.RetornarServicios()
         {
             List<DTOServicio> aux = new List<DTOServicio>();
@@ -24,14 +22,16 @@ namespace ServiciosObligatorioWCF
                 {
                     RutProveedor = tmpServ.RutProveedor,
                     Nombre = tmpServ.Nombre,
-                    Descripcion = tmpServ.Nombre,
                     Imagen = tmpServ.Imagen,
+                    Descripcion = tmpServ.Descripcion,
                     TipoServicio = tmpServ.TipoServicio
                 };
                 aux.Add(auxDTO);
             }
             DTOServicio[] retorno = aux.ToArray();
             return retorno;
-        }
+
+
+        } 
     }
 }
