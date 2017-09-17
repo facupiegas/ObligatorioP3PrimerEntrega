@@ -13,8 +13,26 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
-            //probando pull desde mi branch
-            Console.WriteLine("Ingrese un Rut");
+            /*
+           Console.WriteLine("aca estamo en la consola");
+           Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
+           DateTime fecha = new DateTime(2017,11,11);
+           Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
+           Console.WriteLine(prov.Guardar());
+           */
+
+            Console.WriteLine("\n------------prueba------------------\n");
+            Servicio coso = new Servicio();
+            List<Servicio> cosocoso = Fachada.DevolverServicios();
+            foreach (Servicio s in cosocoso)
+            {
+                Console.WriteLine(s);
+            }
+
+
+
+            Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
+            Console.WriteLine("Ingrese un Rut: ");
             string rut = Console.ReadLine();
             RetornarProveedores.RetornarProveedoresClient proxyRut = new RetornarProveedores.RetornarProveedoresClient ();
             DTOProveedor tmpDTOProv1 = proxyRut.RetornarProveedorPorRut(rut);
@@ -33,21 +51,7 @@ namespace ConsoleAppObligatorioP3
                 Console.WriteLine("Proveedor no encontrado");
             }
 
-
-
-            /*
-            Console.WriteLine("aca estamo en la consola");
-            Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
-            DateTime fecha = new DateTime(2017,11,11);
-            Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
-            Console.WriteLine(prov.Guardar());
-            */
-            Console.WriteLine("\n------------prueba------------------\n");
-            Servicio coso = new Servicio();
-            List<Servicio> cosocoso = Fachada.DevolverServicios();
-            foreach (Servicio s in cosocoso) {
-                Console.WriteLine(s);
-            }
+          
 
             //CONSUMIR WCF QUE RETORNA TODOS LOS SERVICIOS
 
