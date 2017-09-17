@@ -26,7 +26,23 @@ namespace ConsoleAppObligatorioP3
             foreach (Servicio s in cosocoso) {
                 Console.WriteLine(s);
             }
-            
+
+            //CONSUMIR WCF QUE RETORNA TODOS LOS SERVICIOS
+
+            //Console.WriteLine("\n------------Listado Servicios servicio wcf------------------\n");
+            //RetornarServicios.RetornarServiciosClient proxySer = new RetornarServicios.RetornarServiciosClient();
+            //proxySer.Open();
+            //DTOServicio[] listaDTOSerWCF = proxySer.RetornarServicios();
+            //foreach (DTOServicio tmpDTOSer in listaDTOSerWCF)
+            //{
+            //    Console.WriteLine("- Rut Proveedor: " + tmpDTOSer.RutProveedor + "\n" +
+            //                      "Nombre: " + tmpDTOSer.Nombre + "\n" + "Descripcion: " + tmpDTOSer.Descripcion + "\n" +
+            //                      "Tipo Servicio: " + tmpDTOSer.TipoServicio.Nombre);
+                
+            //    Console.WriteLine("\n");
+            //}
+
+
             Console.WriteLine("\n------------Listado Proveedores servicio wcf------------------\n");
             RetornarProveedores.RetornarProveedoresClient proxy = new RetornarProveedores.RetornarProveedoresClient();
             proxy.Open();

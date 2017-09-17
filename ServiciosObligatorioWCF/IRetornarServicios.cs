@@ -9,16 +9,19 @@ using Dominio;
 
 namespace ServiciosObligatorioWCF
 {
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IRetornarServicios" in both code and config file together.
     [ServiceContract]
     public interface IRetornarServicios
     {
         [OperationContract]
         DTOServicio[] RetornarServicios();
+       
     }
-    
+
     [DataContract]
     public class DTOServicio
     {
+        #region Atributos y Properties
         [DataMember]
         public string RutProveedor { get; set; }
         [DataMember]
@@ -29,6 +32,6 @@ namespace ServiciosObligatorioWCF
         public string Descripcion { get; set; }
         [DataMember]
         public TipoServicio TipoServicio { get; set; }
-
+        #endregion
     }
 }
