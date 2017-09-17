@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f2816add-263b-4e55-967d-98a4a0b67d00" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:13922/RetornarProveedores.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RetornarProveedores.xsd" MetadataType="Schema" ID="f6ef2697-dd34-4a67-92ad-5525aab093d9" SourceId="1" SourceUrl="http://localhost:13922/RetornarProveedores.svc?xsd=xsd0" />
+    <MetadataFile FileName="RetornarProveedores1.xsd" MetadataType="Schema" ID="6a98c7aa-4c75-453e-ab50-12f0a8140fb1" SourceId="1" SourceUrl="http://localhost:13922/RetornarProveedores.svc?xsd=xsd3" />
+    <MetadataFile FileName="RetornarProveedores.wsdl" MetadataType="Wsdl" ID="1004a9fd-956d-4480-a7f8-4ce8908bc9d2" SourceId="1" SourceUrl="http://localhost:13922/RetornarProveedores.svc?wsdl" />
+    <MetadataFile FileName="RetornarProveedores.disco" MetadataType="Disco" ID="1f4971fa-d361-404f-b580-34462def5de0" SourceId="1" SourceUrl="http://localhost:13922/RetornarProveedores.svc?disco" />
+    <MetadataFile FileName="RetornarProveedores2.xsd" MetadataType="Schema" ID="7726c06d-0b94-489f-8712-c3e90833018a" SourceId="1" SourceUrl="http://localhost:13922/RetornarProveedores.svc?xsd=xsd2" />
+    <MetadataFile FileName="RetornarProveedores3.xsd" MetadataType="Schema" ID="3c8b2673-2b9e-41b7-992f-be06f4d73d0e" SourceId="1" SourceUrl="http://localhost:13922/RetornarProveedores.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

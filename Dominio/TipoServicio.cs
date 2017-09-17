@@ -24,6 +24,10 @@ namespace Dominio
         }
         #endregion
         #region Otros Metodos
+        public override string ToString()
+        {
+            return "Tipo: "+this.Nombre+" | Descripcion: "+this.Descripcion;
+        }
         #endregion
     }
 }

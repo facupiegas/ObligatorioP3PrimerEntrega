@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using CapaFachada;
+using ServiciosObligatorioWCF;
 
 namespace ConsoleAppObligatorioP3
 {
@@ -18,6 +20,28 @@ namespace ConsoleAppObligatorioP3
             Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
             Console.WriteLine(prov.Guardar());
             */
+            Console.WriteLine("\n------------prueba------------------\n");
+            Servicio coso = new Servicio();
+            List<Servicio> cosocoso = coso.TraerTodo();
+            foreach (Servicio s in cosocoso) {
+                Console.WriteLine(s);
+            }
+            
+            Console.WriteLine("\n------------Listado Proveedores servicio wcf------------------\n");
+            RetornarProveedores.RetornarProveedoresClient proxy = new RetornarProveedores.RetornarProveedoresClient();
+            proxy.Open();
+            DTOProveedor[] listaDTOProvWCF = proxy.RetornarProveedores();
+            foreach (DTOProveedor tmpDTOProv in listaDTOProvWCF) {
+                Console.WriteLine("- Nombre Fantasia: " + tmpDTOProv.NomFantasia + "\n" +
+                                  "RUT: " + tmpDTOProv.Rut + "\n" + "Usuario: " + tmpDTOProv.Usuario.Nombre + "\n" +
+                                  "Vip: " + tmpDTOProv.Vip);
+                if (tmpDTOProv.Vip)
+                {
+                    Console.WriteLine("Porcentaje por vip: " + tmpDTOProv.PorcentajePorVip);
+                }
+                Console.WriteLine("\n");
+            }
+
 
             Proveedor tmpProv = new Proveedor();
             List<Proveedor> listaProveedores = tmpProv.TraerTodo();

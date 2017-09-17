@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Dominio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Dominio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Usuario">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistenteOfUsuariokMUe2phu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Pass" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Rol" type="tns:Usuario.EnumRol" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
+  <xs:complexType name="PersistenteOfUsuariokMUe2phu">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="PersistenteOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Dominio" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Usuario" Namespace="http://schemas.datacontract.org/2004/07/Dominio" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Persistente">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PersistenteOfUsuariokMUe2phu" nillable="true" type="tns:PersistenteOfUsuariokMUe2phu" />
+  <xs:complexType name="Persistente">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Persistente" nillable="true" type="tns:Persistente" />
+  <xs:simpleType name="Usuario.EnumRol">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Administrador" />
+      <xs:enumeration value="Proveedor" />
+      <xs:enumeration value="Organizador" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Usuario.EnumRol" nillable="true" type="tns:Usuario.EnumRol" />
+</xs:schema>
