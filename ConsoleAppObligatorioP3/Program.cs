@@ -13,6 +13,7 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
+            //probando pull desde mi branch
             Console.WriteLine("Ingrese un Rut");
             string rut = Console.ReadLine();
             RetornarProveedores.RetornarProveedoresClient proxyRut = new RetornarProveedores.RetornarProveedoresClient ();
