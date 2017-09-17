@@ -14,16 +14,35 @@
   <wsdl:message name="IRetornarProveedores_RetornarProveedores_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetornarProveedoresResponse" />
   </wsdl:message>
+  <wsdl:message name="IRetornarProveedores_RetornarProveedorPorRut_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarProveedorPorRut" />
+  </wsdl:message>
+  <wsdl:message name="IRetornarProveedores_RetornarProveedorPorRut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarProveedorPorRutResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRetornarProveedores">
     <wsdl:operation name="RetornarProveedores">
       <wsdl:input wsaw:Action="http://tempuri.org/IRetornarProveedores/RetornarProveedores" message="tns:IRetornarProveedores_RetornarProveedores_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRetornarProveedores/RetornarProveedoresResponse" message="tns:IRetornarProveedores_RetornarProveedores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornarProveedorPorRut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRut" message="tns:IRetornarProveedores_RetornarProveedorPorRut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRutResponse" message="tns:IRetornarProveedores_RetornarProveedorPorRut_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRetornarProveedores" type="tns:IRetornarProveedores">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="RetornarProveedores">
       <soap:operation soapAction="http://tempuri.org/IRetornarProveedores/RetornarProveedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornarProveedorPorRut">
+      <soap:operation soapAction="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRut" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -16,6 +16,9 @@ namespace ServiciosObligatorioWCF
     {
         [OperationContract]
         DTOProveedor[] RetornarProveedores();
+
+        [OperationContract]
+        DTOProveedor RetornarProveedorPorRut(string unRut);
     }
     [DataContract]
     public class DTOProveedor {

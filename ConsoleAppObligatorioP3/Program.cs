@@ -13,6 +13,27 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Ingrese un Rut");
+            string rut = Console.ReadLine();
+            RetornarProveedores.RetornarProveedoresClient proxyRut = new RetornarProveedores.RetornarProveedoresClient ();
+            DTOProveedor tmpDTOProv1 = proxyRut.RetornarProveedorPorRut(rut);
+            if(tmpDTOProv1 != null) { 
+            Console.WriteLine("- Nombre Fantasia: " + tmpDTOProv1.NomFantasia + "\n" +
+                                  "RUT: " + tmpDTOProv1.Rut + "\n" + "Usuario: " + tmpDTOProv1.Usuario.Nombre + "\n" +
+                                  "Vip: " + tmpDTOProv1.Vip);
+                if (tmpDTOProv1.Vip)
+                {
+                    Console.WriteLine("Porcentaje por vip: " + tmpDTOProv1.PorcentajePorVip);
+                }
+                Console.WriteLine("\n");
+            }
+            else
+            {
+                Console.WriteLine("Proveedor no encontrado");
+            }
+
+
+
             /*
             Console.WriteLine("aca estamo en la consola");
             Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
@@ -22,7 +43,7 @@ namespace ConsoleAppObligatorioP3
             */
             Console.WriteLine("\n------------prueba------------------\n");
             Servicio coso = new Servicio();
-            List<Servicio> cosocoso = coso.TraerTodo();
+            List<Servicio> cosocoso = Fachada.DevolverServicios();
             foreach (Servicio s in cosocoso) {
                 Console.WriteLine(s);
             }
@@ -38,7 +59,7 @@ namespace ConsoleAppObligatorioP3
             //    Console.WriteLine("- Rut Proveedor: " + tmpDTOSer.RutProveedor + "\n" +
             //                      "Nombre: " + tmpDTOSer.Nombre + "\n" + "Descripcion: " + tmpDTOSer.Descripcion + "\n" +
             //                      "Tipo Servicio: " + tmpDTOSer.TipoServicio.Nombre);
-                
+
             //    Console.WriteLine("\n");
             //}
 

@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{B4ECB037-8814-446C-8C9E-AEB28C1CF882}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppObligatorioP3", "ConsoleAppObligatorioP3\ConsoleAppObligatorioP3.csproj", "{5FD1F404-F896-4511-9179-D3FD5E99FC5C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F093A15C-A865-4A43-8913-C3B9D488096C} = {F093A15C-A865-4A43-8913-C3B9D488096C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazWeb", "InterfazWeb\InterfazWeb.csproj", "{FB7F9771-CE17-4820-9401-CD3A6B4C81BC}"
 EndProject

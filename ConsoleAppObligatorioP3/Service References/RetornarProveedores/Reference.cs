@@ -20,6 +20,12 @@ namespace ConsoleAppObligatorioP3.RetornarProveedores {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedores", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedoresResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRutResponse")]
+        ServiciosObligatorioWCF.DTOProveedor RetornarProveedorPorRut(string unRut);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRutResponse")]
+        System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor> RetornarProveedorPorRutAsync(string unRut);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace ConsoleAppObligatorioP3.RetornarProveedores {
         
         public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresAsync() {
             return base.Channel.RetornarProveedoresAsync();
+        }
+        
+        public ServiciosObligatorioWCF.DTOProveedor RetornarProveedorPorRut(string unRut) {
+            return base.Channel.RetornarProveedorPorRut(unRut);
+        }
+        
+        public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor> RetornarProveedorPorRutAsync(string unRut) {
+            return base.Channel.RetornarProveedorPorRutAsync(unRut);
         }
     }
 }
