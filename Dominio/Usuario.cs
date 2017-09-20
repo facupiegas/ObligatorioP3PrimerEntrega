@@ -40,9 +40,7 @@ namespace Dominio
 
         public override bool Guardar()
         {
-            //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
-            //string conString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            
             SqlConnection connection = this.ObtenerConexion();
             string cmdText = "Usuarios_Insert";
             CommandType cmdType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
