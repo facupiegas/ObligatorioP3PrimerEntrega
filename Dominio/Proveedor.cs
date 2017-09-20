@@ -188,7 +188,17 @@ namespace Dominio
 
         public override bool Eliminar()
         {
-            throw new NotImplementedException();
+            bool retorno = false;
+            SqlConnection conn = this.ObtenerConexion();
+            string cmdText = "Proveedores_BajaByRut";
+            CommandType cmdType = CommandType.StoredProcedure;
+            List<SqlParameter> parametro = new List<SqlParameter>();
+            parametro.Add(new SqlParameter("@rut", this.Rut));
+            if (this.EjecutarNoQuery(conn, cmdText, cmdType, parametro) != 0) {
+                this.Activo = false;
+                retorno = true;
+            }
+            return retorno;
         }
         #endregion
     }
