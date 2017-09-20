@@ -23,7 +23,7 @@ namespace ConsoleAppObligatorioP3
             Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
             Console.WriteLine("Ingrese un Rut: ");
             string rut = Console.ReadLine();
-            RetornarProveedores.RetornarProveedoresClient proxyRut = new RetornarProveedores.RetornarProveedoresClient ();
+            OperacionesProveedoreRef.OperacionesProveedoresClient proxyRut = new OperacionesProveedoreRef.OperacionesProveedoresClient();
             DTOProveedor tmpDTOProv1 = proxyRut.RetornarProveedorPorRut(rut);
             if(tmpDTOProv1 != null) { 
             Console.WriteLine("- Nombre Fantasia: " + tmpDTOProv1.NomFantasia + "\n" +
@@ -57,7 +57,7 @@ namespace ConsoleAppObligatorioP3
 
 
             Console.WriteLine("\n------------Listado Proveedores servicio wcf------------------\n");
-            RetornarProveedores.RetornarProveedoresClient proxy = new RetornarProveedores.RetornarProveedoresClient();
+            OperacionesProveedoreRef.OperacionesProveedoresClient proxy = new OperacionesProveedoreRef.OperacionesProveedoresClient();
             proxy.Open();
             DTOProveedor[] listaDTOProvWCF = proxy.RetornarProveedores();
             foreach (DTOProveedor tmpDTOProv in listaDTOProvWCF) {

@@ -8,50 +8,50 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConsoleAppObligatorioP3.RetornarProveedores {
+namespace ConsoleAppObligatorioP3.OperacionesProveedoreRef {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RetornarProveedores.IRetornarProveedores")]
-    public interface IRetornarProveedores {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OperacionesProveedoreRef.IOperacionesProveedores")]
+    public interface IOperacionesProveedores {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedores", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedoresResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedores", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresResponse")]
         ServiciosObligatorioWCF.DTOProveedor[] RetornarProveedores();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedores", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedoresResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedores", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRutResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRutResponse")]
         ServiciosObligatorioWCF.DTOProveedor RetornarProveedorPorRut(string unRut);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IRetornarProveedores/RetornarProveedorPorRutResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRutResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor> RetornarProveedorPorRutAsync(string unRut);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRetornarProveedoresChannel : ConsoleAppObligatorioP3.RetornarProveedores.IRetornarProveedores, System.ServiceModel.IClientChannel {
+    public interface IOperacionesProveedoresChannel : ConsoleAppObligatorioP3.OperacionesProveedoreRef.IOperacionesProveedores, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RetornarProveedoresClient : System.ServiceModel.ClientBase<ConsoleAppObligatorioP3.RetornarProveedores.IRetornarProveedores>, ConsoleAppObligatorioP3.RetornarProveedores.IRetornarProveedores {
+    public partial class OperacionesProveedoresClient : System.ServiceModel.ClientBase<ConsoleAppObligatorioP3.OperacionesProveedoreRef.IOperacionesProveedores>, ConsoleAppObligatorioP3.OperacionesProveedoreRef.IOperacionesProveedores {
         
-        public RetornarProveedoresClient() {
+        public OperacionesProveedoresClient() {
         }
         
-        public RetornarProveedoresClient(string endpointConfigurationName) : 
+        public OperacionesProveedoresClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public RetornarProveedoresClient(string endpointConfigurationName, string remoteAddress) : 
+        public OperacionesProveedoresClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RetornarProveedoresClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public OperacionesProveedoresClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public RetornarProveedoresClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public OperacionesProveedoresClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
