@@ -10,9 +10,9 @@ using Dominio;
 
 namespace ServiciosObligatorioWCF
 {
-    
+
     [ServiceContract]
-    public interface IRetornarProveedores
+    public interface IOperacionesProveedores
     {
         [OperationContract]
         DTOProveedor[] RetornarProveedores();
@@ -20,5 +20,5 @@ namespace ServiciosObligatorioWCF
         [OperationContract]
         DTOProveedor RetornarProveedorPorRut(string unRut);
     }
-   
+
 }

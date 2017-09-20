@@ -10,12 +10,12 @@ using CapaFachada;
 
 namespace ServiciosObligatorioWCF
 {
-    
-    public class RetornarProveedores : IRetornarProveedores
+
+    public class OperacionesProveedores : IOperacionesProveedores
     {
 
 
-        DTOProveedor[] IRetornarProveedores.RetornarProveedores()
+        DTOProveedor[] IOperacionesProveedores.RetornarProveedores()
         {
             List<DTOProveedor> aux = new List<DTOProveedor>();
             List<Proveedor> tmpListProv = Fachada.DevolverProveedores();
@@ -36,14 +36,14 @@ namespace ServiciosObligatorioWCF
                 aux.Add(auxDTO);
             }
             DTOProveedor[] retorno = aux.ToArray();
-            return retorno;           
+            return retorno;
         }
 
-        DTOProveedor IRetornarProveedores.RetornarProveedorPorRut(string unRut)
+        DTOProveedor IOperacionesProveedores.RetornarProveedorPorRut(string unRut)
         {
             DTOProveedor aux = null;
             Proveedor tmpProv = Fachada.BuscarProveedor(unRut);
-            if(tmpProv != null)
+            if (tmpProv != null)
             {
                 aux = new DTOProveedor()
                 {

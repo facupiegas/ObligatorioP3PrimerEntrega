@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\RetornarProveedores\Reference.cs">
+    <Compile Include="Service References\OperacionesProveedoreRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -62,17 +62,17 @@
     <None Include="App.config" />
     <None Include="Properties\DataSources\ServiciosObligatorioWCF.DTOProveedor.datasource" />
     <None Include="Properties\DataSources\ServiciosObligatorioWCF.DTOServicio.datasource" />
-    <None Include="Service References\RetornarProveedores\RetornarProveedores.wsdl" />
-    <None Include="Service References\RetornarProveedores\RetornarProveedores.xsd">
+    <None Include="Service References\OperacionesProveedoreRef\OperacionesProveedores.wsdl" />
+    <None Include="Service References\OperacionesProveedoreRef\OperacionesProveedores.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RetornarProveedores\RetornarProveedores1.xsd">
+    <None Include="Service References\OperacionesProveedoreRef\OperacionesProveedores1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RetornarProveedores\RetornarProveedores2.xsd">
+    <None Include="Service References\OperacionesProveedoreRef\OperacionesProveedores2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RetornarProveedores\RetornarProveedores3.xsd">
+    <None Include="Service References\OperacionesProveedoreRef\OperacionesProveedores3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RetornarServiciosRef\RetornarServicios.wsdl" />
@@ -104,23 +104,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\RetornarProveedores\" />
+    <WCFMetadataStorage Include="Service References\OperacionesProveedoreRef\" />
     <WCFMetadataStorage Include="Service References\RetornarServiciosRef\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RetornarProveedores\RetornarProveedores.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RetornarProveedores\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RetornarProveedores\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RetornarProveedores\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RetornarServiciosRef\RetornarServicios.disco" />
@@ -133,6 +118,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RetornarServiciosRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OperacionesProveedoreRef\OperacionesProveedores.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OperacionesProveedoreRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OperacionesProveedoreRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OperacionesProveedoreRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
