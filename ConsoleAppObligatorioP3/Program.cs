@@ -13,24 +13,13 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
-            /*
-           Console.WriteLine("aca estamo en la consola");
-           Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
-           DateTime fecha = new DateTime(2017,11,11);
-           Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
-           Console.WriteLine(prov.Guardar());
-           */
-
-            Console.WriteLine("\n------------prueba------------------\n");
-            Servicio coso = new Servicio();
-            List<Servicio> cosocoso = Fachada.DevolverServicios();
-            foreach (Servicio s in cosocoso)
-            {
-                Console.WriteLine(s);
-            }
-
-
-
+            
+           //Console.WriteLine("aca estamo en la consola");
+           //Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
+           //DateTime fecha = new DateTime(2017,11,11);
+           //Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
+           //Console.WriteLine(prov.Guardar());
+    
             Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
             Console.WriteLine("Ingrese un Rut: ");
             string rut = Console.ReadLine();
@@ -51,22 +40,20 @@ namespace ConsoleAppObligatorioP3
                 Console.WriteLine("Proveedor no encontrado");
             }
 
-          
 
-            //CONSUMIR WCF QUE RETORNA TODOS LOS SERVICIOS
+            Console.WriteLine("\n------------Listado Servicios servicio wcf------------------\n");
+            RetornarServiciosRef.RetornarServiciosClient proxySer = new RetornarServiciosRef.RetornarServiciosClient();
+            proxySer.Open();
+            DTOServicio[] listaDTOSerWCF = proxySer.RetornarServicios();
+            foreach (DTOServicio tmpDTOSer in listaDTOSerWCF)
+            {
+                Console.WriteLine("- Rut Proveedor: " + tmpDTOSer.RutProveedor + "\n" +
+                                  "Nombre: " + tmpDTOSer.Nombre + "\n" + "Descripcion: " + tmpDTOSer.Descripcion + "\n" +
+                                  "Tipo Servicio: " + tmpDTOSer.TipoServicio
+                                  );
 
-            //Console.WriteLine("\n------------Listado Servicios servicio wcf------------------\n");
-            //RetornarServicios.RetornarServiciosClient proxySer = new RetornarServicios.RetornarServiciosClient();
-            //proxySer.Open();
-            //DTOServicio[] listaDTOSerWCF = proxySer.RetornarServicios();
-            //foreach (DTOServicio tmpDTOSer in listaDTOSerWCF)
-            //{
-            //    Console.WriteLine("- Rut Proveedor: " + tmpDTOSer.RutProveedor + "\n" +
-            //                      "Nombre: " + tmpDTOSer.Nombre + "\n" + "Descripcion: " + tmpDTOSer.Descripcion + "\n" +
-            //                      "Tipo Servicio: " + tmpDTOSer.TipoServicio.Nombre);
-
-            //    Console.WriteLine("\n");
-            //}
+                Console.WriteLine("\n");
+            }
 
 
             Console.WriteLine("\n------------Listado Proveedores servicio wcf------------------\n");

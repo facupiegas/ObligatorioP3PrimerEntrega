@@ -66,6 +66,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOProveedor.cs" />
+    <Compile Include="DTOServicio.cs" />
     <Compile Include="IRetornarProveedores.cs" />
     <Compile Include="IRetornarServicios.cs" />
     <Compile Include="RetornarProveedores.svc.cs">

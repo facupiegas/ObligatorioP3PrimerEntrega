@@ -18,20 +18,5 @@ namespace ServiciosObligatorioWCF
        
     }
 
-    [DataContract]
-    public class DTOServicio
-    {
-        #region Atributos y Properties
-        [DataMember]
-        public string RutProveedor { get; set; }
-        [DataMember]
-        public string Nombre { get; set; }
-        [DataMember]
-        public string Imagen { get; set; }
-        [DataMember]
-        public string Descripcion { get; set; }
-        [DataMember]
-        public TipoServicio TipoServicio { get; set; }
-        #endregion
-    }
+   
 }

@@ -24,7 +24,7 @@ namespace ServiciosObligatorioWCF
                     Nombre = tmpServ.Nombre,
                     Imagen = tmpServ.Imagen,
                     Descripcion = tmpServ.Descripcion,
-                    TipoServicio = tmpServ.TipoServicio
+                    TipoServicio = tmpServ.TipoServicioString
                 };
                 aux.Add(auxDTO);
             }

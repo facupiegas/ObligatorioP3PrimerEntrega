@@ -16,6 +16,7 @@ namespace Dominio
         public string Imagen { get; set; }
         public string Descripcion { get; set; }
         public TipoServicio TipoServicio { get; set; }
+        public string TipoServicioString { get { return TipoServicio.Nombre; } }
         #endregion
 
         #region Constructores

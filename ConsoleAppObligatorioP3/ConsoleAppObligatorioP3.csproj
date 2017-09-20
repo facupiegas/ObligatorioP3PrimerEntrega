@@ -52,10 +52,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\RetornarServiciosRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Properties\DataSources\ServiciosObligatorioWCF.DTOProveedor.datasource" />
+    <None Include="Properties\DataSources\ServiciosObligatorioWCF.DTOServicio.datasource" />
     <None Include="Service References\RetornarProveedores\RetornarProveedores.wsdl" />
     <None Include="Service References\RetornarProveedores\RetornarProveedores.xsd">
       <SubType>Designer</SubType>
@@ -67,6 +73,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RetornarProveedores\RetornarProveedores3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RetornarServiciosRef\RetornarServicios.wsdl" />
+    <None Include="Service References\RetornarServiciosRef\RetornarServicios.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RetornarServiciosRef\RetornarServicios1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RetornarServiciosRef\RetornarServicios2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -89,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\RetornarProveedores\" />
+    <WCFMetadataStorage Include="Service References\RetornarServiciosRef\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RetornarProveedores\RetornarProveedores.disco" />
@@ -101,6 +118,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RetornarProveedores\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RetornarServiciosRef\RetornarServicios.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RetornarServiciosRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RetornarServiciosRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RetornarServiciosRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
