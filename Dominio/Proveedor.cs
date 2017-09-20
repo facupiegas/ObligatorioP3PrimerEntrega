@@ -71,11 +71,6 @@ namespace Dominio
             parametros.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
             parametros.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros)!=0;
-
-            //System.Configuration.ConfigurationManager.ConnectionStrings["Nico_Connection"].ConnectionString;
-            //string conString = @"Server =SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            //string conString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-
            
         }
 
