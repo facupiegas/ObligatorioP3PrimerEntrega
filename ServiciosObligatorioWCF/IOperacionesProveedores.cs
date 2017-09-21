@@ -19,6 +19,8 @@ namespace ServiciosObligatorioWCF
 
         [OperationContract]
         DTOProveedor RetornarProveedorPorRut(string unRut);
+        [OperationContract]
+        bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip);
     }
 
 }

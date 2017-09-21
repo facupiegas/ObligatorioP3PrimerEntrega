@@ -19,10 +19,13 @@ namespace Dominio
         public DateTime Fecha { get; set; }
         public bool Activo { get; set; }
         public bool Vip { get; set; }
-        public double PorcentajePorVip { get; set; }
-        public static double Arancel { get; set; }
+        public static double PorcentajePorVipActual { get; set; } = 50;
+        private double porcentajePorVip;
+        public double PorcentajePorVip { get { return porcentajePorVip; } }
+        public static double Arancel { get; set; } = 50;
         public List<Servicio> ServiciosOfrecidos { get; set; }
         public Usuario Usuario { get; set; }
+        
         #endregion
 
         #region Constructores
@@ -38,11 +41,12 @@ namespace Dominio
             this.ServiciosOfrecidos = new List<Servicio>();
             if (this.Vip)
             {
-                this.PorcentajePorVip = 50;
+                this.porcentajePorVip = Proveedor.PorcentajePorVipActual;
             }
             else {
-                this.PorcentajePorVip = 0;
+                this.porcentajePorVip = 0;
             }
+           
         }
 
         public Proveedor() //Creo un constructor sin parametros para crear un objeto temporal
@@ -123,7 +127,7 @@ namespace Dominio
                     this.Telefono = reader["telefono"].ToString();
                     this.Vip = (bool)reader["vip"];
                     this.Fecha = (DateTime)reader["fecha"];
-                    this.PorcentajePorVip = Convert.ToDouble(reader["porcentajePorVip"].ToString());
+                    this.porcentajePorVip = Convert.ToDouble(reader["porcentajePorVip"].ToString());
                     this.Activo = (bool)reader["activo"];
                     Usuario aux = new Usuario() { Nombre = reader["nomUsuario"].ToString() };
                     aux.Leer();
@@ -165,7 +169,7 @@ namespace Dominio
                 provTmp.Telefono = drResults["telefono"].ToString();
                 provTmp.Fecha = (DateTime)drResults["fecha"];
                 provTmp.Vip = (bool)drResults["vip"];
-                provTmp.PorcentajePorVip = Convert.ToDouble(drResults["porcentajePorVip"].ToString());
+                provTmp.porcentajePorVip = Convert.ToDouble(drResults["porcentajePorVip"].ToString());
                 provTmp.Activo = (bool)drResults["activo"];
                 Usuario aux = new Usuario() { Nombre = drResults["nomUsuario"].ToString() };
                 provTmp.Usuario = aux;

@@ -26,6 +26,12 @@ namespace ConsoleAppObligatorioP3.OperacionesProveedoreRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRutResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor> RetornarProveedorPorRutAsync(string unRut);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse")]
+        bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse")]
+        System.Threading.Tasks.Task<bool> ModificarArancelesProveedorAsync(double unArancel, double unPorcentajeVip);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace ConsoleAppObligatorioP3.OperacionesProveedoreRef {
         
         public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor> RetornarProveedorPorRutAsync(string unRut) {
             return base.Channel.RetornarProveedorPorRutAsync(unRut);
+        }
+        
+        public bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip) {
+            return base.Channel.ModificarArancelesProveedor(unArancel, unPorcentajeVip);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ModificarArancelesProveedorAsync(double unArancel, double unPorcentajeVip) {
+            return base.Channel.ModificarArancelesProveedorAsync(unArancel, unPorcentajeVip);
         }
     }
 }
