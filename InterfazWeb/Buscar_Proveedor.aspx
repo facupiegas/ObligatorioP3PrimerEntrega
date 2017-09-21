@@ -4,10 +4,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
     <br />
-    Ingese RUT
+        RUT
     <asp:TextBox ID="txtRut" runat="server" Width="60px"></asp:TextBox>
 &nbsp;
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRut" ErrorMessage="(!) Ingrese un RUT" ForeColor="Red"></asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRut" ErrorMessage="(*) Ingrese un RUT" ForeColor="Red"></asp:RequiredFieldValidator>
 </p>
 <p>
     <asp:Button ID="btnBuscar" runat="server" Text="Buscar Proveedor" />

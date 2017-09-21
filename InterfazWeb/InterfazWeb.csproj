@@ -69,6 +69,7 @@
     <Content Include="Alta_Proveedor.aspx" />
     <Content Include="Buscar_Proveedor.aspx" />
     <Content Include="Catalogo_Servicios.aspx" />
+    <Content Include="Desactivar_Proveedor.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Listado_Proveedores.aspx" />
     <Content Include="Login.aspx" />
@@ -107,6 +108,13 @@
     </Compile>
     <Compile Include="Catalogo_Servicios.aspx.designer.cs">
       <DependentUpon>Catalogo_Servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Desactivar_Proveedor.aspx.cs">
+      <DependentUpon>Desactivar_Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Desactivar_Proveedor.aspx.designer.cs">
+      <DependentUpon>Desactivar_Proveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
