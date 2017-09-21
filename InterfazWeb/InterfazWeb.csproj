@@ -67,9 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Alta_Proveedor.aspx" />
+    <Content Include="Buscar_Proveedor.aspx" />
+    <Content Include="Catalogo_Servicios.aspx" />
+    <Content Include="Desactivar_Proveedor.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Listado_Proveedores.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
     <None Include="Web.Debug.config">
@@ -90,6 +94,27 @@
     </Compile>
     <Compile Include="Alta_Proveedor.aspx.designer.cs">
       <DependentUpon>Alta_Proveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Buscar_Proveedor.aspx.cs">
+      <DependentUpon>Buscar_Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Buscar_Proveedor.aspx.designer.cs">
+      <DependentUpon>Buscar_Proveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo_Servicios.aspx.cs">
+      <DependentUpon>Catalogo_Servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Catalogo_Servicios.aspx.designer.cs">
+      <DependentUpon>Catalogo_Servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Desactivar_Proveedor.aspx.cs">
+      <DependentUpon>Desactivar_Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Desactivar_Proveedor.aspx.designer.cs">
+      <DependentUpon>Desactivar_Proveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -114,6 +139,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx.cs">
+      <DependentUpon>Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx.designer.cs">
+      <DependentUpon>Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
