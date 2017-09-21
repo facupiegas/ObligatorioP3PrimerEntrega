@@ -13,18 +13,28 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
+
+            //Console.WriteLine("aca estamo en la consola");
+            //Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
+            //DateTime fecha = new DateTime(2017,11,11);
+            //Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
+            //Console.WriteLine(prov.Guardar());
+            Console.WriteLine("\n-------------Modificar Arancel y Porcentaje Vip (Proveedor) servicio wcf------------------\n");
+            OperacionesProveedoreRef.OperacionesProveedoresClient proxyOpProv = new OperacionesProveedoreRef.OperacionesProveedoresClient();
             
-           //Console.WriteLine("aca estamo en la consola");
-           //Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
-           //DateTime fecha = new DateTime(2017,11,11);
-           //Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
-           //Console.WriteLine(prov.Guardar());
-    
+            Console.WriteLine("Por favor ingrese un nuevo valor para Arancel(Proveedor): ");
+            double tmpArancel = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Por favor ingrese un nuevo valor para Porcentaje Vip (Proveedor): ");
+            double tmpPorcentajeVip = Convert.ToDouble(Console.ReadLine());
+            if (proxyOpProv.ModificarArancelesProveedor(tmpArancel, tmpPorcentajeVip)) Console.WriteLine("Cambio realizado con exito!");
+            else Console.WriteLine("El cabmio no pudo ser efectuado, por favor ingrese valores mayores o igual a 0 (cero)");
+            
             Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
             Console.WriteLine("Ingrese un Rut: ");
             string rut = Console.ReadLine();
-            OperacionesProveedoreRef.OperacionesProveedoresClient proxyRut = new OperacionesProveedoreRef.OperacionesProveedoresClient();
-            DTOProveedor tmpDTOProv1 = proxyRut.RetornarProveedorPorRut(rut);
+            
+            
+            DTOProveedor tmpDTOProv1 = proxyOpProv.RetornarProveedorPorRut(rut);
             if(tmpDTOProv1 != null) { 
             Console.WriteLine("- Nombre Fantasia: " + tmpDTOProv1.NomFantasia + "\n" +
                                   "RUT: " + tmpDTOProv1.Rut + "\n" + "Usuario: " + tmpDTOProv1.Usuario.Nombre + "\n" +
@@ -39,11 +49,11 @@ namespace ConsoleAppObligatorioP3
             {
                 Console.WriteLine("Proveedor no encontrado");
             }
-
+            
 
             Console.WriteLine("\n------------Listado Servicios servicio wcf------------------\n");
             RetornarServiciosRef.RetornarServiciosClient proxySer = new RetornarServiciosRef.RetornarServiciosClient();
-            proxySer.Open();
+            
             DTOServicio[] listaDTOSerWCF = proxySer.RetornarServicios();
             foreach (DTOServicio tmpDTOSer in listaDTOSerWCF)
             {
@@ -57,9 +67,8 @@ namespace ConsoleAppObligatorioP3
 
 
             Console.WriteLine("\n------------Listado Proveedores servicio wcf------------------\n");
-            OperacionesProveedoreRef.OperacionesProveedoresClient proxy = new OperacionesProveedoreRef.OperacionesProveedoresClient();
-            proxy.Open();
-            DTOProveedor[] listaDTOProvWCF = proxy.RetornarProveedores();
+            
+            DTOProveedor[] listaDTOProvWCF = proxyOpProv.RetornarProveedores();
             foreach (DTOProveedor tmpDTOProv in listaDTOProvWCF) {
                 Console.WriteLine("- Nombre Fantasia: " + tmpDTOProv.NomFantasia + "\n" +
                                   "RUT: " + tmpDTOProv.Rut + "\n" + "Usuario: " + tmpDTOProv.Usuario.Nombre + "\n" +
@@ -70,7 +79,9 @@ namespace ConsoleAppObligatorioP3
                 }
                 Console.WriteLine("\n");
             }
+            
 
+            Console.WriteLine("\n------------FIN SERVICIOS WCF------------------\n");
 
             Proveedor tmpProv = new Proveedor();
             List<Proveedor> listaProveedores = tmpProv.TraerTodo();
