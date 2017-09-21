@@ -27,7 +27,7 @@ namespace ConsoleAppObligatorioP3
             Console.WriteLine("Por favor ingrese un nuevo valor para Porcentaje Vip (Proveedor): ");
             double tmpPorcentajeVip = Convert.ToDouble(Console.ReadLine());
             if (proxyOpProv.ModificarArancelesProveedor(tmpArancel, tmpPorcentajeVip)) Console.WriteLine("Cambio realizado con exito!");
-            else Console.WriteLine("El cabmio no pudo ser efectuado, por favor ingrese valores mayores o igual a 0 (cero)");
+            else Console.WriteLine("El cambio no pudo ser efectuado, por favor ingrese valores mayores o igual a 0 (cero)");
             
             Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
             Console.WriteLine("Ingrese un Rut: ");
