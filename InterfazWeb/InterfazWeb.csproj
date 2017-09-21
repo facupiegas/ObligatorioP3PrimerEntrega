@@ -71,6 +71,7 @@
     <Content Include="Global.asax" />
     <Content Include="Listado_Proveedores.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
     <None Include="Web.Debug.config">
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx.cs">
+      <DependentUpon>Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx.designer.cs">
+      <DependentUpon>Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
