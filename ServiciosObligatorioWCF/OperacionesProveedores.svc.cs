@@ -15,13 +15,7 @@ namespace ServiciosObligatorioWCF
     {
         public bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip)
         {
-            bool retorno = false;
-            if (unArancel >= 0 && unPorcentajeVip >= 0) {
-                Proveedor.Arancel = unArancel;
-                Proveedor.PorcentajePorVipActual = unPorcentajeVip;
-                retorno = true; 
-            }
-            return retorno;
+            return Fachada.ModificarArancelesProveedor(unArancel, unPorcentajeVip);
         }
 
         DTOProveedor[] IOperacionesProveedores.RetornarProveedores()

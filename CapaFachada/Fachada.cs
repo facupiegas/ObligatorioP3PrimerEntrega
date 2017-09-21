@@ -70,6 +70,16 @@ namespace CapaFachada
         {
             return unUser.Guardar();
         }
+        public static bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip) {
+            bool retorno = false;
+            if (unArancel >= 0 && unPorcentajeVip >= 0)
+            {
+                Proveedor.Arancel = unArancel;
+                Proveedor.PorcentajePorVipActual = unPorcentajeVip;
+                retorno = true;
+            }
+            return retorno;
+        }
 
     }
 }
