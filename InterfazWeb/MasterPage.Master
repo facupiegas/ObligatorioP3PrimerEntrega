@@ -32,6 +32,7 @@
                 <asp:MenuItem NavigateUrl="~/Listado_Proveedores.aspx" Text="Listado Proveedores" Value="Listado Proveedores"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Catalogo_Servicios.aspx" Text="Catalogo de Servicios" Value="Catalogo de Servicios"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx" Text="Modificar Aranceles Y Porcentaje VIP" Value="Modificar Aranceles Y Porcentaje VIP"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/Buscar_Proveedor.aspx" Text="Buscar Proveedor Por RUT" Value="Buscar Proveedor Por RUT"></asp:MenuItem>
             </Items>
             <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
             <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />

@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Alta_Proveedor.aspx" />
+    <Content Include="Buscar_Proveedor.aspx" />
     <Content Include="Catalogo_Servicios.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Listado_Proveedores.aspx" />
@@ -92,6 +93,13 @@
     </Compile>
     <Compile Include="Alta_Proveedor.aspx.designer.cs">
       <DependentUpon>Alta_Proveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Buscar_Proveedor.aspx.cs">
+      <DependentUpon>Buscar_Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Buscar_Proveedor.aspx.designer.cs">
+      <DependentUpon>Buscar_Proveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Catalogo_Servicios.aspx.cs">
       <DependentUpon>Catalogo_Servicios.aspx</DependentUpon>
