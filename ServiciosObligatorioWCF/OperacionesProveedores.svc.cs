@@ -92,5 +92,14 @@ namespace ServiciosObligatorioWCF
             DTOProveedor[] retorno = aux.ToArray();
             return retorno;
         }
+
+        public bool AltaProveedor(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip)
+        {
+            Usuario tmpUser = Fachada.AltaUsuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor);
+            Proveedor tmpVendor = Fachada.AltaProveedor(unRut, unNomFantasia, unEmail, unTelefono, DateTime.Now.Date, esVip, tmpUser);
+            bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
+            bool saveVendor = Fachada.GuardarProveedorEnBD(tmpVendor);
+            return saveUser && saveVendor;
+        }
     }
 }

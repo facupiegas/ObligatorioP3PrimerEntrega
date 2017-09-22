@@ -44,6 +44,12 @@ namespace InterfazWeb.WCF_Proveedor {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivos", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivosResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresActivosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/AltaProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/AltaProveedorResponse")]
+        bool AltaProveedor(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/AltaProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/AltaProveedorResponse")]
+        System.Threading.Tasks.Task<bool> AltaProveedorAsync(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +117,14 @@ namespace InterfazWeb.WCF_Proveedor {
         
         public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresActivosAsync() {
             return base.Channel.RetornarProveedoresActivosAsync();
+        }
+        
+        public bool AltaProveedor(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip) {
+            return base.Channel.AltaProveedor(unNombreUsuario, unaContrasena, unRut, unNomFantasia, unEmail, unTelefono, esVip);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AltaProveedorAsync(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip) {
+            return base.Channel.AltaProveedorAsync(unNombreUsuario, unaContrasena, unRut, unNomFantasia, unEmail, unTelefono, esVip);
         }
     }
 }

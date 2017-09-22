@@ -68,4 +68,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AltaProveedor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="unNombreUsuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unaContrasena" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unRut" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unNomFantasia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unEmail" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unTelefono" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="esVip" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AltaProveedorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AltaProveedorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
