@@ -60,6 +60,7 @@ namespace Dominio
         {
             return ("RUT: " + this.Rut);
         }
+
         public override bool Guardar()
         {
             SqlConnection conn = this.ObtenerConexion();
@@ -77,8 +78,6 @@ namespace Dominio
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros)!=0;
            
         }
-
-       
 
         public List<Servicio> DevolverServicios() {
             List<Servicio> retorno = new List<Servicio>();
@@ -105,8 +104,6 @@ namespace Dominio
             connection.Close();
             return retorno;
         }
-
-        
 
         public override bool Leer()
         {
@@ -147,6 +144,7 @@ namespace Dominio
 
             return retorno;
         }
+
         public override List<Proveedor> TraerTodo()
         {
             List<Proveedor> lstTmp = new List<Proveedor>();
@@ -179,6 +177,37 @@ namespace Dominio
             conn.Close();
             return lstTmp;
         }
+
+        public List<Proveedor> TraerActivos()
+        {
+            List<Proveedor> lstTmp = new List<Proveedor>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Proveedores_SelectActiveOnly"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            SqlConnection conn = this.ObtenerConexion();
+            SqlDataReader drResults;
+            cmd.Connection = conn;
+            conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                Proveedor provTmp = new Proveedor();
+                provTmp.Rut = drResults["rut"].ToString();
+                provTmp.NomFantasia = drResults["nomFantasia"].ToString();
+                provTmp.Email = drResults["email"].ToString();
+                provTmp.Telefono = drResults["telefono"].ToString();
+                provTmp.Fecha = (DateTime)drResults["fecha"];
+                provTmp.Vip = (bool)drResults["vip"];
+                provTmp.porcentajePorVip = Convert.ToDouble(drResults["porcentajePorVip"].ToString());
+                provTmp.Activo = (bool)drResults["activo"];
+                Usuario aux = new Usuario() { Nombre = drResults["nomUsuario"].ToString() };
+                provTmp.Usuario = aux;
+                lstTmp.Add(provTmp);
+            }
+            drResults.Close();
+            conn.Close();
+            return lstTmp;
+        } //al no estar definido en PERSISTENTE ya que solo trae los Proveedores activos, no hago override
 
         public override bool Modificar()
         {

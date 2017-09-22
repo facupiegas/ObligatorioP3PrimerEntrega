@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="73f11693-773a-4bea-b1df-838ce1c340ea" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:13922/RetornarServicios.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RetornarServicios.xsd" MetadataType="Schema" ID="8cf34b6f-aca8-4924-a5e7-e7f96d74827b" SourceId="1" SourceUrl="http://localhost:13922/RetornarServicios.svc?xsd=xsd2" />
+    <MetadataFile FileName="RetornarServicios1.xsd" MetadataType="Schema" ID="9085a293-9f5c-4b59-87f0-619941f8e8ba" SourceId="1" SourceUrl="http://localhost:13922/RetornarServicios.svc?xsd=xsd1" />
+    <MetadataFile FileName="RetornarServicios.disco" MetadataType="Disco" ID="50f3a835-5d90-4008-a276-e27fbcea38db" SourceId="1" SourceUrl="http://localhost:13922/RetornarServicios.svc?disco" />
+    <MetadataFile FileName="RetornarServicios.wsdl" MetadataType="Wsdl" ID="8e0503aa-8296-40be-ab74-017ab5dc9145" SourceId="1" SourceUrl="http://localhost:13922/RetornarServicios.svc?wsdl" />
+    <MetadataFile FileName="RetornarServicios2.xsd" MetadataType="Schema" ID="a64d09fc-8496-4372-bb97-e02169c7d9a3" SourceId="1" SourceUrl="http://localhost:13922/RetornarServicios.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

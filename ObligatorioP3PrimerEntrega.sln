@@ -11,6 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppObligatorioP3", "
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazWeb", "InterfazWeb\InterfazWeb.csproj", "{FB7F9771-CE17-4820-9401-CD3A6B4C81BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F093A15C-A865-4A43-8913-C3B9D488096C} = {F093A15C-A865-4A43-8913-C3B9D488096C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosObligatorioWCF", "ServiciosObligatorioWCF\ServiciosObligatorioWCF.csproj", "{F093A15C-A865-4A43-8913-C3B9D488096C}"
 EndProject

@@ -1,3 +1,5 @@
+use ObligatorioP3PrimerEntrega
+
 create procedure Servicios_Insert
 	@rutProveedor as varchar(15),
 	@nombre as varchar(20),

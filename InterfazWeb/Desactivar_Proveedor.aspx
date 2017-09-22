@@ -4,12 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
     <br />
-    Seleccione un Proveedor</p>
+        <asp:Label ID="lblHeader" runat="server" Text="Seleccione un Proveedor" Visible="False"></asp:Label>
+    </p>
 <p>
-    <asp:GridView ID="grdProveedoresActivos" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="grdProveedoresActivos" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" style="text-align: center" Visible="False">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
-            <asp:ButtonField ButtonType="Button" Text="Seleccionar" />
+            <asp:CommandField ButtonType="Button" SelectText="Seleccionar" ShowSelectButton="True" />
         </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -25,7 +26,7 @@
 </p>
 <p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar Proveedor" />
+    <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar Proveedor" OnClick="btnDesactivar_Click" />
 </p>
 <p>
     <asp:Label ID="lblMensaje" runat="server" Text="Label" Visible="False"></asp:Label>

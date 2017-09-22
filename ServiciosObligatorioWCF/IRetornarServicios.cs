@@ -15,7 +15,9 @@ namespace ServiciosObligatorioWCF
     {
         [OperationContract]
         DTOServicio[] RetornarServicios();
-       
+
+        [OperationContract]
+        DTOServicio[] RetornarServiciosProveedor(string unRut);
     }
 
    

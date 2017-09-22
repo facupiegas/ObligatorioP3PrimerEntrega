@@ -1,3 +1,5 @@
+use ObligatorioP3PrimerEntrega
+
 create procedure Proveedores_BajaByRut
 	@rut as varchar(15)
 as

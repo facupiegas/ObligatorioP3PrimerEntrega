@@ -18,6 +18,11 @@ namespace ServiciosObligatorioWCF
             return Fachada.ModificarArancelesProveedor(unArancel, unPorcentajeVip);
         }
 
+        public bool DesactivarProveedor(string unRut)
+        {
+            return Fachada.DesactivarProveedor(unRut);//le paso el rut a la fachada para que le pido al proveedor que se elimine
+        }
+
         DTOProveedor[] IOperacionesProveedores.RetornarProveedores()
         {
             List<DTOProveedor> aux = new List<DTOProveedor>();
@@ -62,6 +67,39 @@ namespace ServiciosObligatorioWCF
                 };
             }
             return aux; //null si no existe o con sus datos si lo encontre
+        }
+
+        DTOProveedor[] IOperacionesProveedores.RetornarProveedoresActivos()
+        {
+            List<DTOProveedor> aux = new List<DTOProveedor>();
+            List<Proveedor> tmpListProv = Fachada.DevolverProveedoresActivos();
+            foreach (Proveedor tmpProv in tmpListProv)
+            {
+                DTOProveedor auxDTO = new DTOProveedor()
+                {
+                    Rut = tmpProv.Rut,
+                    NomFantasia = tmpProv.NomFantasia,
+                    Email = tmpProv.Email,
+                    Telefono = tmpProv.Telefono,
+                    Fecha = tmpProv.Fecha,
+                    Activo = tmpProv.Activo,
+                    Vip = tmpProv.Vip,
+                    PorcentajePorVip = tmpProv.PorcentajePorVip,
+                    Usuario = tmpProv.Usuario
+                };
+                aux.Add(auxDTO);
+            }
+            DTOProveedor[] retorno = aux.ToArray();
+            return retorno;
+        }
+
+        public bool AltaProveedor(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip)
+        {
+            Usuario tmpUser = Fachada.AltaUsuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor);
+            Proveedor tmpVendor = Fachada.AltaProveedor(unRut, unNomFantasia, unEmail, unTelefono, DateTime.Now.Date, esVip, tmpUser);
+            bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
+            bool saveVendor = Fachada.GuardarProveedorEnBD(tmpVendor);
+            return saveUser && saveVendor;
         }
     }
 }
