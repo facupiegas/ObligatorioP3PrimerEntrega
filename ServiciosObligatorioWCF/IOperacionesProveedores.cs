@@ -22,6 +22,9 @@ namespace ServiciosObligatorioWCF
 
         [OperationContract]
         bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip);
+
+        [OperationContract]
+        bool DesactivarProveedor(string unRut);
     }
 
 }

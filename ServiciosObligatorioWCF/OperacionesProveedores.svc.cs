@@ -18,6 +18,11 @@ namespace ServiciosObligatorioWCF
             return Fachada.ModificarArancelesProveedor(unArancel, unPorcentajeVip);
         }
 
+        public bool DesactivarProveedor(string unRut)
+        {
+            return Fachada.DesactivarProveedor(unRut);//le paso el rut a la fachada para que le pido al proveedor que se elimine
+        }
+
         DTOProveedor[] IOperacionesProveedores.RetornarProveedores()
         {
             List<DTOProveedor> aux = new List<DTOProveedor>();

@@ -15,13 +15,12 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if ((string)Session["tipo"] == "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
-            //{
-            //    Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
-            //}
+            if ((string)Session["tipo"] == "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
+            {
+                Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
+            }
             CargarListadoProveedores();
         }
-
 
         protected void CargarListadoProveedores()
         {
@@ -32,7 +31,6 @@ namespace InterfazWeb
             grdListadoProveedores.DataSource = listaDTOProveedoresWCF;
             grdListadoProveedores.DataBind();
         }
-
 
         protected void grdServicios_SelectedIndexChanged(object sender, EventArgs e)
         {
