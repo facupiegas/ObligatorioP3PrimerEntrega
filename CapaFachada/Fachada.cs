@@ -62,6 +62,12 @@ namespace CapaFachada
             Servicio auxServ = new Servicio();
             return auxServ.TraerTodo();
         }
+        public static List<Servicio> DevolverServiciosProveedor(string unRut)
+        {
+            Proveedor auxProv = new Proveedor();
+            auxProv.Rut = unRut;
+            return auxProv.DevolverServicios();
+        }
         public static bool GuardarProveedorEnBD(Proveedor unProv)
         {
             return unProv.Guardar();
@@ -80,6 +86,5 @@ namespace CapaFachada
             }
             return retorno;
         }
-
     }
 }

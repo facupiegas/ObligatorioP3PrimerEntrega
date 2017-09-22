@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using CapaFachada;
+using ServiciosObligatorioWCF;
+
 
 namespace InterfazWeb
 {
@@ -12,24 +15,31 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((string)Session["tipo"] == "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
-            {
-                Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
-            }
+            //if ((string)Session["tipo"] == "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
+            //{
+            //    Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
+            //}
             CargarListadoProveedores();
         }
+
+
         protected void CargarListadoProveedores()
         {
-            Proveedor tmpProv = new Proveedor();
-            List<Proveedor> listaProveedores = tmpProv.TraerTodo();
-            grdListadoProveedores.DataSource = listaProveedores;
+            WCF_Proveedor.OperacionesProveedoresClient proxyOpProv = new WCF_Proveedor.OperacionesProveedoresClient();
+
+
+            DTOProveedor[] listaDTOProveedoresWCF = proxyOpProv.RetornarProveedores();
+            grdListadoProveedores.DataSource = listaDTOProveedoresWCF;
             grdListadoProveedores.DataBind();
         }
+
+
         protected void grdServicios_SelectedIndexChanged(object sender, EventArgs e)
         {
             string rut = grdListadoProveedores.SelectedRow.Cells[1].Text;
-            Proveedor aux = new Proveedor() { Rut=rut};
-            grdServicios.DataSource = aux.DevolverServicios();
+            WCF_Servicio.RetornarServiciosClient proxySer = new WCF_Servicio.RetornarServiciosClient();
+            DTOServicio[] listaDTOSerWCF = proxySer.RetornarServiciosProveedor(rut);
+            grdServicios.DataSource = listaDTOSerWCF;
             grdServicios.DataBind();
         }
     }
