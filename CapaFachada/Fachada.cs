@@ -108,5 +108,11 @@ namespace CapaFachada
             }
             return retorno;
         }
+
+        public static List<Proveedor> DevolverProveedoresActivos()
+        {
+            Proveedor auxProv = new Proveedor();
+            return auxProv.TraerActivos();
+        }
     }
 }

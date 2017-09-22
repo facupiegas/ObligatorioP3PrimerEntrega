@@ -26,6 +26,18 @@
   <wsdl:message name="IOperacionesProveedores_ModificarArancelesProveedor_OutputMessage">
     <wsdl:part name="parameters" element="tns:ModificarArancelesProveedorResponse" />
   </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_DesactivarProveedor_InputMessage">
+    <wsdl:part name="parameters" element="tns:DesactivarProveedor" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_DesactivarProveedor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DesactivarProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_RetornarProveedoresActivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarProveedoresActivos" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_RetornarProveedoresActivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarProveedoresActivosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOperacionesProveedores">
     <wsdl:operation name="RetornarProveedores">
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedores" message="tns:IOperacionesProveedores_RetornarProveedores_InputMessage" />
@@ -38,6 +50,14 @@
     <wsdl:operation name="ModificarArancelesProveedor">
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor" message="tns:IOperacionesProveedores_ModificarArancelesProveedor_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse" message="tns:IOperacionesProveedores_ModificarArancelesProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DesactivarProveedor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/DesactivarProveedor" message="tns:IOperacionesProveedores_DesactivarProveedor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/DesactivarProveedorResponse" message="tns:IOperacionesProveedores_DesactivarProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornarProveedoresActivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivos" message="tns:IOperacionesProveedores_RetornarProveedoresActivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivosResponse" message="tns:IOperacionesProveedores_RetornarProveedoresActivos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOperacionesProveedores" type="tns:IOperacionesProveedores">
@@ -62,6 +82,24 @@
     </wsdl:operation>
     <wsdl:operation name="ModificarArancelesProveedor">
       <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DesactivarProveedor">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/DesactivarProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornarProveedoresActivos">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -25,8 +25,6 @@ namespace InterfazWeb
         protected void CargarListadoProveedores()
         {
             WCF_Proveedor.OperacionesProveedoresClient proxyOpProv = new WCF_Proveedor.OperacionesProveedoresClient();
-
-
             DTOProveedor[] listaDTOProveedoresWCF = proxyOpProv.RetornarProveedores();
             grdListadoProveedores.DataSource = listaDTOProveedoresWCF;
             grdListadoProveedores.DataBind();

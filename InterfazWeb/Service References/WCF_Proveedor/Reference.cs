@@ -32,6 +32,18 @@ namespace InterfazWeb.WCF_Proveedor {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse")]
         System.Threading.Tasks.Task<bool> ModificarArancelesProveedorAsync(double unArancel, double unPorcentajeVip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DesactivarProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/DesactivarProveedorResponse")]
+        bool DesactivarProveedor(string unRut);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DesactivarProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/DesactivarProveedorResponse")]
+        System.Threading.Tasks.Task<bool> DesactivarProveedorAsync(string unRut);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivos", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivosResponse")]
+        ServiciosObligatorioWCF.DTOProveedor[] RetornarProveedoresActivos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivos", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedoresActivosResponse")]
+        System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresActivosAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +95,22 @@ namespace InterfazWeb.WCF_Proveedor {
         
         public System.Threading.Tasks.Task<bool> ModificarArancelesProveedorAsync(double unArancel, double unPorcentajeVip) {
             return base.Channel.ModificarArancelesProveedorAsync(unArancel, unPorcentajeVip);
+        }
+        
+        public bool DesactivarProveedor(string unRut) {
+            return base.Channel.DesactivarProveedor(unRut);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DesactivarProveedorAsync(string unRut) {
+            return base.Channel.DesactivarProveedorAsync(unRut);
+        }
+        
+        public ServiciosObligatorioWCF.DTOProveedor[] RetornarProveedoresActivos() {
+            return base.Channel.RetornarProveedoresActivos();
+        }
+        
+        public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor[]> RetornarProveedoresActivosAsync() {
+            return base.Channel.RetornarProveedoresActivosAsync();
         }
     }
 }

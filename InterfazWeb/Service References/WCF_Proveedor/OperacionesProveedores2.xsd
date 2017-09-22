@@ -42,4 +42,30 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="DesactivarProveedor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="unRut" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DesactivarProveedorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DesactivarProveedorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetornarProveedoresActivos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetornarProveedoresActivosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" minOccurs="0" name="RetornarProveedoresActivosResult" nillable="true" type="q3:ArrayOfDTOProveedor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

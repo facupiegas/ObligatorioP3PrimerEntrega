@@ -68,5 +68,29 @@ namespace ServiciosObligatorioWCF
             }
             return aux; //null si no existe o con sus datos si lo encontre
         }
+
+        DTOProveedor[] IOperacionesProveedores.RetornarProveedoresActivos()
+        {
+            List<DTOProveedor> aux = new List<DTOProveedor>();
+            List<Proveedor> tmpListProv = Fachada.DevolverProveedoresActivos();
+            foreach (Proveedor tmpProv in tmpListProv)
+            {
+                DTOProveedor auxDTO = new DTOProveedor()
+                {
+                    Rut = tmpProv.Rut,
+                    NomFantasia = tmpProv.NomFantasia,
+                    Email = tmpProv.Email,
+                    Telefono = tmpProv.Telefono,
+                    Fecha = tmpProv.Fecha,
+                    Activo = tmpProv.Activo,
+                    Vip = tmpProv.Vip,
+                    PorcentajePorVip = tmpProv.PorcentajePorVip,
+                    Usuario = tmpProv.Usuario
+                };
+                aux.Add(auxDTO);
+            }
+            DTOProveedor[] retorno = aux.ToArray();
+            return retorno;
+        }
     }
 }

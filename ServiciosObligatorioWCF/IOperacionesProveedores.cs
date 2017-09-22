@@ -25,6 +25,9 @@ namespace ServiciosObligatorioWCF
 
         [OperationContract]
         bool DesactivarProveedor(string unRut);
+
+        [OperationContract]
+        DTOProveedor[] RetornarProveedoresActivos();
     }
 
 }

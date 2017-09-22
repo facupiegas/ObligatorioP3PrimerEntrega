@@ -112,17 +112,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Principal.aspx" />
-    <None Include="Service References\WCF_Proveedor\OperacionesProveedores.disco" />
-    <None Include="Service References\WCF_Proveedor\configuration91.svcinfo" />
-    <None Include="Service References\WCF_Proveedor\configuration.svcinfo" />
-    <None Include="Service References\WCF_Proveedor\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\WCF_Servicio\RetornarServicios.disco" />
     <None Include="Service References\WCF_Servicio\configuration91.svcinfo" />
     <None Include="Service References\WCF_Servicio\configuration.svcinfo" />
     <None Include="Service References\WCF_Servicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WCF_Proveedor\OperacionesProveedores.disco" />
+    <None Include="Service References\WCF_Proveedor\configuration91.svcinfo" />
+    <None Include="Service References\WCF_Proveedor\configuration.svcinfo" />
+    <None Include="Service References\WCF_Proveedor\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
