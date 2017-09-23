@@ -114,5 +114,30 @@ namespace CapaFachada
             Proveedor auxProv = new Proveedor();
             return auxProv.TraerActivos();
         }
+
+        public static Servicio BuscarServicio(string unRut,string unNombre)
+        {
+            Servicio retorno = new Servicio() { RutProveedor = unRut, Nombre=unNombre };
+            if (!retorno.Leer())
+                retorno = null;
+            return retorno;
+        }
+        public static Servicio AltaServicio(string unRutProveedor,string unNombre,string unaImagen,string unaDescripcion,TipoServicio unTipoServicio)
+        {
+            Servicio retorno = null;
+            if (BuscarServicio(unRutProveedor,unNombre) == null)
+            {
+                retorno = new Servicio() { RutProveedor = unRutProveedor, Nombre = unNombre, Imagen = unaImagen, Descripcion = unaDescripcion, TipoServicio = unTipoServicio };
+            }
+            return retorno;
+        }
+        public static bool GuardarServicioEnBD(Servicio unServicio)
+        {
+            return unServicio.Guardar();
+        }
+        public static List<TipoServicio> DevolverTipoServicios() {
+            TipoServicio tmpTipoSer = new TipoServicio();
+            return tmpTipoSer.TraerTodo();
+        }
     }
 }

@@ -62,7 +62,35 @@ namespace Dominio
 
         public override bool Leer()
         {
-            throw new NotImplementedException();
+            bool retorno = false;
+            SqlConnection conn = null;
+            SqlDataReader reader = null;
+            try
+            {
+                conn = this.ObtenerConexion();
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                parametros.Add(new SqlParameter("@rutProveedor", this.RutProveedor));
+                parametros.Add(new SqlParameter(@"nombre", this.Nombre));
+                reader = this.EjecutarReader(conn, "Servicios_SelectByRutAndNombre", CommandType.StoredProcedure, parametros);
+                if (reader.Read())
+                {
+                    this.Descripcion = reader["descripcion"].ToString();
+                    this.Imagen = reader["imagen"].ToString();
+                    TipoServicio tmpTipoSer = new TipoServicio() { Nombre = reader["tipoServicio"].ToString() };
+                    tmpTipoSer.Leer();
+                    this.TipoServicio = tmpTipoSer;
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally {
+                if (conn != null && conn.State == ConnectionState.Open) conn.Close();
+                if (reader != null) reader.Close();
+            }
+            return retorno;
         }
 
         public override bool Guardar()
