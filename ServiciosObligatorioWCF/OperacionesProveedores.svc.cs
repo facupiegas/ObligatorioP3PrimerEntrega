@@ -13,9 +13,24 @@ namespace ServiciosObligatorioWCF
 
     public class OperacionesProveedores : IOperacionesProveedores
     {
-        public bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip)
+        public bool ModificarArancelProveedor(double unArancel)
         {
-            return Fachada.ModificarArancelesProveedor(unArancel, unPorcentajeVip);
+            return Fachada.ModificarArancelProveedor(unArancel);
+        }
+
+        public bool ModificarPorcentajeVip(double unPorcentajeVip)
+        {
+            return Fachada.ModificarPorcentajeVip(unPorcentajeVip);
+        }
+
+        double IOperacionesProveedores.DevolverArancelActual()
+        {
+            return Fachada.DevolverArancelActual();
+        }
+
+        double IOperacionesProveedores.DevolverPorcentajeVipActual()
+        {
+            return Fachada.DevolverPorcentajeVipActual();
         }
 
         public bool DesactivarProveedor(string unRut)

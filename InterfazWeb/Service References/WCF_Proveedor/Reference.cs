@@ -27,11 +27,17 @@ namespace InterfazWeb.WCF_Proveedor {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRut", ReplyAction="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRutResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOProveedor> RetornarProveedorPorRutAsync(string unRut);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse")]
-        bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedorResponse")]
+        bool ModificarArancelProveedor(double unArancel);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse")]
-        System.Threading.Tasks.Task<bool> ModificarArancelesProveedorAsync(double unArancel, double unPorcentajeVip);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedorResponse")]
+        System.Threading.Tasks.Task<bool> ModificarArancelProveedorAsync(double unArancel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVip", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVipResponse")]
+        bool ModificarPorcentajeVip(double unPorcentajeVip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVip", ReplyAction="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVipResponse")]
+        System.Threading.Tasks.Task<bool> ModificarPorcentajeVipAsync(double unPorcentajeVip);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DesactivarProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/DesactivarProveedorResponse")]
         bool DesactivarProveedor(string unRut);
@@ -50,6 +56,18 @@ namespace InterfazWeb.WCF_Proveedor {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/AltaProveedor", ReplyAction="http://tempuri.org/IOperacionesProveedores/AltaProveedorResponse")]
         System.Threading.Tasks.Task<bool> AltaProveedorAsync(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DevolverArancelActual", ReplyAction="http://tempuri.org/IOperacionesProveedores/DevolverArancelActualResponse")]
+        double DevolverArancelActual();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DevolverArancelActual", ReplyAction="http://tempuri.org/IOperacionesProveedores/DevolverArancelActualResponse")]
+        System.Threading.Tasks.Task<double> DevolverArancelActualAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActual", ReplyAction="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActualResponse")]
+        double DevolverPorcentajeVipActual();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActual", ReplyAction="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActualResponse")]
+        System.Threading.Tasks.Task<double> DevolverPorcentajeVipActualAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -95,12 +113,20 @@ namespace InterfazWeb.WCF_Proveedor {
             return base.Channel.RetornarProveedorPorRutAsync(unRut);
         }
         
-        public bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip) {
-            return base.Channel.ModificarArancelesProveedor(unArancel, unPorcentajeVip);
+        public bool ModificarArancelProveedor(double unArancel) {
+            return base.Channel.ModificarArancelProveedor(unArancel);
         }
         
-        public System.Threading.Tasks.Task<bool> ModificarArancelesProveedorAsync(double unArancel, double unPorcentajeVip) {
-            return base.Channel.ModificarArancelesProveedorAsync(unArancel, unPorcentajeVip);
+        public System.Threading.Tasks.Task<bool> ModificarArancelProveedorAsync(double unArancel) {
+            return base.Channel.ModificarArancelProveedorAsync(unArancel);
+        }
+        
+        public bool ModificarPorcentajeVip(double unPorcentajeVip) {
+            return base.Channel.ModificarPorcentajeVip(unPorcentajeVip);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ModificarPorcentajeVipAsync(double unPorcentajeVip) {
+            return base.Channel.ModificarPorcentajeVipAsync(unPorcentajeVip);
         }
         
         public bool DesactivarProveedor(string unRut) {
@@ -125,6 +151,22 @@ namespace InterfazWeb.WCF_Proveedor {
         
         public System.Threading.Tasks.Task<bool> AltaProveedorAsync(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip) {
             return base.Channel.AltaProveedorAsync(unNombreUsuario, unaContrasena, unRut, unNomFantasia, unEmail, unTelefono, esVip);
+        }
+        
+        public double DevolverArancelActual() {
+            return base.Channel.DevolverArancelActual();
+        }
+        
+        public System.Threading.Tasks.Task<double> DevolverArancelActualAsync() {
+            return base.Channel.DevolverArancelActualAsync();
+        }
+        
+        public double DevolverPorcentajeVipActual() {
+            return base.Channel.DevolverPorcentajeVipActual();
+        }
+        
+        public System.Threading.Tasks.Task<double> DevolverPorcentajeVipActualAsync() {
+            return base.Channel.DevolverPorcentajeVipActualAsync();
         }
     }
 }

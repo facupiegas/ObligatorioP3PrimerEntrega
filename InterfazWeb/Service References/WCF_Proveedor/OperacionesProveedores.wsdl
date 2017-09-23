@@ -20,11 +20,17 @@
   <wsdl:message name="IOperacionesProveedores_RetornarProveedorPorRut_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetornarProveedorPorRutResponse" />
   </wsdl:message>
-  <wsdl:message name="IOperacionesProveedores_ModificarArancelesProveedor_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarArancelesProveedor" />
+  <wsdl:message name="IOperacionesProveedores_ModificarArancelProveedor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarArancelProveedor" />
   </wsdl:message>
-  <wsdl:message name="IOperacionesProveedores_ModificarArancelesProveedor_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarArancelesProveedorResponse" />
+  <wsdl:message name="IOperacionesProveedores_ModificarArancelProveedor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarArancelProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_ModificarPorcentajeVip_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarPorcentajeVip" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_ModificarPorcentajeVip_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarPorcentajeVipResponse" />
   </wsdl:message>
   <wsdl:message name="IOperacionesProveedores_DesactivarProveedor_InputMessage">
     <wsdl:part name="parameters" element="tns:DesactivarProveedor" />
@@ -44,6 +50,18 @@
   <wsdl:message name="IOperacionesProveedores_AltaProveedor_OutputMessage">
     <wsdl:part name="parameters" element="tns:AltaProveedorResponse" />
   </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_DevolverArancelActual_InputMessage">
+    <wsdl:part name="parameters" element="tns:DevolverArancelActual" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_DevolverArancelActual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DevolverArancelActualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_DevolverPorcentajeVipActual_InputMessage">
+    <wsdl:part name="parameters" element="tns:DevolverPorcentajeVipActual" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesProveedores_DevolverPorcentajeVipActual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DevolverPorcentajeVipActualResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOperacionesProveedores">
     <wsdl:operation name="RetornarProveedores">
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedores" message="tns:IOperacionesProveedores_RetornarProveedores_InputMessage" />
@@ -53,9 +71,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRut" message="tns:IOperacionesProveedores_RetornarProveedorPorRut_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/RetornarProveedorPorRutResponse" message="tns:IOperacionesProveedores_RetornarProveedorPorRut_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModificarArancelesProveedor">
-      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor" message="tns:IOperacionesProveedores_ModificarArancelesProveedor_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedorResponse" message="tns:IOperacionesProveedores_ModificarArancelesProveedor_OutputMessage" />
+    <wsdl:operation name="ModificarArancelProveedor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedor" message="tns:IOperacionesProveedores_ModificarArancelProveedor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedorResponse" message="tns:IOperacionesProveedores_ModificarArancelProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarPorcentajeVip">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVip" message="tns:IOperacionesProveedores_ModificarPorcentajeVip_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVipResponse" message="tns:IOperacionesProveedores_ModificarPorcentajeVip_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DesactivarProveedor">
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/DesactivarProveedor" message="tns:IOperacionesProveedores_DesactivarProveedor_InputMessage" />
@@ -68,6 +90,14 @@
     <wsdl:operation name="AltaProveedor">
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/AltaProveedor" message="tns:IOperacionesProveedores_AltaProveedor_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/AltaProveedorResponse" message="tns:IOperacionesProveedores_AltaProveedor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DevolverArancelActual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/DevolverArancelActual" message="tns:IOperacionesProveedores_DevolverArancelActual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/DevolverArancelActualResponse" message="tns:IOperacionesProveedores_DevolverArancelActual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DevolverPorcentajeVipActual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActual" message="tns:IOperacionesProveedores_DevolverPorcentajeVipActual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActualResponse" message="tns:IOperacionesProveedores_DevolverPorcentajeVipActual_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOperacionesProveedores" type="tns:IOperacionesProveedores">
@@ -90,8 +120,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModificarArancelesProveedor">
-      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelesProveedor" style="document" />
+    <wsdl:operation name="ModificarArancelProveedor">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/ModificarArancelProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarPorcentajeVip">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/ModificarPorcentajeVip" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -119,6 +158,24 @@
     </wsdl:operation>
     <wsdl:operation name="AltaProveedor">
       <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/AltaProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DevolverArancelActual">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/DevolverArancelActual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DevolverPorcentajeVipActual">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActual" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
