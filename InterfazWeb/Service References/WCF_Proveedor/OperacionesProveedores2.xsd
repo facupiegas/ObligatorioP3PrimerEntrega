@@ -27,18 +27,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ModificarArancelesProveedor">
+  <xs:element name="ModificarArancelProveedor">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="unArancel" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarArancelProveedorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ModificarArancelProveedorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarPorcentajeVip">
+    <xs:complexType>
+      <xs:sequence>
         <xs:element minOccurs="0" name="unPorcentajeVip" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ModificarArancelesProveedorResponse">
+  <xs:element name="ModificarPorcentajeVipResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ModificarArancelesProveedorResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ModificarPorcentajeVipResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -85,6 +98,30 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AltaProveedorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DevolverArancelActual">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DevolverArancelActualResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DevolverArancelActualResult" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DevolverPorcentajeVipActual">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DevolverPorcentajeVipActualResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DevolverPorcentajeVipActualResult" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -86,16 +86,36 @@ namespace CapaFachada
             return unUser.Guardar();
         }
 
-        public static bool ModificarArancelesProveedor(double unArancel, double unPorcentajeVip) {
+        public static bool ModificarArancelProveedor(double unArancel) {
             bool retorno = false;
-            if (unArancel >= 0 && unPorcentajeVip >= 0)
+            if (unArancel >= 0 )
             {
-                Proveedor.Arancel = unArancel;
+                Proveedor.Arancel = unArancel;;
+                retorno = true;
+            }
+            return retorno;
+        }
+
+        public static bool ModificarPorcentajeVip(double unPorcentajeVip)
+        {
+            bool retorno = false;
+            if (unPorcentajeVip >= 0)
+            {
                 Proveedor.PorcentajePorVipActual = unPorcentajeVip;
                 retorno = true;
             }
             return retorno;
         }
+
+        public static double DevolverArancelActual()
+        {
+            return Proveedor.Arancel;
+        } //para mostrar porcentaje actual previo a la modificacion
+
+        public static double DevolverPorcentajeVipActual()
+        {
+            return Proveedor.PorcentajePorVipActual;
+        } //para mostrar porcentaje actual previo a la modificacion
 
         public static bool DesactivarProveedor(string unRut)
         {

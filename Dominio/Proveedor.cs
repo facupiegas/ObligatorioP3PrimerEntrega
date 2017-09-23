@@ -13,17 +13,29 @@ namespace Dominio
     {
         #region Atributos y Properties
         public string Rut { get; set; }
+
         public string NomFantasia { get; set; }
+
         public string Email { get; set; }
+
         public string Telefono { get; set; }
+
         public DateTime Fecha { get; set; }
+
         public bool Activo { get; set; }
+
         public bool Vip { get; set; }
+
         public static double PorcentajePorVipActual { get; set; } = 50;
+
         private double porcentajePorVip;
+
         public double PorcentajePorVip { get { return porcentajePorVip; } }
+
         public static double Arancel { get; set; } = 50;
+
         public List<Servicio> ServiciosOfrecidos { get; set; }
+
         public Usuario Usuario { get; set; }
         
         #endregion
