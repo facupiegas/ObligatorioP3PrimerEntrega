@@ -90,7 +90,7 @@ namespace CapaFachada
             bool retorno = false;
             if (unArancel >= 0 )
             {
-                Proveedor.Arancel = unArancel;;
+                Proveedor.Arancel = unArancel;
                 retorno = true;
             }
             return retorno;
