@@ -47,6 +47,16 @@ namespace Dominio
             parametros.Add(new SqlParameter("@rol", this.Rol.ToString()));
             return this.EjecutarNoQuery(connection, cmdText, cmdType,parametros)!=0;
         }
+        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
+            SqlConnection connection = unaConn;
+            string cmdText = "Usuarios_Insert";
+            CommandType cmdType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@nombre", this.Nombre));
+            parametros.Add(new SqlParameter("@pass", this.Pass));
+            parametros.Add(new SqlParameter("@rol", this.Rol.ToString()));
+            return this.EjecutarNoQuery(connection, cmdText, cmdType, parametros, unaTransaccion) != 0;
+        }
 
         public override bool Leer()
         {

@@ -90,6 +90,23 @@ namespace Dominio
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros)!=0;
            
         }
+        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
+
+            SqlConnection conn = unaConn;
+            string cmdText = "Proveedores_Insert";//Sentencia a ejecutar 
+            CommandType cmdType = CommandType.StoredProcedure;
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Rut", this.Rut));
+            parametros.Add(new SqlParameter("@nomFantasia", this.NomFantasia));
+            parametros.Add(new SqlParameter("@email", this.Email));
+            parametros.Add(new SqlParameter("@telefono", this.Telefono));
+            parametros.Add(new SqlParameter("@fecha", this.Fecha));
+            parametros.Add(new SqlParameter("@vip", this.Vip));
+            parametros.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
+            parametros.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
+            return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros, unaTransaccion) != 0;
+
+        }
 
         public List<Servicio> DevolverServicios() {
             List<Servicio> retorno = new List<Servicio>();

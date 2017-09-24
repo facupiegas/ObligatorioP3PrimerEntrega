@@ -23,8 +23,9 @@ namespace InterfazWeb
 
         protected void ActualizarPorcentajesActuales()
         {
-            txtArancelActual.Text = Fachada.DevolverArancelActual().ToString();
-            txtPorcentajeVipActual.Text = Fachada.DevolverPorcentajeVipActual().ToString();
+            WCF_Proveedor.OperacionesProveedoresClient proxy = new WCF_Proveedor.OperacionesProveedoresClient();
+            txtArancelActual.Text = proxy.DevolverArancelActual().ToString();
+            txtPorcentajeVipActual.Text = proxy.DevolverPorcentajeVipActual().ToString();
         }
 
         protected void btnActualizarArancel_Click(object sender, EventArgs e)
