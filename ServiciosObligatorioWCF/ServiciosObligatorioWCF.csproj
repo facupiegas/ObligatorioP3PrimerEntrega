@@ -62,21 +62,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OperacionesProveedores.svc" />
-    <Content Include="RetornarServicios.svc" />
+    <Content Include="OperacionesServicios.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOProveedor.cs" />
     <Compile Include="DTOServicio.cs" />
     <Compile Include="IOperacionesProveedores.cs" />
-    <Compile Include="IRetornarServicios.cs" />
+    <Compile Include="IOperacionesServicios.cs" />
     <Compile Include="OperacionesProveedores.svc.cs">
       <DependentUpon>OperacionesProveedores.svc</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RetornarServicios.svc.cs">
-      <DependentUpon>RetornarServicios.svc</DependentUpon>
+    <Compile Include="OperacionesServicios.svc.cs">
+      <DependentUpon>OperacionesServicios.svc</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

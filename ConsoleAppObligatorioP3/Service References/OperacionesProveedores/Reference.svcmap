@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6ac1a75e-fb37-4fa3-9887-23ee01bf2017" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:13922/OperacionesProveedores.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OperacionesProveedores.wsdl" MetadataType="Wsdl" ID="8178adb7-75b5-4d15-b263-1eabb1701a77" SourceId="1" SourceUrl="http://localhost:13922/OperacionesProveedores.svc?wsdl" />
+    <MetadataFile FileName="OperacionesProveedores.xsd" MetadataType="Schema" ID="57bada7f-a080-4a58-8c3a-1e0ac2f64e8f" SourceId="1" SourceUrl="http://localhost:13922/OperacionesProveedores.svc?xsd=xsd2" />
+    <MetadataFile FileName="OperacionesProveedores1.xsd" MetadataType="Schema" ID="f2233802-92b9-4992-9ccc-242596c01634" SourceId="1" SourceUrl="http://localhost:13922/OperacionesProveedores.svc?xsd=xsd3" />
+    <MetadataFile FileName="OperacionesProveedores2.xsd" MetadataType="Schema" ID="fe9c1376-62b6-4cf0-9479-6c4bc9959368" SourceId="1" SourceUrl="http://localhost:13922/OperacionesProveedores.svc?xsd=xsd0" />
+    <MetadataFile FileName="OperacionesProveedores3.xsd" MetadataType="Schema" ID="3bcbebad-c4a2-442c-819e-14a4dd05e749" SourceId="1" SourceUrl="http://localhost:13922/OperacionesProveedores.svc?xsd=xsd1" />
+    <MetadataFile FileName="OperacionesProveedores.disco" MetadataType="Disco" ID="044e26e6-ee6d-418c-808c-c85779551709" SourceId="1" SourceUrl="http://localhost:13922/OperacionesProveedores.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

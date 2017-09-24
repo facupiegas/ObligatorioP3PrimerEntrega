@@ -24,5 +24,6 @@ namespace ServiciosObligatorioWCF
         [DataMember]
         public string TipoServicio { get; set; }
         #endregion
+
     }
 }

@@ -93,14 +93,14 @@
     <None Include="Service References\WCF_Proveedor\OperacionesProveedores3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCF_Servicio\RetornarServicios.wsdl" />
-    <None Include="Service References\WCF_Servicio\RetornarServicios.xsd">
+    <None Include="Service References\WCF_Servicio\OperacionesServicios.wsdl" />
+    <None Include="Service References\WCF_Servicio\OperacionesServicios.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCF_Servicio\RetornarServicios1.xsd">
+    <None Include="Service References\WCF_Servicio\OperacionesServicios1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCF_Servicio\RetornarServicios2.xsd">
+    <None Include="Service References\WCF_Servicio\OperacionesServicios2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
@@ -112,7 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Principal.aspx" />
-    <None Include="Service References\WCF_Servicio\RetornarServicios.disco" />
+    <None Include="Service References\WCF_Servicio\OperacionesServicios.disco" />
     <None Include="Service References\WCF_Servicio\configuration91.svcinfo" />
     <None Include="Service References\WCF_Servicio\configuration.svcinfo" />
     <None Include="Service References\WCF_Servicio\Reference.svcmap">

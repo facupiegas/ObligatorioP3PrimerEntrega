@@ -9,10 +9,12 @@ using Dominio;
 using CapaFachada;
 
 namespace ServiciosObligatorioWCF
-{ 
-    public class RetornarServicios : IRetornarServicios
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "OperacionesServicios" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select OperacionesServicios.svc or OperacionesServicios.svc.cs at the Solution Explorer and start debugging.
+    public class OperacionesServicios : IOperacionesServicios
     {
-        DTOServicio[] IRetornarServicios.RetornarServicios()
+        DTOServicio[] IOperacionesServicios.RetornarServicios()
         {
             List<DTOServicio> aux = new List<DTOServicio>();
             List<Servicio> tmpListServ = Fachada.DevolverServicios();
@@ -32,7 +34,7 @@ namespace ServiciosObligatorioWCF
             return retorno;
         }
 
-        DTOServicio[] IRetornarServicios.RetornarServiciosProveedor(string unRut)
+        DTOServicio[] IOperacionesServicios.RetornarServiciosProveedor(string unRut)
         {
             List<DTOServicio> aux = new List<DTOServicio>(); //creo lista a devolver
             foreach (Servicio tmpServ in Fachada.DevolverServiciosProveedor(unRut)) // le pido a la fachada me devuelva lso servicios del proveedor y la recorro creando un DTOServicio por cada uno que contenga la lista
@@ -45,7 +47,7 @@ namespace ServiciosObligatorioWCF
                     Descripcion = tmpServ.Descripcion,
                     TipoServicio = tmpServ.TipoServicioString
                 };
-                aux.Add(auxDTO); // agrego el DRO servicio para devolverselo a la capa Interfaz
+                aux.Add(auxDTO); // agrego el DTO servicio para devolverselo a la capa Interfaz
             }
             DTOServicio[] retorno = aux.ToArray();
             return retorno;

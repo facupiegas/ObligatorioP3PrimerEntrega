@@ -12,10 +12,11 @@ namespace InterfazWeb
 {
     public partial class Alta_Proveedor : System.Web.UI.Page
     {
-        private static string AltaProvRutProveedor;//variable definida por conveniencia
+        private static string AltaProvRutProveedor;//variable definida para guardar el rut del proveedor temporalmente
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarTipoServicios();
+            if(!IsPostBack)
+                CargarTipoServicios();
         }
 
         protected void CargarTipoServicios() {
@@ -135,7 +136,7 @@ namespace InterfazWeb
         {
             string nombreSer = txtNombreServicio.Text;
             string descripcionSer = txtDescripcionServicio.Text;
-            string imagenSer = imgImagenServicio.ImageAlign.ToString();
+            string imagenSer = imgImagenServicio.ImageUrl;
 
             string stringTipo = ddlTipoServicios.SelectedItem.Value;
             string rutProveedor = AltaProvRutProveedor;
