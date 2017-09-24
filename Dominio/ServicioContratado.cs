@@ -10,6 +10,7 @@ namespace Dominio
     {
         #region Atributos y Properties
         public Proveedor Proveedor{ get; set; }
+
         public List<Servicio> ListaServicios { get; set; }
         #endregion
 

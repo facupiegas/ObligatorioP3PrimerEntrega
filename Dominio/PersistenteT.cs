@@ -11,15 +11,18 @@ namespace Dominio
     public abstract class Persistente<T>:Persistente
     {
         public abstract bool Leer();
+
         public abstract bool Guardar();
+
         public abstract List<T> TraerTodo();
+
         public abstract bool Modificar();
+
         public abstract bool Eliminar();
+
         public SqlConnection ObtenerConexion() {
             return (string.IsNullOrEmpty(ConnString) ? null : new SqlConnection(ConnString));
         }
-
-        
 
         public int EjecutarNoQuery(SqlConnection conn, string cmdText, CommandType cmdType, List<SqlParameter> parametros, SqlTransaction trans)
         {
@@ -47,10 +50,12 @@ namespace Dominio
             }
             return filasAfectadas;
         }
+
         public int EjecutarNoQuery(SqlConnection conn, string cmdText, CommandType cmdType, List<SqlParameter> parametros)
         {
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros, null);
         }
+
         public SqlDataReader EjecutarReader(SqlConnection conn, string cmdText, CommandType cmdType, List<SqlParameter> parametros) {
             SqlDataReader reader = null;
             try

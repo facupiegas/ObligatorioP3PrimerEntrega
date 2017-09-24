@@ -9,6 +9,7 @@ namespace Dominio
     public abstract class Persistente
     {
         protected static string connString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!";
+
         public static string ConnString
         {
             get { return connString; }
