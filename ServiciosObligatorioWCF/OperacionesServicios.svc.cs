@@ -52,5 +52,8 @@ namespace ServiciosObligatorioWCF
             DTOServicio[] retorno = aux.ToArray();
             return retorno;
         }
+        //bool IOperacionesServicios.AltaProveedor(Proveedor unProv, Usuario unUsu, Servicio unServ) {
+        //    return Fachada.AltaProvUsuSerTransaccional(unProv, unUsu, unServ);
+        //}
     }
 }

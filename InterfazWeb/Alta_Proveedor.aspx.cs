@@ -8,11 +8,15 @@ using Dominio;
 using CapaFachada;
 using ServiciosObligatorioWCF;
 
+
 namespace InterfazWeb
 {
     public partial class Alta_Proveedor : System.Web.UI.Page
     {
+
         private static string AltaProvRutProveedor;//variable definida para guardar el rut del proveedor temporalmente
+        private static Proveedor AltaProv;
+        private static Usuario AltaUsu;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -41,28 +45,33 @@ namespace InterfazWeb
                 {
                     esVip = true;
                 }
-                #region Metodo antiguo Directo a DOMINIO
+                
                 Usuario tmpUser = Fachada.AltaUsuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor);
                 if (stringEsSoloNumeros(unRut) && stringEsSoloNumeros(unTelProov))
                 {
 
                     Proveedor tmpProv = Fachada.AltaProveedor(unRut, unNomFantasiaProov, unMailProov, unTelProov, DateTime.Now.Date, esVip, tmpUser);
-                    bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
-                    bool saveProov = Fachada.GuardarProveedorEnBD(tmpProv);
-                    if (saveUser && saveProov)
+                    //bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
+                    //bool saveProov = Fachada.GuardarProveedorEnBD(tmpProv);
+                    if (tmpUser!=null && tmpProv!=null)
                     {
+                        
                         lblMensaje.Text = "Proveedor Creado con Éxito";
                         lblMensaje.ForeColor = System.Drawing.Color.Green;
                         lblMensaje.Visible = true;
                         AltaProvRutProveedor = unRut;
+                        AltaUsu = tmpUser;
+                        AltaProv = tmpProv;
+                        pnlServicio.Visible = true;
+                        pnlProveedor.Visible = false;
                     }
-                    else if (!saveUser)
+                    else if (tmpUser==null)
                     {
                         lblMensaje.Text = "(*) El nombre de usuario ingresado ya ha sido utilizado";
                         lblMensaje.ForeColor = System.Drawing.Color.Red;
                         lblMensaje.Visible = true;
                     }
-                    else if (!saveProov)
+                    else if (tmpProv==null)
                     {
                         lblMensaje.Text = "(*) El proveedor ya existe en el sistema (RUT)";
                         lblMensaje.ForeColor = System.Drawing.Color.Red;
@@ -81,10 +90,9 @@ namespace InterfazWeb
                 lbErrorlVip.Text = "Debe seleccionar una opción";
                 lbErrorlVip.Visible = true;
             }
-            #endregion
-            //de aqui en mas se sigue con la logica que llama a lso web services
-            pnlServicio.Visible = true;
-            pnlProveedor.Visible = false;
+            
+            
+            
 
         }
 
@@ -139,7 +147,8 @@ namespace InterfazWeb
             string imagenSer = imgImagenServicio.ImageUrl;
 
             string stringTipo = ddlTipoServicios.SelectedItem.Value;
-            string rutProveedor = AltaProvRutProveedor;
+            //string rutProveedor = AltaProvRutProveedor;
+            string rutProveedor = AltaProv.Rut;
             List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios();
             TipoServicio aux=null;
             foreach (TipoServicio tmpTipo in listTipoServicio) {
@@ -150,10 +159,20 @@ namespace InterfazWeb
             if (aux != null)
             {
                 Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux);
-                if (Fachada.GuardarServicioEnBD(tmpServicio))
+                WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
+                //if (Fachada.GuardarServicioEnBD(tmpServicio))
+                if (tmpServicio != null)
+                {
                     lblMsjServicio.Text = "El servicio fue creado con exito";
+                    if (Fachada.AltaProvUsuSerTransaccional(AltaProv, AltaUsu, tmpServicio))
+                        lblMsjServicio.Text = "El proveedor,usuario y servicio fueron creados con exito!";
+                    else
+                        lblMsjServicio.Text = "Algunos de los datos fueron erroreos, el proveedor,usuario y servicio no fueron dados de alta";
+                }
                 else
+                {
                     lblMsjServicio.Text = "El servicio no pudo ser creado";
+                }
             }
             else
             {

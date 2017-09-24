@@ -106,6 +106,18 @@ namespace Dominio
             parametros.Add(new SqlParameter("@tipoServicio", this.TipoServicio.Nombre));
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros) != 0;
         }
+        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
+            SqlConnection conn = unaConn;
+            string cmdText = "Servicios_Insert";
+            CommandType cmdType = CommandType.StoredProcedure;
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@rutProveedor", this.RutProveedor));
+            parametros.Add(new SqlParameter("@nombre", this.Nombre));
+            parametros.Add(new SqlParameter("@descripcion", this.Descripcion));
+            parametros.Add(new SqlParameter("@imagen", this.Imagen));
+            parametros.Add(new SqlParameter("@tipoServicio", this.TipoServicio.Nombre));
+            return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros,unaTransaccion) != 0;
+        }
 
         public override bool Modificar()
         {
