@@ -28,13 +28,16 @@ namespace Dominio
         }
         public Servicio() { }
         #endregion
+
         #region Otros Metodos
         public override string ToString()
         {
             return "-Nombre Servicio: "+Nombre +" | Tipo Servicio: "+TipoServicio.Nombre;
         }
+
         //public void GuardarServiciosEnTxt() { }
         //public void CargarServiciosDesdeTxt() { }
+
         public override List<Servicio> TraerTodo()
         {
             List<Servicio> lstTmp = new List<Servicio>();

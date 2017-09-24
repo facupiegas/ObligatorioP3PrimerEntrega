@@ -28,15 +28,12 @@ namespace Dominio
         }
         public Usuario() { }
         #endregion
+
         #region Otros metodos
         public EnumRol ObtenerTipo()
         {
             return this.Rol;
-        }
-        
-        
-
-        
+        }     
 
         public override bool Guardar()
         {
@@ -144,8 +141,6 @@ namespace Dominio
         {
             throw new NotImplementedException();
         }
-
-
         #endregion
     }
 }

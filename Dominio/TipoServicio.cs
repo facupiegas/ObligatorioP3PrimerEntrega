@@ -15,6 +15,7 @@ namespace Dominio
         public string Descripcion { get; set; }
         public List<TipoEvento> TipoEventos { get; set; }
         #endregion
+
         #region Constructores
         public TipoServicio(string unNombre, string unaDescripcion) {
             this.Nombre = unNombre;
@@ -25,6 +26,7 @@ namespace Dominio
             this.TipoEventos = new List<TipoEvento>();
         }
         #endregion
+
         #region Otros Metodos
         public override string ToString()
         {

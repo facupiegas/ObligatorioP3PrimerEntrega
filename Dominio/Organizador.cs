@@ -14,6 +14,7 @@ namespace Dominio
         public string Telefono { get; set; }
         public Usuario Usuario { get; set; }
         #endregion
+
         #region Metodos
 
         public Organizador(string unNombre,string unEmail,string unTelefono,Usuario unUsuario) {

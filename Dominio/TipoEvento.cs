@@ -10,8 +10,10 @@ namespace Dominio
     {
         #region Atributos y Properties
         public string Nombre { get; set; }
+
         public string Descripcion { get; set; }
         #endregion
+
         #region Metodos
         public TipoEvento(string unNombre,string unaDescripcion) {
             this.Nombre = unNombre;
