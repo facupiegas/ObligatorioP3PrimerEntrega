@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterfazWeb.WCF_Servicio {
+namespace ConsoleAppObligatorioP3.OperacionesServiciosRef {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCF_Servicio.IOperacionesServicios")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OperacionesServiciosRef.IOperacionesServicios")]
     public interface IOperacionesServicios {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarServicios", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarServiciosResponse")]
@@ -29,12 +29,12 @@ namespace InterfazWeb.WCF_Servicio {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IOperacionesServiciosChannel : InterfazWeb.WCF_Servicio.IOperacionesServicios, System.ServiceModel.IClientChannel {
+    public interface IOperacionesServiciosChannel : ConsoleAppObligatorioP3.OperacionesServiciosRef.IOperacionesServicios, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class OperacionesServiciosClient : System.ServiceModel.ClientBase<InterfazWeb.WCF_Servicio.IOperacionesServicios>, InterfazWeb.WCF_Servicio.IOperacionesServicios {
+    public partial class OperacionesServiciosClient : System.ServiceModel.ClientBase<ConsoleAppObligatorioP3.OperacionesServiciosRef.IOperacionesServicios>, ConsoleAppObligatorioP3.OperacionesServiciosRef.IOperacionesServicios {
         
         public OperacionesServiciosClient() {
         }

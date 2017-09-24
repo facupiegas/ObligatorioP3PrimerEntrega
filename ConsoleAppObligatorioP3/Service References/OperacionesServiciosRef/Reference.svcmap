@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9cf8e62b-00cc-45c3-aa4e-4a8173ea475f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cff5697a-a81c-4652-bf0f-5ac8da58e317" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:13922/OperacionesServicios.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="OperacionesServicios.wsdl" MetadataType="Wsdl" ID="edd85972-4b7f-43e3-bd79-ab213d88db34" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?wsdl" />
-    <MetadataFile FileName="OperacionesServicios.disco" MetadataType="Disco" ID="53d83684-4ace-4a18-89b4-a1b7cf2f13e3" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?disco" />
-    <MetadataFile FileName="OperacionesServicios.xsd" MetadataType="Schema" ID="ce55d85f-2477-4fbd-95c4-483d584f9bc7" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd1" />
-    <MetadataFile FileName="OperacionesServicios1.xsd" MetadataType="Schema" ID="92a3d358-b98d-4d71-a153-3fa26ebbb31c" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd2" />
-    <MetadataFile FileName="OperacionesServicios2.xsd" MetadataType="Schema" ID="873ebe58-0363-47db-b175-a1201359de9a" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd0" />
+    <MetadataFile FileName="OperacionesServicios.wsdl" MetadataType="Wsdl" ID="f694c0f4-7a10-4874-969a-b368fdb1135a" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?wsdl" />
+    <MetadataFile FileName="OperacionesServicios.disco" MetadataType="Disco" ID="b05531a4-0d25-4277-a5d4-533e73b583de" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?disco" />
+    <MetadataFile FileName="OperacionesServicios.xsd" MetadataType="Schema" ID="4da4d82b-4ea1-4db0-844b-d2e52405fff3" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd1" />
+    <MetadataFile FileName="OperacionesServicios1.xsd" MetadataType="Schema" ID="9878f389-3268-4084-9e94-1ce433887b42" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd2" />
+    <MetadataFile FileName="OperacionesServicios2.xsd" MetadataType="Schema" ID="a01e64a1-50bd-4528-b275-a0a9dfd731ce" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

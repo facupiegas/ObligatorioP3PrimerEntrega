@@ -20,15 +20,26 @@ namespace ConsoleAppObligatorioP3
             //Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
             //Console.WriteLine(prov.Guardar());
             Console.WriteLine("\n-------------Modificar Arancel y Porcentaje Vip (Proveedor) servicio wcf------------------\n");
-            OperacionesProveedoreRef.OperacionesProveedoresClient proxyOpProv = new OperacionesProveedoreRef.OperacionesProveedoresClient();
+            OperacionesProveedores.OperacionesProveedoresClient proxyOpProv = new OperacionesProveedores.OperacionesProveedoresClient();
             
             Console.WriteLine("Por favor ingrese un nuevo valor para Arancel(Proveedor): ");
             double tmpArancel = Convert.ToDouble(Console.ReadLine());
+            if (proxyOpProv.ModificarArancelProveedor(tmpArancel)) Console.WriteLine("Cambio realizado con exito!");
+            else Console.WriteLine("El cambio no pudo ser efectuado, por favor ingrese valores mayores o igual a 0 (cero)");
+
             Console.WriteLine("Por favor ingrese un nuevo valor para Porcentaje Vip (Proveedor): ");
             double tmpPorcentajeVip = Convert.ToDouble(Console.ReadLine());
-            if (proxyOpProv.ModificarArancelesProveedor(tmpArancel, tmpPorcentajeVip)) Console.WriteLine("Cambio realizado con exito!");
+            if (proxyOpProv.ModificarPorcentajeVip(tmpPorcentajeVip)) Console.WriteLine("Cambio realizado con exito!");
             else Console.WriteLine("El cambio no pudo ser efectuado, por favor ingrese valores mayores o igual a 0 (cero)");
-            
+
+            //Fachada.ModificarArancelProveedor(tmpArancel);
+            //Fachada.ModificarPorcentajeVip(tmpPorcentajeVip);
+
+            Console.WriteLine("Nuevos valores(wcf): \n -Arancel: " + proxyOpProv.DevolverArancelActual() + "\n -Porcentaje Vip: " + proxyOpProv.DevolverPorcentajeVipActual());
+            Console.WriteLine("Nuevos valores(clase): \n -Arancel: " + Proveedor.Arancel + "\n -Porcentaje Vip: " + Proveedor.PorcentajePorVipActual);
+            Console.WriteLine("Nuevos valores(fachada): \n-Arancel: " + Fachada.DevolverArancelActual() + "\n-Porcentaje Vip: " + Fachada.DevolverPorcentajeVipActual());
+
+
             Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
             Console.WriteLine("Ingrese un Rut: ");
             string rut = Console.ReadLine();
@@ -52,7 +63,7 @@ namespace ConsoleAppObligatorioP3
             
 
             Console.WriteLine("\n------------Listado Servicios servicio wcf------------------\n");
-            RetornarServiciosRef.RetornarServiciosClient proxySer = new RetornarServiciosRef.RetornarServiciosClient();
+            OperacionesServiciosRef.OperacionesServiciosClient proxySer = new OperacionesServiciosRef.OperacionesServiciosClient();
             
             DTOServicio[] listaDTOSerWCF = proxySer.RetornarServicios();
             foreach (DTOServicio tmpDTOSer in listaDTOSerWCF)

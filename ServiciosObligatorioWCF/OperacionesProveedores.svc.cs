@@ -13,12 +13,12 @@ namespace ServiciosObligatorioWCF
 
     public class OperacionesProveedores : IOperacionesProveedores
     {
-        public bool ModificarArancelProveedor(double unArancel)
+        bool IOperacionesProveedores.ModificarArancelProveedor(double unArancel)
         {
             return Fachada.ModificarArancelProveedor(unArancel);
         }
 
-        public bool ModificarPorcentajeVip(double unPorcentajeVip)
+        bool IOperacionesProveedores.ModificarPorcentajeVip(double unPorcentajeVip)
         {
             return Fachada.ModificarPorcentajeVip(unPorcentajeVip);
         }
@@ -33,7 +33,7 @@ namespace ServiciosObligatorioWCF
             return Fachada.DevolverPorcentajeVipActual();
         }
 
-        public bool DesactivarProveedor(string unRut)
+        bool IOperacionesProveedores.DesactivarProveedor(string unRut)
         {
             return Fachada.DesactivarProveedor(unRut);//le paso el rut a la fachada para que le pido al proveedor que se elimine
         }

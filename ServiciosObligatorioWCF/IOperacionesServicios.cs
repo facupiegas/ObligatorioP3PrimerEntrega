@@ -7,11 +7,12 @@ using System.ServiceModel.Web;
 using System.Text;
 using Dominio;
 
+
 namespace ServiciosObligatorioWCF
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IRetornarServicios" in both code and config file together.
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IOperacionesServicios" in both code and config file together.
     [ServiceContract]
-    public interface IRetornarServicios
+    public interface IOperacionesServicios
     {
         [OperationContract]
         DTOServicio[] RetornarServicios();
@@ -19,6 +20,4 @@ namespace ServiciosObligatorioWCF
         [OperationContract]
         DTOServicio[] RetornarServiciosProveedor(string unRut);
     }
-
-   
 }

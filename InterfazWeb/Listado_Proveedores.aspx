@@ -28,8 +28,17 @@
     <p>
         &nbsp;</p>
     <p>
-        <asp:GridView ID="grdServicios" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="grdServicios" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                <asp:BoundField DataField="TipoServicio" HeaderText="Tipo" />
+                <asp:ImageField DataImageUrlField="Imagen" HeaderText="Imagen">
+                    <ControlStyle Height="65px" Width="65px" />
+                    <ItemStyle Height="65px" Width="65px" />
+                </asp:ImageField>
+            </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -43,5 +52,5 @@
         </asp:GridView>
     </p>
     <p>
-    </p>
+        &nbsp;</p>
 </asp:Content>

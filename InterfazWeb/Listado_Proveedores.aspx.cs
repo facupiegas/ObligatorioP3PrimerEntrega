@@ -33,10 +33,11 @@ namespace InterfazWeb
         protected void grdServicios_SelectedIndexChanged(object sender, EventArgs e)
         {
             string rut = grdListadoProveedores.SelectedRow.Cells[1].Text;
-            WCF_Servicio.RetornarServiciosClient proxySer = new WCF_Servicio.RetornarServiciosClient();
+            WCF_Servicio.OperacionesServiciosClient proxySer = new WCF_Servicio.OperacionesServiciosClient();
             DTOServicio[] listaDTOSerWCF = proxySer.RetornarServiciosProveedor(rut);
             grdServicios.DataSource = listaDTOSerWCF;
             grdServicios.DataBind();
+            
         }
     }
 }

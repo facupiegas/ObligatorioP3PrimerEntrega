@@ -109,7 +109,7 @@ namespace Dominio
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (drResults.Read()) {
                 //string aux = drResults["nombre"].ToString() + " | " + drResults["descripcion"].ToString()+" | "+drResults["tipoServicio"].ToString();
-                Servicio auxSer = new Servicio(){Nombre = drResults["nombre"].ToString(), Descripcion= drResults["descripcion"].ToString(),TipoServicio = new TipoServicio() {Nombre= drResults["tipoServicio"].ToString() } };
+                Servicio auxSer = new Servicio(){Nombre = drResults["nombre"].ToString(), Descripcion= drResults["descripcion"].ToString(),TipoServicio = new TipoServicio() {Nombre= drResults["tipoServicio"].ToString() } ,Imagen = drResults["imagen"].ToString() };
                 retorno.Add(auxSer);
             }
             drResults.Close();
