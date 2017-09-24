@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 using Dominio;
 
 
@@ -158,6 +160,58 @@ namespace CapaFachada
         public static List<TipoServicio> DevolverTipoServicios() {
             TipoServicio tmpTipoSer = new TipoServicio();
             return tmpTipoSer.TraerTodo();
+        }
+
+        public static bool AltaProvUsuSerTransaccional(Proveedor unProv,Usuario unUsu,Servicio unServ) {
+            bool retorno = false;
+            SqlTransaction trans = null;
+            SqlConnection conn = unUsu.ObtenerConexion();
+            try
+            {
+                conn.Open();
+                trans = conn.BeginTransaction();
+                bool ok = false;
+                if (unUsu.GuardarTrans(conn,trans))
+                {
+                    ok = true;
+                    if (unProv.GuardarTrans(conn,trans))
+                    {
+                        ok = true;
+                        if (unServ.GuardarTrans(conn,trans))
+                        {
+                            trans.Commit();
+                            ok = true;
+                            retorno = true;
+                        }
+                        else
+                        {
+                            ok = false;
+                        }
+                    }
+                    else
+                    {
+                        ok = false;
+                    }
+                }
+                else {
+                    ok = false;
+                }
+                if (!ok) {
+                    trans.Rollback();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (trans != null) trans.Rollback();
+                Console.WriteLine(ex.Message.ToString());
+            }
+            finally
+            {
+                if (conn != null && conn.State == ConnectionState.Open) conn.Close();
+            }
+
+            return retorno;
         }
     }
 }
