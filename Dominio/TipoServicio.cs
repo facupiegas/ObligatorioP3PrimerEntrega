@@ -13,17 +13,16 @@ namespace Dominio
         #region Atributos y properties
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public List<TipoEvento> TipoEventos { get; set; }
         #endregion
 
         #region Constructores
         public TipoServicio(string unNombre, string unaDescripcion) {
             this.Nombre = unNombre;
             this.Descripcion = unaDescripcion;
-            this.TipoEventos = new List<TipoEvento>();
+            
         }
         public TipoServicio() {
-            this.TipoEventos = new List<TipoEvento>();
+            
         }
         #endregion
 

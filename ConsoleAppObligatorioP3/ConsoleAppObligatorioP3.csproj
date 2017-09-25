@@ -117,6 +117,9 @@
     <None Include="Service References\OperacionesServiciosRef\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\OperacionesServiciosRef\OperacionesServicios3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\OperacionesServiciosRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

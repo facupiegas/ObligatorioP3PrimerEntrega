@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:13922/OperacionesServicios.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="OperacionesServicios.wsdl" MetadataType="Wsdl" ID="edd85972-4b7f-43e3-bd79-ab213d88db34" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?wsdl" />
-    <MetadataFile FileName="OperacionesServicios.disco" MetadataType="Disco" ID="53d83684-4ace-4a18-89b4-a1b7cf2f13e3" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?disco" />
+    <MetadataFile FileName="OperacionesServicios3.xsd" MetadataType="Schema" ID="76574815-e424-4d86-83b9-649505eafcb2" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd3" />
     <MetadataFile FileName="OperacionesServicios.xsd" MetadataType="Schema" ID="ce55d85f-2477-4fbd-95c4-483d584f9bc7" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd1" />
-    <MetadataFile FileName="OperacionesServicios1.xsd" MetadataType="Schema" ID="92a3d358-b98d-4d71-a153-3fa26ebbb31c" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd2" />
+    <MetadataFile FileName="OperacionesServicios.disco" MetadataType="Disco" ID="53d83684-4ace-4a18-89b4-a1b7cf2f13e3" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?disco" />
+    <MetadataFile FileName="OperacionesServicios.wsdl" MetadataType="Wsdl" ID="edd85972-4b7f-43e3-bd79-ab213d88db34" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?wsdl" />
     <MetadataFile FileName="OperacionesServicios2.xsd" MetadataType="Schema" ID="873ebe58-0363-47db-b175-a1201359de9a" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd0" />
+    <MetadataFile FileName="OperacionesServicios1.xsd" MetadataType="Schema" ID="92a3d358-b98d-4d71-a153-3fa26ebbb31c" SourceId="1" SourceUrl="http://localhost:13922/OperacionesServicios.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
