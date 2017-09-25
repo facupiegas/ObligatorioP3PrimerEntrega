@@ -103,6 +103,9 @@
     <None Include="Service References\WCF_Servicio\OperacionesServicios2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WCF_Servicio\OperacionesServicios3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,8 +10,7 @@ using CapaFachada;
 
 namespace ServiciosObligatorioWCF
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "OperacionesServicios" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select OperacionesServicios.svc or OperacionesServicios.svc.cs at the Solution Explorer and start debugging.
+    
     public class OperacionesServicios : IOperacionesServicios
     {
         DTOServicio[] IOperacionesServicios.RetornarServicios()
@@ -52,8 +51,9 @@ namespace ServiciosObligatorioWCF
             DTOServicio[] retorno = aux.ToArray();
             return retorno;
         }
-        //bool IOperacionesServicios.AltaProveedor(Proveedor unProv, Usuario unUsu, Servicio unServ) {
-        //    return Fachada.AltaProvUsuSerTransaccional(unProv, unUsu, unServ);
-        //}
+        bool IOperacionesServicios.AltaProveedor(Proveedor unProv, Usuario unUsu, Servicio unServ)
+        {
+            return Fachada.AltaProvUsuSerTransaccional(unProv, unUsu, unServ);
+        }
     }
 }

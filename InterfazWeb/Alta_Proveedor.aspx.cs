@@ -164,7 +164,7 @@ namespace InterfazWeb
                 if (tmpServicio != null)
                 {
                     lblMsjServicio.Text = "El servicio fue creado con exito";
-                    if (Fachada.AltaProvUsuSerTransaccional(AltaProv, AltaUsu, tmpServicio))
+                    if (proxy.AltaProveedor(AltaProv,AltaUsu,tmpServicio))
                         lblMsjServicio.Text = "El proveedor,usuario y servicio fueron creados con exito!";
                     else
                         lblMsjServicio.Text = "Algunos de los datos fueron erroreos, el proveedor,usuario y servicio no fueron dados de alta";

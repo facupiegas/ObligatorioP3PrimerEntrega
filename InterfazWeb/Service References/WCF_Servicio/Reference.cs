@@ -26,6 +26,12 @@ namespace InterfazWeb.WCF_Servicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarServiciosProveedor", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarServiciosProveedorResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOServicio[]> RetornarServiciosProveedorAsync(string unRut);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/AltaProveedor", ReplyAction="http://tempuri.org/IOperacionesServicios/AltaProveedorResponse")]
+        bool AltaProveedor(Dominio.Proveedor unProv, Dominio.Usuario unUsu, Dominio.Servicio unServ);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/AltaProveedor", ReplyAction="http://tempuri.org/IOperacionesServicios/AltaProveedorResponse")]
+        System.Threading.Tasks.Task<bool> AltaProveedorAsync(Dominio.Proveedor unProv, Dominio.Usuario unUsu, Dominio.Servicio unServ);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace InterfazWeb.WCF_Servicio {
         
         public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOServicio[]> RetornarServiciosProveedorAsync(string unRut) {
             return base.Channel.RetornarServiciosProveedorAsync(unRut);
+        }
+        
+        public bool AltaProveedor(Dominio.Proveedor unProv, Dominio.Usuario unUsu, Dominio.Servicio unServ) {
+            return base.Channel.AltaProveedor(unProv, unUsu, unServ);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AltaProveedorAsync(Dominio.Proveedor unProv, Dominio.Usuario unUsu, Dominio.Servicio unServ) {
+            return base.Channel.AltaProveedorAsync(unProv, unUsu, unServ);
         }
     }
 }
