@@ -90,6 +90,7 @@ namespace Dominio
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros)!=0;
            
         }
+
         public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
 
             SqlConnection conn = unaConn;
@@ -256,6 +257,66 @@ namespace Dominio
                 retorno = true;
             }
             return retorno;
+        }
+
+        public static double DevolverArancelActual()
+        {
+            double retorno = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Auxiliar_Devolver_Arancel"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            SqlDataReader drResults;
+            cmd.Connection = conn;
+            conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                retorno = (double)drResults["porcentaje_Arancel"];
+            }
+            drResults.Close();
+            conn.Close();
+            return retorno;
+        }
+
+        public static double DevolverPorcentajeVipActual()
+        {
+            double retorno = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Auxiliar_Devolver_PorcentajeVip"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            SqlDataReader drResults;
+            cmd.Connection = conn;
+            conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                retorno = (double)drResults["porcentaje_Vip"];
+            }
+            drResults.Close();
+            conn.Close();
+            return retorno;
+        }
+
+        public static bool ModificarArancel(double unArancel)
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            cmd.CommandText = "Auxiliar_Arancel_Update";//Sentencia a ejecutar 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@porcentaje_Arancel", unArancel));
+            return cmd.ExecuteNonQuery() != 0 ;
+        }
+
+        public static bool ModificarPorcentajeVip(double unPorcentaje)
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            cmd.CommandText = "Auxiliar_PorcentajeVip_Update";//Sentencia a ejecutar 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@porcentajeVip", unPorcentaje));
+            return cmd.ExecuteNonQuery() != 0;
         }
         #endregion
     }
