@@ -12,6 +12,10 @@ namespace Dominio
     public class Proveedor:Persistente<Proveedor>
     {
         #region Atributos y Properties
+        public static double porcentajePorVipActual;
+
+        public static double arancel;
+
         public string Rut { get; set; }
 
         public string NomFantasia { get; set; }
@@ -26,13 +30,20 @@ namespace Dominio
 
         public bool Vip { get; set; }
 
-        public static double PorcentajePorVipActual { get; set; } = 50;
+        public static double PorcentajePorVipActual {
+            get { return Proveedor.DevolverPorcentajeVipActual(); }
+            set { Proveedor.porcentajePorVipActual = Proveedor.ModificarArancel(value); }
+        }
 
         private double porcentajePorVip;
 
         public double PorcentajePorVip { get { return porcentajePorVip; } }
 
-        public static double Arancel { get; set; } = 50;
+        public static double Arancel
+        {
+            get { return Proveedor.DevolverArancelActual(); }
+            set { Proveedor.arancel = Proveedor.ModificarPorcentajeVip(value); }
+        }
 
         public List<Servicio> ServiciosOfrecidos { get; set; }
 
@@ -299,24 +310,41 @@ namespace Dominio
             return retorno;
         }
 
-        public static bool ModificarArancel(double unArancel)
+        public static double ModificarArancel(double unArancel)
         {
+            double retorno = -1;
             SqlCommand cmd = new SqlCommand();
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
             cmd.CommandText = "Auxiliar_Arancel_Update";//Sentencia a ejecutar 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@porcentaje_Arancel", unArancel));
-            return cmd.ExecuteNonQuery() != 0 ;
+            if(cmd.ExecuteNonQuery() != 0 ){
+                retorno = unArancel;
+            }
+            else
+            {
+                retorno = Proveedor.DevolverArancelActual();
+            }
+            return retorno;
         }
 
-        public static bool ModificarPorcentajeVip(double unPorcentaje)
+        public static double ModificarPorcentajeVip(double unPorcentaje)
         {
+            double retorno = -1;
             SqlCommand cmd = new SqlCommand();
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
             cmd.CommandText = "Auxiliar_PorcentajeVip_Update";//Sentencia a ejecutar 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@porcentajeVip", unPorcentaje));
-            return cmd.ExecuteNonQuery() != 0;
+            if (cmd.ExecuteNonQuery() != 0)
+            {
+                retorno = unPorcentaje;
+            }
+            else
+            {
+                retorno = Proveedor.DevolverPorcentajeVipActual();
+            }
+            return retorno;
         }
         #endregion
     }
