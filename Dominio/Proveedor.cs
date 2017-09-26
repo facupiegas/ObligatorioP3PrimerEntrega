@@ -32,7 +32,7 @@ namespace Dominio
 
         public static double PorcentajePorVipActual {
             get { return Proveedor.DevolverPorcentajeVipActual(); }
-            set { Proveedor.porcentajePorVipActual = Proveedor.ModificarArancel(value); }
+            set { Proveedor.porcentajePorVipActual = Proveedor.ModificarPorcentajeVip(value); }
         }
 
         private double porcentajePorVip;
@@ -42,7 +42,7 @@ namespace Dominio
         public static double Arancel
         {
             get { return Proveedor.DevolverArancelActual(); }
-            set { Proveedor.arancel = Proveedor.ModificarPorcentajeVip(value); }
+            set { Proveedor.arancel = Proveedor.ModificarArancel(value); }
         }
 
         public List<Servicio> ServiciosOfrecidos { get; set; }
@@ -283,7 +283,7 @@ namespace Dominio
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (drResults.Read())
             {
-                retorno = (double)drResults["porcentaje_Arancel"];
+                retorno = Convert.ToDouble(drResults["porcentaje_Arancel"].ToString());
             }
             drResults.Close();
             conn.Close();
@@ -303,7 +303,7 @@ namespace Dominio
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (drResults.Read())
             {
-                retorno = (double)drResults["porcentaje_Vip"];
+                retorno = Convert.ToDouble(drResults["porcentaje_Vip"].ToString());
             }
             drResults.Close();
             conn.Close();
@@ -317,14 +317,17 @@ namespace Dominio
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
             cmd.CommandText = "Auxiliar_Arancel_Update";//Sentencia a ejecutar 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@porcentaje_Arancel", unArancel));
-            if(cmd.ExecuteNonQuery() != 0 ){
+            cmd.Connection = conn;//le asigno la conexion al parametro
+            cmd.Parameters.Add(new SqlParameter("@arancel", unArancel));
+            conn.Open(); //open conection
+            if (cmd.ExecuteNonQuery() != 0 ){
                 retorno = unArancel;
             }
             else
             {
                 retorno = Proveedor.DevolverArancelActual();
             }
+            conn.Close(); //close
             return retorno;
         }
 
@@ -335,7 +338,9 @@ namespace Dominio
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
             cmd.CommandText = "Auxiliar_PorcentajeVip_Update";//Sentencia a ejecutar 
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = conn;//le asigno la conexion al parametro
             cmd.Parameters.Add(new SqlParameter("@porcentajeVip", unPorcentaje));
+            conn.Open();//abro la conexion
             if (cmd.ExecuteNonQuery() != 0)
             {
                 retorno = unPorcentaje;
@@ -344,6 +349,7 @@ namespace Dominio
             {
                 retorno = Proveedor.DevolverPorcentajeVipActual();
             }
+            conn.Close(); //cierro
             return retorno;
         }
         #endregion
