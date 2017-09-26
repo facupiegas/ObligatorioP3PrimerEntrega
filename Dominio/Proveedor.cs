@@ -12,6 +12,10 @@ namespace Dominio
     public class Proveedor:Persistente<Proveedor>
     {
         #region Atributos y Properties
+        public static double porcentajePorVipActual;
+
+        public static double arancel;
+
         public string Rut { get; set; }
 
         public string NomFantasia { get; set; }
@@ -26,13 +30,20 @@ namespace Dominio
 
         public bool Vip { get; set; }
 
-        public static double PorcentajePorVipActual { get; set; } = 50;
+        public static double PorcentajePorVipActual {
+            get { return Proveedor.DevolverPorcentajeVipActual(); }
+            set { Proveedor.porcentajePorVipActual = Proveedor.ModificarPorcentajeVip(value); }
+        }
 
         private double porcentajePorVip;
 
         public double PorcentajePorVip { get { return porcentajePorVip; } }
 
-        public static double Arancel { get; set; } = 50;
+        public static double Arancel
+        {
+            get { return Proveedor.DevolverArancelActual(); }
+            set { Proveedor.arancel = Proveedor.ModificarArancel(value); }
+        }
 
         public List<Servicio> ServiciosOfrecidos { get; set; }
 
@@ -90,6 +101,7 @@ namespace Dominio
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros)!=0;
            
         }
+
         public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
 
             SqlConnection conn = unaConn;
@@ -255,6 +267,89 @@ namespace Dominio
                 this.Activo = false;
                 retorno = true;
             }
+            return retorno;
+        }
+
+        public static double DevolverArancelActual()
+        {
+            double retorno = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Auxiliar_Devolver_Arancel"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            SqlDataReader drResults;
+            cmd.Connection = conn;
+            conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                retorno = Convert.ToDouble(drResults["porcentaje_Arancel"].ToString());
+            }
+            drResults.Close();
+            conn.Close();
+            return retorno;
+        }
+
+        public static double DevolverPorcentajeVipActual()
+        {
+            double retorno = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
+            cmd.CommandText = "Auxiliar_Devolver_PorcentajeVip"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            SqlDataReader drResults;
+            cmd.Connection = conn;
+            conn.Open();
+            drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            while (drResults.Read())
+            {
+                retorno = Convert.ToDouble(drResults["porcentaje_Vip"].ToString());
+            }
+            drResults.Close();
+            conn.Close();
+            return retorno;
+        }
+
+        public static double ModificarArancel(double unArancel)
+        {
+            double retorno = -1;
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            cmd.CommandText = "Auxiliar_Arancel_Update";//Sentencia a ejecutar 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = conn;//le asigno la conexion al parametro
+            cmd.Parameters.Add(new SqlParameter("@arancel", unArancel));
+            conn.Open(); //open conection
+            if (cmd.ExecuteNonQuery() != 0 ){
+                retorno = unArancel;
+            }
+            else
+            {
+                retorno = Proveedor.DevolverArancelActual();
+            }
+            conn.Close(); //close
+            return retorno;
+        }
+
+        public static double ModificarPorcentajeVip(double unPorcentaje)
+        {
+            double retorno = -1;
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
+            cmd.CommandText = "Auxiliar_PorcentajeVip_Update";//Sentencia a ejecutar 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = conn;//le asigno la conexion al parametro
+            cmd.Parameters.Add(new SqlParameter("@porcentajeVip", unPorcentaje));
+            conn.Open();//abro la conexion
+            if (cmd.ExecuteNonQuery() != 0)
+            {
+                retorno = unPorcentaje;
+            }
+            else
+            {
+                retorno = Proveedor.DevolverPorcentajeVipActual();
+            }
+            conn.Close(); //cierro
             return retorno;
         }
         #endregion
