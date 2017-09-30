@@ -73,6 +73,7 @@
     <Content Include="Catalogo_Servicios.aspx" />
     <Content Include="Desactivar_Proveedor.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="img\upload.jpg" />
     <Content Include="Listado_Proveedores.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx" />
@@ -231,9 +232,7 @@
     <WCFMetadataStorage Include="Service References\WCF_Proveedor\" />
     <WCFMetadataStorage Include="Service References\WCF_Servicio\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

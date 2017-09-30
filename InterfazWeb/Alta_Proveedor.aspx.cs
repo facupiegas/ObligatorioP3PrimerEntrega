@@ -55,10 +55,9 @@ namespace InterfazWeb
                     //bool saveProov = Fachada.GuardarProveedorEnBD(tmpProv);
                     if (tmpUser!=null && tmpProv!=null)
                     {
-                        
-                        lblMensaje.Text = "Proveedor Creado con Éxito";
                         lblMensaje.ForeColor = System.Drawing.Color.Green;
                         lblMensaje.Visible = true;
+                        lblMensaje.Text = "Proveedor Creado con Éxito";
                         AltaProvRutProveedor = unRut;
                         AltaUsu = tmpUser;
                         AltaProv = tmpProv;
@@ -90,10 +89,6 @@ namespace InterfazWeb
                 lbErrorlVip.Text = "Debe seleccionar una opción";
                 lbErrorlVip.Visible = true;
             }
-            
-            
-            
-
         }
 
         public bool stringEsSoloNumeros(string unString) //metodo que valida que un string ingresado solo contenga numeros
@@ -108,76 +103,119 @@ namespace InterfazWeb
             return true;
         }
 
-        protected void btnImagenServicio_Click(object sender, EventArgs e)
-        {
-            bool archivoOK = false;
-            string path = Server.MapPath("img");
-            if (fupImagenServicio.HasFile)
-            {
-                string extension = System.IO.Path.GetExtension(fupImagenServicio.FileName).ToLower();
-                string[] extensionesPermitidas = { ".gif", ".png", ".jpeg", ".jpg" };
-
-                for (int i = 0; i < extensionesPermitidas.Length; i++)
-                {
-                    if (extension == extensionesPermitidas[i])
-                    {
-                        archivoOK = true;
-                    }
-                }
-            }
-            if (archivoOK)
-            {
-
-                string nombreImagen = fupImagenServicio.FileName;
-                fupImagenServicio.SaveAs(path + "\\" + nombreImagen);
-                imgImagenServicio.ImageUrl = "img/" + nombreImagen;
-
-
-            }
-            else
-            {
-                lblMsjImagenServicio.Text = "No se aceptan archivos de ese tipo.";
-            }
-        }
-
         protected void btnServicio_Click(object sender, EventArgs e)
         {
-            string nombreSer = txtNombreServicio.Text;
-            string descripcionSer = txtDescripcionServicio.Text;
-            string imagenSer = imgImagenServicio.ImageUrl;
-
-            string stringTipo = ddlTipoServicios.SelectedItem.Value;
-            //string rutProveedor = AltaProvRutProveedor;
-            string rutProveedor = AltaProv.Rut;
-            List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios();
-            TipoServicio aux=null;
-            foreach (TipoServicio tmpTipo in listTipoServicio) {
-                if (tmpTipo.Nombre == stringTipo) {
-                    aux = tmpTipo;
-                }
-            }
-            if (aux != null)
+            if (imgImagenServicio.ImageUrl != "")
             {
-                Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux);
-                WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
-                //if (Fachada.GuardarServicioEnBD(tmpServicio))
-                if (tmpServicio != null)
+                string nombreSer = txtNombreServicio.Text;
+                string descripcionSer = txtDescripcionServicio.Text;
+                string imagenSer = imgImagenServicio.ImageUrl;
+
+                string stringTipo = ddlTipoServicios.SelectedItem.Value;
+                //string rutProveedor = AltaProvRutProveedor;
+                string rutProveedor = AltaProv.Rut;
+                List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios();
+                TipoServicio aux = null;
+                foreach (TipoServicio tmpTipo in listTipoServicio)
                 {
-                    lblMsjServicio.Text = "El servicio fue creado con exito";
-                    if (proxy.AltaProveedor(AltaProv,AltaUsu,tmpServicio))
-                        lblMsjServicio.Text = "El proveedor,usuario y servicio fueron creados con exito!";
+                    if (tmpTipo.Nombre == stringTipo)
+                    {
+                        aux = tmpTipo;
+                    }
+                }
+                if (aux != null)
+                {
+                    Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux);
+                    WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
+                    //if (Fachada.GuardarServicioEnBD(tmpServicio))
+                    if (tmpServicio != null)
+                    {
+                        if(proxy.AltaProveedor(AltaProv, AltaUsu, tmpServicio))
+                        { 
+                            lblMsjServicio.ForeColor = System.Drawing.Color.Green;
+                            lblMsjServicio.Text = "El proveedor,usuario y servicio fueron creados con exito!";
+                            imgImagenServicio.ImageUrl = null;
+                            limpiarCampos(Page.Controls);
+                            pnlServicio.Visible = false;
+                            pnlProveedor.Visible = true;
+                        }
+                        else
+                        { 
+                            lblMsjServicio.ForeColor = System.Drawing.Color.Red;
+                            lblMsjServicio.Text = "Algunos de los datos fueron erroreos, el proveedor,usuario y servicio no fueron dados de alta";
+                        }
+                    }
                     else
-                        lblMsjServicio.Text = "Algunos de los datos fueron erroreos, el proveedor,usuario y servicio no fueron dados de alta";
+                    {
+                        lblMsjServicio.ForeColor = System.Drawing.Color.Red;
+                        lblMsjServicio.Text = "El servicio no pudo ser creado";
+                    }
                 }
                 else
                 {
+                    lblMsjServicio.ForeColor = System.Drawing.Color.Red;
                     lblMsjServicio.Text = "El servicio no pudo ser creado";
                 }
             }
             else
             {
-                lblMsjServicio.Text = "El servicio no pudo ser creado";
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "(*) Debe ingresar una imagen para el servicio";
             }
+            
+        }
+
+        private bool extensionArchivoOK(string nombreArchivo)
+        {
+            bool ok = false;
+            string fileExtension =
+                    System.IO.Path.GetExtension(nombreArchivo).ToLower();
+            string[] allowedExtensions =
+                {".gif", ".png", ".jpeg", ".jpg"};
+            for (int i = 0; i < allowedExtensions.Length; i++)
+            {
+                if (fileExtension == allowedExtensions[i])
+                {
+                    ok = true;
+                }
+            }
+            return ok;
+        }//verifica extension de la imagen
+
+        protected void btnUpload_Click(object sender, ImageClickEventArgs e)
+        {
+            if (extensionArchivoOK(fupImagenServicio.FileName))
+            {
+                string path = Server.MapPath("img");
+                string archivo = path + "\\" + fupImagenServicio.FileName;
+                fupImagenServicio.SaveAs(archivo);
+                imgImagenServicio.ImageUrl = "img\\" + fupImagenServicio.FileName;
+                lblErrorFoto.Visible = false;
+            }
+            else
+            {
+                lblErrorFoto.Visible = true;
+                lblErrorFoto.Text = "Formato de imagen admitido .gif/.png/.jpeg/.jpg";
+                imgImagenServicio.ImageUrl = null;
+            }
+        }
+
+        protected void limpiarCampos(ControlCollection ctrls)
+        {
+            foreach (Control ctrl in ctrls)
+            {
+                if (ctrl is TextBox) ((TextBox)ctrl).Text = string.Empty;
+                else if (ctrl is DropDownList) ((DropDownList)ctrl).ClearSelection();
+                else if (ctrl is Calendar) ((Calendar)ctrl).SelectedDates.Clear();
+                else if (ctrl is ListBox) ((ListBox)ctrl).ClearSelection();
+                else if (ctrl is Image) ((Image)ctrl).ImageUrl = "";
+                limpiarCampos(ctrl.Controls);
+            }
+        }
+
+        protected void txtDescripcionServicio_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
