@@ -1,4 +1,3 @@
-use ObligatorioP3PrimerEntrega
 
 CREATE PROCEDURE dbo.Proveedores_SelectAll
 AS
