@@ -1,4 +1,3 @@
-
 create procedure Auxiliar_PorcentajeVip_Update
 	@porcentajeVip as decimal(10,0)
 as

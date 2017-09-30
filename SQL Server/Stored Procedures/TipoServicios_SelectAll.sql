@@ -1,4 +1,3 @@
-
 create procedure TipoServicios_SelectAll
 as
 begin
