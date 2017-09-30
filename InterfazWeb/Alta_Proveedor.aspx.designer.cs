@@ -202,6 +202,15 @@ namespace InterfazWeb {
         protected global::System.Web.UI.WebControls.TextBox txtNombreServicio;
         
         /// <summary>
+        /// RequiredFieldValidator7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        
+        /// <summary>
         /// txtDescripcionServicio control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace InterfazWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionServicio;
+        
+        /// <summary>
+        /// RequiredFieldValidator8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
         
         /// <summary>
         /// fupImagenServicio control.
@@ -220,22 +238,22 @@ namespace InterfazWeb {
         protected global::System.Web.UI.WebControls.FileUpload fupImagenServicio;
         
         /// <summary>
-        /// btnImagenServicio control.
+        /// btnUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImagenServicio;
+        protected global::System.Web.UI.WebControls.ImageButton btnUpload;
         
         /// <summary>
-        /// lblMsjImagenServicio control.
+        /// lblErrorFoto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsjImagenServicio;
+        protected global::System.Web.UI.WebControls.Label lblErrorFoto;
         
         /// <summary>
         /// imgImagenServicio control.

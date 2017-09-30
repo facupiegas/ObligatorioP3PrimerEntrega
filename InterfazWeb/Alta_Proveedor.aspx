@@ -70,22 +70,26 @@
         <br />
         Nombre:
         <asp:TextBox ID="txtNombreServicio" runat="server"></asp:TextBox>
+        &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtNombreServicio" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
         Descripcion:
-        <asp:TextBox ID="txtDescripcionServicio" runat="server"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="txtDescripcionServicio" runat="server" Height="16px" Width="241px" OnTextChanged="txtDescripcionServicio_TextChanged"></asp:TextBox>
+        &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtDescripcionServicio" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
         Imagen:
         <asp:FileUpload ID="fupImagenServicio" runat="server" />
-        &nbsp;
-        <asp:Button ID="btnImagenServicio" runat="server" OnClick="btnImagenServicio_Click" Text="Subir Imagen" />
-        &nbsp;
-        <asp:Label ID="lblMsjImagenServicio" runat="server"></asp:Label>
+        &nbsp;&nbsp;
+        <asp:ImageButton ID="btnUpload" runat="server" Height="31px" ImageUrl="~/img/upload.jpg" OnClick="btnUpload_Click" Width="28px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         <br />
-        <asp:Image ID="imgImagenServicio" runat="server" />
+        <asp:Label ID="lblErrorFoto" runat="server" ForeColor="Red"></asp:Label>
         <br />
+        <br />
+        <asp:Image ID="imgImagenServicio" runat="server" Height="100px" Width="100px" />
         <br />
         <br />
         Tipo Servicio:
