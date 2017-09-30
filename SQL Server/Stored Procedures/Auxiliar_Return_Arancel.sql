@@ -1,4 +1,3 @@
-use ObligatorioP3PrimerEntrega
 
 create procedure dbo.Auxiliar_Devolver_Arancel
 as

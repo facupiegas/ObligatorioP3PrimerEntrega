@@ -1,4 +1,3 @@
-use ObligatorioP3PrimerEntrega
 
 create procedure Servicios_SelectAll
 as
