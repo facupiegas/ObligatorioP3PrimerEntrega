@@ -58,8 +58,6 @@ namespace InterfazWeb
                 {
 
                     Proveedor tmpProv = Fachada.AltaProveedor(unRut, unNomFantasiaProov, unMailProov, unTelProov, DateTime.Now.Date, esVip, tmpUser);
-                    //bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
-                    //bool saveProov = Fachada.GuardarProveedorEnBD(tmpProv);
                     if (tmpUser!=null && tmpProv!=null)
                     {
                         lblMensaje.ForeColor = System.Drawing.Color.Green;

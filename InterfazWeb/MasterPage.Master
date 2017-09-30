@@ -29,6 +29,7 @@
             <DynamicSelectedStyle BackColor="#507CD1" />
             <Items>
                 <asp:MenuItem NavigateUrl="~/Alta_Proveedor.aspx" Text="Alta Proveedor" Value="Alta Proveedor"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/Alta_Servicio.aspx" Text="Alta Servicio" Value="Alta Servicio"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Listado_Proveedores.aspx" Text="Listado Proveedores" Value="Listado Proveedores"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Catalogo_Servicios.aspx" Text="Catalogo de Servicios" Value="Catalogo de Servicios"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx" Text="Modificar Aranceles Y Porcentaje VIP" Value="Modificar Aranceles Y Porcentaje VIP"></asp:MenuItem>

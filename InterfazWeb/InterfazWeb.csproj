@@ -69,11 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Alta_Proveedor.aspx" />
+    <Content Include="Alta_Servicio.aspx" />
     <Content Include="Buscar_Proveedor.aspx" />
     <Content Include="Catalogo_Servicios.aspx" />
     <Content Include="Desactivar_Proveedor.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="img\upload.jpg" />
     <Content Include="Listado_Proveedores.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Modificacion_Arancel_Proveedores_Porcentaje_Vip.aspx" />
@@ -139,6 +139,13 @@
     </Compile>
     <Compile Include="Alta_Proveedor.aspx.designer.cs">
       <DependentUpon>Alta_Proveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alta_Servicio.aspx.cs">
+      <DependentUpon>Alta_Servicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alta_Servicio.aspx.designer.cs">
+      <DependentUpon>Alta_Servicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Buscar_Proveedor.aspx.cs">
       <DependentUpon>Buscar_Proveedor.aspx</DependentUpon>
@@ -232,7 +239,9 @@
     <WCFMetadataStorage Include="Service References\WCF_Proveedor\" />
     <WCFMetadataStorage Include="Service References\WCF_Servicio\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="img\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
