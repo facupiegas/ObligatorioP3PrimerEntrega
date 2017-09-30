@@ -49,12 +49,21 @@ namespace InterfazWeb {
         protected global::System.Web.UI.WebControls.Label lblMensaje;
         
         /// <summary>
-        /// GridView1 control.
+        /// grdProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grdProveedor;
+        
+        /// <summary>
+        /// grdServicios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdServicios;
     }
 }

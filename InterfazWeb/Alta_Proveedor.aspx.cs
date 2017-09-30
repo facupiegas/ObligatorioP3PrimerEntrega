@@ -19,7 +19,14 @@ namespace InterfazWeb
         private static Usuario AltaUsu;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if ((string)Session["TipoDeUsuario"] == "Administrador")
+            {
+                lnkMenuPrincipal.Visible = false;
+            }
+            else {
+                lnkMenuPrincipal.Visible = true;
+            }
+            if (!IsPostBack)
                 CargarTipoServicios();
         }
 
@@ -110,9 +117,7 @@ namespace InterfazWeb
                 string nombreSer = txtNombreServicio.Text;
                 string descripcionSer = txtDescripcionServicio.Text;
                 string imagenSer = imgImagenServicio.ImageUrl;
-
                 string stringTipo = ddlTipoServicios.SelectedItem.Value;
-                //string rutProveedor = AltaProvRutProveedor;
                 string rutProveedor = AltaProv.Rut;
                 List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios();
                 TipoServicio aux = null;
@@ -127,7 +132,6 @@ namespace InterfazWeb
                 {
                     Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux);
                     WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
-                    //if (Fachada.GuardarServicioEnBD(tmpServicio))
                     if (tmpServicio != null)
                     {
                         if(proxy.AltaProveedor(AltaProv, AltaUsu, tmpServicio))
@@ -213,9 +217,5 @@ namespace InterfazWeb
             }
         }
 
-        protected void txtDescripcionServicio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

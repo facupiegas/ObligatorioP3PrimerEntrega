@@ -13,13 +13,13 @@ namespace InterfazWeb {
     public partial class Alta_Proveedor {
         
         /// <summary>
-        /// HyperLink1 control.
+        /// lnkMenuPrincipal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.HyperLink lnkMenuPrincipal;
         
         /// <summary>
         /// pnlProveedor control.

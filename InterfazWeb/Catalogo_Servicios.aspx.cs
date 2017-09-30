@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
+using ServiciosObligatorioWCF;
+
 
 namespace InterfazWeb
 {
@@ -12,12 +13,20 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((string)Session["tipo"] == "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
+            if ((string)Session["TipoDeUsuario"] != "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
             {
                 Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
             }
+            if (!IsPostBack) {
+                CargarServicios();
+            }
         }
-
+        protected void CargarServicios()
+        {
+            WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
+            grdServicios.DataSource = proxy.RetornarServicios();
+            grdServicios.DataBind();
+        }
 
 
     }

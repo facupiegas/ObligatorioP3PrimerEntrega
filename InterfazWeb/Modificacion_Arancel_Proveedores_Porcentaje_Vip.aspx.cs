@@ -14,7 +14,7 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((string)Session["tipo"] == "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
+            if ((string)Session["TipoDeUsuario"] != "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
             {
                 Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
             }
