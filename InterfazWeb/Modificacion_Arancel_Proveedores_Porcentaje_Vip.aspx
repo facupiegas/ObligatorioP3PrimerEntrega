@@ -6,7 +6,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARANCEL PROVEEDORES</p>
     <p>
         Valor Actual
-        <asp:TextBox ID="txtArancelActual" runat="server" Width="60px" style="text-align: center"></asp:TextBox>
+        <asp:TextBox ID="txtArancelActual" runat="server" Width="60px" style="text-align: center" ReadOnly="True"></asp:TextBox>
 &nbsp;&nbsp; Nuevo Valor&nbsp;
         <asp:TextBox ID="txtArancelNuevo" runat="server" Width="60px"></asp:TextBox>
 &nbsp;
@@ -21,7 +21,7 @@
     </p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PORCENTAJE VIP<br />
     <br />
-    Valor Actual <asp:TextBox ID="txtPorcentajeVipActual" runat="server" Width="60px" style="text-align: center"></asp:TextBox>
+    Valor Actual <asp:TextBox ID="txtPorcentajeVipActual" runat="server" Width="60px" style="text-align: center" ReadOnly="True"></asp:TextBox>
 &nbsp; Nuevo Valor
     <asp:TextBox ID="txtPorcentajeVipNuevo" runat="server" Width="60px"></asp:TextBox>
 &nbsp;
