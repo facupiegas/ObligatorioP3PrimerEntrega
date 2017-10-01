@@ -8,7 +8,7 @@
         Valor Actual
         <asp:TextBox ID="txtArancelActual" runat="server" Width="60px" style="text-align: center"></asp:TextBox>
 &nbsp;&nbsp; Nuevo Valor&nbsp;
-        <asp:TextBox ID="txtArancelNuevo" runat="server" Width="60px"></asp:TextBox>
+        <asp:TextBox ID="txtArancelNuevo" runat="server" Width="60px" MaxLength="8"></asp:TextBox>
 &nbsp;
         &nbsp;<asp:Label ID="lblErrorArancel" runat="server" Visible="False"></asp:Label>
     </p>
@@ -23,7 +23,7 @@
     <br />
     Valor Actual <asp:TextBox ID="txtPorcentajeVipActual" runat="server" Width="60px" style="text-align: center"></asp:TextBox>
 &nbsp; Nuevo Valor
-    <asp:TextBox ID="txtPorcentajeVipNuevo" runat="server" Width="60px"></asp:TextBox>
+    <asp:TextBox ID="txtPorcentajeVipNuevo" runat="server" Width="60px" MaxLength="8"></asp:TextBox>
 &nbsp;
     &nbsp;<asp:Label ID="lblErrorVip" runat="server" Visible="False"></asp:Label>
     <br />
