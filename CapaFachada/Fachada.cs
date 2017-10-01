@@ -13,12 +13,10 @@ namespace CapaFachada
 {
     public class Fachada
     {
-
-
         public static Usuario BuscarUsuario(string nombre)
         {
             Usuario retorno = new Usuario() { Nombre = nombre };
-            if (!retorno.Leer())
+            if (!retorno.Leer())//si es false el Usuario no existe en la BD, sino devuelvo el objeto Usuario con sus datos cargados
                 retorno = null;
             return retorno;
         }
@@ -27,7 +25,7 @@ namespace CapaFachada
         {
             Usuario tmpUsuario = new Usuario { Nombre = nombre };
             Usuario retorno = null;
-            if (tmpUsuario.Leer() && tmpUsuario.Pass == pass)
+            if (tmpUsuario.Leer() && tmpUsuario.Pass == pass)//si el Usuario existe en la BD y la contraseña es igual a la ingresada por parametro devuelvo el objeto Usuario
                 retorno = tmpUsuario;
             return retorno;
         }
@@ -35,9 +33,9 @@ namespace CapaFachada
         public static Usuario AltaUsuario(string unNombre, string unPass, Usuario.EnumRol unRol)
         {
             Usuario retorno = null;
-            if (BuscarUsuario(unNombre) == null)
+            if (BuscarUsuario(unNombre) == null)//Si el usuario no existe en la BD 
             {
-                retorno = new Usuario(unNombre, unPass, unRol);
+                retorno = new Usuario(unNombre, unPass, unRol); //doy de alta el Usuario con los datos ingresados
             }
             return retorno;
         }
@@ -45,7 +43,7 @@ namespace CapaFachada
         public static Proveedor BuscarProveedor(string unRut)
         {
             Proveedor retorno = new Proveedor() { Rut = unRut };
-            if (!retorno.Leer())
+            if (!retorno.Leer())//si es false el Proveedor no existe en la BD, sino devuelvo el objeto Proveedor con sus datos cargados
                 retorno = null;
             return retorno;
         }
@@ -53,9 +51,9 @@ namespace CapaFachada
         public static Proveedor AltaProveedor(string unRut, string unNomFantasia, string unEmail, string unTelefono, DateTime unaFecha, bool esVip, Usuario unUsuario)
         {
             Proveedor retorno = null;
-            if (BuscarProveedor(unRut) == null)
+            if (BuscarProveedor(unRut) == null)//si el Proveedor no existe en la BD
             {
-                retorno = new Proveedor(unRut, unNomFantasia, unEmail, unTelefono, unaFecha, esVip, unUsuario);
+                retorno = new Proveedor(unRut, unNomFantasia, unEmail, unTelefono, unaFecha, esVip, unUsuario);//doy de alta el Proveedor con los datos ingresados por parametro
             }
             return retorno;
         }
@@ -63,34 +61,34 @@ namespace CapaFachada
         public static List<Proveedor> DevolverProveedores()
         {
             Proveedor auxProv = new Proveedor();
-            return auxProv.TraerTodo();
+            return auxProv.TraerTodo(); //Retorno la lista completa(incluye Proveedores desactivados) de Proveedores de la BD
         }
 
         public static List<Servicio> DevolverServicios() {
             Servicio auxServ = new Servicio();
-            return auxServ.TraerTodo();
+            return auxServ.TraerTodo();//Retorno la lista completa de Servicios de la BD
         }
 
         public static List<Servicio> DevolverServiciosProveedor(string unRut)
         {
             Proveedor auxProv = new Proveedor();
             auxProv.Rut = unRut;
-            return auxProv.DevolverServicios();
+            return auxProv.DevolverServicios();//Retorno la lista completa de Servicios del Proveedor con el rut ingresado por parametro
         }
 
         public static bool GuardarProveedorEnBD(Proveedor unProv)
         {
-            return unProv.Guardar();
+            return unProv.Guardar();//Guardo el Proveedor en la BD
         }
 
         public static bool GuardarUsuarioEnBD(Usuario unUser)
         {
-            return unUser.Guardar();
+            return unUser.Guardar();//Guardo el Usuario en la BD
         }
 
         public static bool ModificarArancelProveedor(double unArancel) {
             bool retorno = false;
-            if (unArancel >= 0 )
+            if (unArancel >= 0 )//si el valor ingresado es mayor o igual a 0
             {
                 Proveedor.Arancel = unArancel;
                 retorno = true;
@@ -101,7 +99,7 @@ namespace CapaFachada
         public static bool ModificarPorcentajeVip(double unPorcentajeVip)
         {
             bool retorno = false;
-            if (unPorcentajeVip >= 0)
+            if (unPorcentajeVip >= 0)//si el valor ingresado es mayor o igual a 0
             {
                 Proveedor.PorcentajePorVipActual = unPorcentajeVip;
                 retorno = true;
@@ -111,22 +109,22 @@ namespace CapaFachada
 
         public static double DevolverArancelActual()
         {
-            return Proveedor.Arancel;
-        } //para mostrar porcentaje actual previo a la modificacion
+            return Proveedor.Arancel; //Devuelvo el valor actual del Arancel de los Proveedores
+        } 
 
         public static double DevolverPorcentajeVipActual()
         {
-            return Proveedor.PorcentajePorVipActual;
-        } //para mostrar porcentaje actual previo a la modificacion
+            return Proveedor.PorcentajePorVipActual; //Devuelvo el valor actual del porcentaje vip para los nuevos Proveedores
+        } 
 
         public static bool DesactivarProveedor(string unRut)
         {
             bool retorno = false;
-            Proveedor tmpProv = new Proveedor(); // creo un objeto proveedor temporal y le agrego el rut que recibo desde la intrfaz
+            Proveedor tmpProv = new Proveedor(); // creo un objeto proveedor temporal y le agrego el rut que recibo desde la interfaz
             tmpProv.Rut = unRut;
             if (tmpProv.Eliminar())
             {
-                retorno = true; //si el proveedor se pudo eliminar retonro true
+                retorno = true; //si el proveedor se pudo eliminar retorno true
             }
             return retorno;
         }
@@ -134,32 +132,38 @@ namespace CapaFachada
         public static List<Proveedor> DevolverProveedoresActivos()
         {
             Proveedor auxProv = new Proveedor();
-            return auxProv.TraerActivos();
+            return auxProv.TraerActivos();//Devuelve el listado de Proveedores Activos de la BD
         }
 
         public static Servicio BuscarServicio(string unRut,string unNombre)
         {
             Servicio retorno = new Servicio() { RutProveedor = unRut, Nombre=unNombre };
-            if (!retorno.Leer())
+            if (!retorno.Leer())//si es false el Servicio no existe en la BD, sino devuelvo el objeto Servicio con sus datos cargados
                 retorno = null;
             return retorno;
         }
         public static Servicio AltaServicio(string unRutProveedor,string unNombre,string unaImagen,string unaDescripcion,TipoServicio unTipoServicio)
         {
             Servicio retorno = null;
-            if (BuscarServicio(unRutProveedor,unNombre) == null)
+            if (BuscarServicio(unRutProveedor,unNombre) == null)//Si el servicio no existe en la BD
             {
-                retorno = new Servicio() { RutProveedor = unRutProveedor, Nombre = unNombre, Imagen = unaImagen, Descripcion = unaDescripcion, TipoServicio = unTipoServicio };
+                retorno = new Servicio() {
+                    RutProveedor = unRutProveedor,
+                    Nombre = unNombre,
+                    Imagen = unaImagen,
+                    Descripcion = unaDescripcion,
+                    TipoServicio = unTipoServicio
+                }; //doy de alta el Servicio con los datos ingresados por parametro
             }
             return retorno;
         }
         public static bool GuardarServicioEnBD(Servicio unServicio)
         {
-            return unServicio.Guardar();
+            return unServicio.Guardar(); //guardo el Servicio en la BD
         }
         public static List<TipoServicio> DevolverTipoServicios() {
             TipoServicio tmpTipoSer = new TipoServicio();
-            return tmpTipoSer.TraerTodo();
+            return tmpTipoSer.TraerTodo();//devuelvo la lista de TipoServicio de la BD
         }
 
         public static bool AltaProvUsuSerTransaccional(Proveedor unProv,Usuario unUsu,Servicio unServ) {
@@ -170,47 +174,28 @@ namespace CapaFachada
             {
                 conn.Open();
                 trans = conn.BeginTransaction();
-                bool ok = false;
-                if (unUsu.GuardarTrans(conn,trans))
+                if (unUsu.GuardarTrans(conn, trans) && unProv.GuardarTrans(conn, trans) && unServ.GuardarTrans(conn, trans)) //si los tres objetos son guardados en la BD
                 {
-                    ok = true;
-                    if (unProv.GuardarTrans(conn,trans))
-                    {
-                        ok = true;
-                        if (unServ.GuardarTrans(conn,trans))
-                        {
-                            trans.Commit();
-                            ok = true;
-                            retorno = true;
-                            GuardarProvEnTxt(); //una vez que el proveedor fue guardado actuazlizo el txt
-                            GuardarServiciosEnTxt();
-                        }
-                        else
-                        {
-                            ok = false;
-                        }
-                    }
-                    else
-                    {
-                        ok = false;
-                    }
+                    trans.Commit();
+                    retorno = true;
+                    //actualizo los archivos .txt
+                    GuardarProvEnTxt(); 
+                    GuardarServiciosEnTxt();
                 }
-                else {
-                    ok = false;
-                }
-                if (!ok) {
+                        
+                else{ //si el guardado de algunos de los objetos falla devuelvo la BD a su estado original
                     trans.Rollback();
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception ex)//si el guardado de algunos de los objetos falla devuelvo la BD a su estado original
             {
                 if (trans != null) trans.Rollback();
                 Console.WriteLine(ex.Message.ToString());
             }
             finally
             {
-                if (conn != null && conn.State == ConnectionState.Open) conn.Close();
+                if (conn != null && conn.State == ConnectionState.Open) conn.Close(); //si la conexion esta abierta la cierro
             }
 
             return retorno;
@@ -218,12 +203,12 @@ namespace CapaFachada
 
         public static void GuardarProvEnTxt()
         {
-            Proveedor tmp = new Dominio.Proveedor();
-            tmp.GuardarProveedoresEnTxt();
+            Proveedor tmp = new Proveedor();
+            tmp.GuardarProveedoresEnTxt(); //Guardo los proveedores y sus servicios en el archivo .txt
         }
         public static void GuardarServiciosEnTxt() {
             Servicio tmpServ = new Servicio();
-            tmpServ.GuardarServiciosEnTxt();
+            tmpServ.GuardarServiciosEnTxt(); //Guardo los Servicios con sus TipoEvento correspondientes
         }
     }
 }

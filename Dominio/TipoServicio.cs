@@ -70,8 +70,8 @@ namespace Dominio
         {
             List<TipoServicio> lstTmp = new List<TipoServicio>();
             SqlCommand cmd = new SqlCommand();
-            CommandType cmdType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            string cmdText = "TipoServicios_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            CommandType cmdType = CommandType.StoredProcedure; 
+            string cmdText = "TipoServicios_SelectAll"; 
             SqlConnection conn = this.ObtenerConexion();
             SqlDataReader drResults = this.EjecutarReader(conn, cmdText, cmdType, null);
             while (drResults.Read())

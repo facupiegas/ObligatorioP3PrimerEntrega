@@ -38,25 +38,24 @@ namespace Dominio
 
         public void GuardarServiciosEnTxt(){
             TipoEvento tmpTipoEv = new TipoEvento();
-            List<TipoEvento> tmpListTipoEv =  tmpTipoEv.TraerTodo();
-            string ruta = "serviciosConEventos.txt";
-            StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + ruta, false);
+            List<TipoEvento> tmpListTipoEv =  tmpTipoEv.TraerTodo();//recupero la lista de todos los TipoEventos desde BD
+            StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "serviciosConEventos.txt", false);//Propiedad Append=false para sobreescribir el archivo
             string linea = "";
-            List<Servicio> listServ = this.TraerTodo();
-            foreach (Servicio tmpServ in listServ)
+            List<Servicio> listServ = this.TraerTodo();//recupero la lista de todos los Servicio desde BD
+            foreach (Servicio tmpServ in listServ) //por cada Servicio
             {
-                linea += tmpServ.Nombre + "#";
+                linea += tmpServ.Nombre + "#"; //guardo el nombre del Servicio en la linea a escribir en el archivo .txt
                 foreach (TipoEvento auxTipoEv in tmpListTipoEv)
                 {
-                    foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)
+                    foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)//recorro la lista de TipoServicio de cada TipoEvento(es la lista de los TipoServicio adecuados para dicho TipoEvento)
                     {
-                        if(tmpTipoServ.Nombre == tmpServ.TipoServicio.Nombre)
-                            linea += auxTipoEv.Nombre + ":";
+                        if(tmpTipoServ.Nombre == tmpServ.TipoServicio.Nombre)//si el Nombre del TipoServicio actual == al Nombre del TipoServicio del Servicio seleccionado en el momento(primer foreach)
+                            linea += auxTipoEv.Nombre + ":"; //guardo en la variable a escribir en el archivo .txt
                     }             
                     
                 }
-                writer.WriteLine(linea);
-                linea = "";
+                writer.WriteLine(linea); //escribo la variable en el archivo.txt
+                linea = ""; //devuelvo la variable a su estado original para el proximo Servicio
             }
             writer.Close();
         }
@@ -65,8 +64,8 @@ namespace Dominio
         public override List<Servicio> TraerTodo()
         {
             List<Servicio> lstTmp = new List<Servicio>();      
-            CommandType cmdType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            string cmdText = "Servicios_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            CommandType cmdType = CommandType.StoredProcedure; 
+            string cmdText = "Servicios_SelectAll"; 
             SqlConnection conn = this.ObtenerConexion();
             SqlDataReader drResults = this.EjecutarReader(conn,cmdText,cmdType,null); 
             
@@ -131,7 +130,7 @@ namespace Dominio
             parametros.Add(new SqlParameter("@tipoServicio", this.TipoServicio.Nombre));
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros) != 0;
         }
-        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
+        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) { //para guardar el Servicio utilizando una transaccion
             SqlConnection conn = unaConn;
             string cmdText = "Servicios_Insert";
             CommandType cmdType = CommandType.StoredProcedure;
