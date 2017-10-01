@@ -19,7 +19,7 @@ namespace InterfazWeb
         private static Usuario AltaUsu;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((string)Session["TipoDeUsuario"] == "Administrador") //Si el usuario se logueo como administrador, no muestro el menu de navegacion para un usuario no regustrado
+            if ((string)Session["TipoDeUsuario"] == "Administrador") //Si el usuario se logueo como administrador, no muestro el menu de navegacion para un usuario no registrado
             {
                 lnkMenuPrincipal.Visible = false;
             }
@@ -31,7 +31,7 @@ namespace InterfazWeb
         }
 
         protected void CargarTipoServicios() {
-            ddlTipoServicios.DataSource = Fachada.DevolverTipoServicios(); //se obtienen los servicios dosponible desde la fachada y se carga la lista
+            ddlTipoServicios.DataSource = Fachada.DevolverTipoServicios(); //se obtienen los TipoServicio disponibles desde la fachada y se carga el dropdownlist
             ddlTipoServicios.DataValueField = "Nombre";
             ddlTipoServicios.DataBind();
         }
@@ -58,31 +58,31 @@ namespace InterfazWeb
                 {
 
                     Proveedor tmpProv = Fachada.AltaProveedor(unRut, unNomFantasiaProov, unMailProov, unTelProov, DateTime.Now.Date, esVip, tmpUser); //se crea el objeto proveedor el cual será dado de alta en la base 
-                    if (tmpUser!=null && tmpProv!=null) //se valida qye tanto el usuario como el proveedor no sean nulos (hayan sido creados existosamente)
+                    if (tmpUser!=null && tmpProv!=null) //se valida que tanto el usuario como el proveedor no sean nulos (hayan sido creados en memoria existosamente)
                     {
                         lblMensaje.ForeColor = System.Drawing.Color.Green;
                         lblMensaje.Visible = true;
                         lblMensaje.Text = "Proveedor Creado con Éxito";
-                        AltaProvRutProveedor = unRut; //se guarda temporalmente el rut del proveedor en la variable global
-                        AltaUsu = tmpUser; //se guarda temporalmente el objeto usuario en la variable global
-                        AltaProv = tmpProv; //se guarda temporalmente el objeto proveedor en la variable global
+                        AltaProvRutProveedor = unRut; //se guarda temporalmente el rut del proveedor en la variable de clase
+                        AltaUsu = tmpUser; //se guarda temporalmente el objeto usuario en la variable de clase
+                        AltaProv = tmpProv; //se guarda temporalmente el objeto proveedor en la variable de clase
                         pnlServicio.Visible = true;
                         pnlProveedor.Visible = false;
                     }
-                    else if (tmpUser==null) //si el usuario no pudo ser creado, se da aviso la usuario
+                    else if (tmpUser==null) //si el usuario no pudo ser creado, se da aviso al usuario
                     {
                         lblMensaje.Text = "(*) El nombre de usuario ingresado ya ha sido utilizado";
                         lblMensaje.ForeColor = System.Drawing.Color.Red;
                         lblMensaje.Visible = true;
                     }
-                    else if (tmpProv==null) //si el proveedor no pudo ser creado, se da aviso la usuario
+                    else if (tmpProv==null) //si el proveedor no pudo ser creado, se da aviso al usuario
                     {
                         lblMensaje.Text = "(*) El proveedor ya existe en el sistema (RUT)";
                         lblMensaje.ForeColor = System.Drawing.Color.Red;
                         lblMensaje.Visible = true;
                     }
                 }
-                else //si tanto el RUT o el telefono ingesado noes numerico, se da aviso al usuario
+                else //si tanto el RUT o el telefono ingesado no es numerico, se da aviso al usuario
                 {
                     lblMensaje.Text = "(*) Rut y/o telefono inválido";
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
@@ -108,16 +108,16 @@ namespace InterfazWeb
             return true;
         }
 
-        protected void btnServicio_Click(object sender, EventArgs e) //metodo que valida la imagen ingresada para el servicio
+        protected void btnServicio_Click(object sender, EventArgs e) 
         {
-            if (imgImagenServicio.ImageUrl != "") //se valida que se haya ingresado una imagen ya que la unica forma de que contenga un string de url es si fue validado previamemnte 
+            if (imgImagenServicio.ImageUrl != "") //se valida que se haya ingresado una imagen
             {//obtengo los atributos del objeto a crear
                 string nombreSer = txtNombreServicio.Text;
                 string descripcionSer = txtDescripcionServicio.Text;
                 string imagenSer = imgImagenServicio.ImageUrl;
                 string stringTipo = ddlTipoServicios.SelectedItem.Value;
                 string rutProveedor = AltaProv.Rut;
-                List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios(); //obtengo la lista de los tipos de servicios para luego crear uno idenatico al que el usuario selecciono de la lista
+                List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios(); //obtengo la lista de los tipos de servicios
                 TipoServicio aux = null; //creo un objeto temporal para luego realizar la alta.
                 foreach (TipoServicio tmpTipo in listTipoServicio)
                 {
@@ -126,13 +126,13 @@ namespace InterfazWeb
                         aux = tmpTipo; //una vez que se han validado los campos, se crea el objeto temporal
                     }
                 }
-                if (aux != null) //se controla que el objeto temporal tipoServicio no sea nulo para continuar con el alta
+                if (aux != null) //se controla que el objeto temporal TipoServicio no sea nulo para continuar con el alta
                 {
-                    Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux); //se crea el objeto temporal tipo servicio
-                    WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient(); //se crea un proxy para solicitar la alta del objeto en la BD
-                    if (tmpServicio != null) //se valida que el objeto tipo servicio haya podido ser creado.
+                    Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux); //se crea el objeto Servicio en memoria
+                    WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient(); //se crea un cliente del servicio WCF para solicitar la alta del objeto en la BD
+                    if (tmpServicio != null) //se valida que el objeto tipo Servicio haya podido ser creado.
                     {
-                        if(proxy.AltaProveedor(AltaProv, AltaUsu, tmpServicio)) //se le envian los objetos al proxy para que realice el alta
+                        if(proxy.AltaProveedor(AltaProv, AltaUsu, tmpServicio)) //se le envian los objetos al cliente WCF para que realice el alta transaccionalmente en la BD
                         { 
                             lblMsjServicio.ForeColor = System.Drawing.Color.Green;
                             lblMsjServicio.Text = "El proveedor,usuario y servicio fueron creados con exito!"; //si el alta se pudo realizar con exito se da aviso al usuario
@@ -170,23 +170,23 @@ namespace InterfazWeb
         private bool extensionArchivoOK(string nombreArchivo) //metodo que valida que la imagen ingreasa posea una extension admitida
         {
             bool ok = false;
-            string fileExtension =
+            string extension =
                     System.IO.Path.GetExtension(nombreArchivo).ToLower();//obtengo la extension del archivo subido y lo guardo en una variable para su posterior validacion
-            string[] allowedExtensions =
+            string[] extensionesPermitidas =
                 {".gif", ".png", ".jpeg", ".jpg"}; //string que contiene las extensiones admitidas
-            for (int i = 0; i < allowedExtensions.Length; i++)
+            for (int i = 0; i < extensionesPermitidas.Length; i++)
             {
-                if (fileExtension == allowedExtensions[i]) //comparo la extension del archivo subido con las amitidas que se encuentras dentro del string
+                if (extension == extensionesPermitidas[i]) //comparo la extension del archivo subido con las admitidas que se encuentras dentro del string
                 {
-                    ok = true; //en casoq ue el archivo posea una extension admitida retorno true, caso contrario false como fue definido al comienzo del metodo
+                    ok = true; //en caso que el archivo posea una extension admitida retorno true, caso contrario false como fue definido al comienzo del metodo
                 }
             }
             return ok;
-        }//verifica extension de la imagen
+        }
 
         protected void btnUpload_Click(object sender, ImageClickEventArgs e) 
         {
-            if (extensionArchivoOK(fupImagenServicio.FileName)) //si la extension del archico ingresado es admitida, se procede a guardar el mismo
+            if (extensionArchivoOK(fupImagenServicio.FileName)) //si la extension del archivo ingresado es admitida, se procede a guardar el mismo
             {
                 string path = Server.MapPath("img");
                 string archivo = path + "\\" + fupImagenServicio.FileName;
@@ -202,7 +202,7 @@ namespace InterfazWeb
             }
         }
 
-        protected void limpiarCampos(ControlCollection ctrls) //metodo que se encarga de limpiar los campos de la pagina para relaizar una nueva alta de proveedor
+        protected void limpiarCampos(ControlCollection ctrls) //metodo que se encarga de limpiar los campos de la pagina
         {
             foreach (Control ctrl in ctrls)
             {
