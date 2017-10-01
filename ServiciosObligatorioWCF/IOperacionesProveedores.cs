@@ -40,6 +40,9 @@ namespace ServiciosObligatorioWCF
 
         [OperationContract]
         double DevolverPorcentajeVipActual();
+
+        [OperationContract]
+        void GuardarProvEnTxt();
     }
 
 }

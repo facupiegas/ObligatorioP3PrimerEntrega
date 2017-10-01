@@ -68,6 +68,12 @@ namespace InterfazWeb.WCF_Proveedor {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActual", ReplyAction="http://tempuri.org/IOperacionesProveedores/DevolverPorcentajeVipActualResponse")]
         System.Threading.Tasks.Task<double> DevolverPorcentajeVipActualAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/GuardarProvEnTxt", ReplyAction="http://tempuri.org/IOperacionesProveedores/GuardarProvEnTxtResponse")]
+        void GuardarProvEnTxt();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesProveedores/GuardarProvEnTxt", ReplyAction="http://tempuri.org/IOperacionesProveedores/GuardarProvEnTxtResponse")]
+        System.Threading.Tasks.Task GuardarProvEnTxtAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -167,6 +173,14 @@ namespace InterfazWeb.WCF_Proveedor {
         
         public System.Threading.Tasks.Task<double> DevolverPorcentajeVipActualAsync() {
             return base.Channel.DevolverPorcentajeVipActualAsync();
+        }
+        
+        public void GuardarProvEnTxt() {
+            base.Channel.GuardarProvEnTxt();
+        }
+        
+        public System.Threading.Tasks.Task GuardarProvEnTxtAsync() {
+            return base.Channel.GuardarProvEnTxtAsync();
         }
     }
 }

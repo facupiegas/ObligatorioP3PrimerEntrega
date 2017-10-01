@@ -1,3 +1,4 @@
+use ObligatorioP3PrimerEntrega
 
 create procedure dbo.Usuarios_SelectAll
 as

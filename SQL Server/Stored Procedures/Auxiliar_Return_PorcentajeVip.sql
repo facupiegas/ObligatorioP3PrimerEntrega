@@ -1,4 +1,3 @@
-
 create procedure dbo.Auxiliar_Devolver_PorcentajeVip
 as
 begin

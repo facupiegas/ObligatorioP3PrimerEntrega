@@ -125,4 +125,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GuardarProvEnTxt">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarProvEnTxtResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

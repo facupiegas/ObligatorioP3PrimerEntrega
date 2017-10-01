@@ -7,13 +7,12 @@
     RUT
     <asp:TextBox ID="txtRut" runat="server"></asp:TextBox>
 &nbsp;
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRut" ErrorMessage="(*) Ingrese un RUT" ForeColor="Red"></asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRut" ErrorMessage="(*) Ingrese un RUT" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+        <asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Ingrese un RUT Valido" Visible="False"></asp:Label>
 </p>
 <p>
     <asp:Button ID="btnBuscar" runat="server" Text="Buscar Proveedor" OnClick="btnBuscar_Click" />
 </p>
-<asp:Label ID="lblMensaje" runat="server" Visible="False"></asp:Label>
-<br />
 <asp:GridView ID="grdProveedor" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" style="text-align: center">
     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
     <EditRowStyle BackColor="#999999" />
@@ -50,5 +49,7 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
+    <br />
+<asp:Label ID="lblMensaje" runat="server" Visible="False"></asp:Label>
 <br />
 </asp:Content>

@@ -1,4 +1,3 @@
-
 create procedure Servicios_SelectServiciosByRut
 	@rut varchar(20)
 as
