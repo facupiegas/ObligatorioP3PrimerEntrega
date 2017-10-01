@@ -15,32 +15,32 @@
         </p>
         <p>
             Nombre de Usuario:
-            <asp:TextBox ID="txtNomUsuario" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNomUsuario" runat="server" MaxLength="20"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNomUsuario" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             Contraseña:
-            <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtPass" runat="server" MaxLength="20"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPass" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             RUT:
-            <asp:TextBox ID="txtRut" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtRut" runat="server" MaxLength="15"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtRut" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             Nombre Fantasía:
-            <asp:TextBox ID="txtNomFantasia" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNomFantasia" runat="server" MaxLength="30"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtNomFantasia" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             Email:
-            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" MaxLength="30"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             Teléfono:
-            <asp:TextBox ID="txtTel" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtTel" runat="server" MaxLength="10"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtTel" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
@@ -51,17 +51,11 @@
             <asp:Label ID="lbErrorlVip" runat="server" Visible="False" ForeColor="Red"></asp:Label>
         </p>
         <p>
-            &nbsp;</p>
-        <p>
             <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Agregar Proveedor" />
         </p>
         <p>
-            &nbsp;</p>
-        <p>
             <asp:Label ID="lblMensaje" runat="server" Visible="False"></asp:Label>
         </p>
-        <p>
-            &nbsp;</p>
     </asp:Panel>
     <br />
     <asp:Panel ID="pnlServicio" runat="server" Visible="False">
@@ -69,13 +63,13 @@
         <br />
         <br />
         Nombre:
-        <asp:TextBox ID="txtNombreServicio" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtNombreServicio" runat="server" MaxLength="20"></asp:TextBox>
         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtNombreServicio" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
         Descripcion:
         <br />
-        <asp:TextBox ID="txtDescripcionServicio" runat="server" Height="16px" Width="241px"></asp:TextBox>
+        <asp:TextBox ID="txtDescripcionServicio" runat="server" Height="16px" Width="241px" MaxLength="150"></asp:TextBox>
         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtDescripcionServicio" ErrorMessage="(*) Campo Obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <br />
