@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Dominio
 {
@@ -35,14 +36,32 @@ namespace Dominio
             return "-Nombre Servicio: "+Nombre +" | Tipo Servicio: "+TipoServicio.Nombre;
         }
 
-        //public void GuardarServiciosEnTxt() { }
+        public void GuardarServiciosEnTxt(){
+            TipoEvento tmpTipoEv = new TipoEvento();
+            List<TipoEvento> tmpListTipoEv =  tmpTipoEv.TraerTodo();
+            string ruta = "serviciosConEventos.txt";
+            StreamWriter writer = new StreamWriter(ruta, false);
+            string linea = "";
+            List<Servicio> listServ = this.TraerTodo();
+            foreach (Servicio tmpServ in listServ) {
+                linea += tmpServ.Nombre + "#";
+                foreach (TipoEvento auxTipoEv in tmpListTipoEv) {
+                    foreach (TipoServicio auxTipoServ in auxTipoEv.TipoServicios) {
+                        if (auxTipoServ.Nombre == tmpServ.TipoServicio.Nombre) {
+                            linea += auxTipoEv.Nombre + ":";
+                        }
+                    }
+                }
+                writer.WriteLine(linea);
+                linea = "";
+            }
+            writer.Close();
+        }
         //public void CargarServiciosDesdeTxt() { }
 
         public override List<Servicio> TraerTodo()
         {
-            List<Servicio> lstTmp = new List<Servicio>();
-            SqlCommand cmd = new SqlCommand();
-            
+            List<Servicio> lstTmp = new List<Servicio>();      
             CommandType cmdType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
             string cmdText = "Servicios_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
             SqlConnection conn = this.ObtenerConexion();
