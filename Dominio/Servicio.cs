@@ -59,7 +59,6 @@ namespace Dominio
             }
             writer.Close();
         }
-        //public void CargarServiciosDesdeTxt() { }
 
         public override List<Servicio> TraerTodo()
         {
@@ -130,6 +129,7 @@ namespace Dominio
             parametros.Add(new SqlParameter("@tipoServicio", this.TipoServicio.Nombre));
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros) != 0;
         }
+
         public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) { //para guardar el Servicio utilizando una transaccion
             SqlConnection conn = unaConn;
             string cmdText = "Servicios_Insert";
