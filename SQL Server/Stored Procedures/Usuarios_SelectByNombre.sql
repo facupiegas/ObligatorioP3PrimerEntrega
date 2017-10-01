@@ -1,4 +1,3 @@
-
 create procedure dbo.Usuarios_SelectByNombre
 	@nombre as varchar(20)
 

@@ -1,4 +1,3 @@
-
 CREATE PROCEDURE dbo.Proveedores_SelectActiveOnly
 AS
 BEGIN
