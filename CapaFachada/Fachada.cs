@@ -182,6 +182,7 @@ namespace CapaFachada
                             trans.Commit();
                             ok = true;
                             retorno = true;
+                            GuardarProvEnTxt(); //una vez que el proveedor fue guardado actuazlizo el txt
                         }
                         else
                         {
@@ -212,6 +213,12 @@ namespace CapaFachada
             }
 
             return retorno;
+        }
+
+        public static void GuardarProvEnTxt()
+        {
+            Proveedor tmp = new Dominio.Proveedor();
+            tmp.GuardarProveedoresEnTxt();
         }
     }
 }

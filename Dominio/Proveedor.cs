@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,7 +118,6 @@ namespace Dominio
             parametros.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
             parametros.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros, unaTransaccion) != 0;
-
         }
 
         public List<Servicio> DevolverServicios() {
@@ -351,6 +351,38 @@ namespace Dominio
             }
             conn.Close(); //cierro
             return retorno;
+        }
+
+        public void GuardarProveedoresEnTxt()
+        {
+            List<Proveedor> proveedores = TraerTodo();
+            using (StreamWriter file =
+            new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Proveedores.txt", false))//seteo el parametro "append" en laso para que sobreescriba lo que contiene el archivo
+            foreach(Proveedor p in proveedores)
+                {
+                    file.Write(p.Rut);
+                    file.Write("#" + p.NomFantasia);
+                    file.Write("#" + p.Email);
+                    file.Write("#" + p.Telefono);
+                    p.ServiciosOfrecidos = p.DevolverServicios(); //cargo la lista del proveedor con los servicios que el mismo oferce.
+                    if (p.ServiciosOfrecidos.Count != 0) { file.Write(" | "); }
+                    for (int i = 0; i < p.ServiciosOfrecidos.Count; i++)
+                    {
+                        if (i != p.ServiciosOfrecidos.Count-1)
+                        {
+                            file.Write(p.ServiciosOfrecidos[i].Nombre + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Descripcion + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Imagen + ":");
+                        }
+                        else // no agrego los : al final del ultimo servicio y agrego un salto de linea para comenzar con el siguinete proveedor
+                        {
+                            file.Write(p.ServiciosOfrecidos[i].Nombre + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Descripcion + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Imagen);
+                            file.WriteLine("");
+                        }                        
+                    }
+                }
         }
         #endregion
     }
