@@ -25,19 +25,19 @@ namespace InterfazWeb
             string unRut = txtRut.Text;
             WCF_Proveedor.OperacionesProveedoresClient proxyProv = new WCF_Proveedor.OperacionesProveedoresClient();
             List<DTOProveedor> listProv = new List<DTOProveedor>();
-            DTOProveedor provDTO = proxyProv.RetornarProveedorPorRut(unRut);
+            DTOProveedor provDTO = proxyProv.RetornarProveedorPorRut(unRut); //Guardo el Proveedor con el rut ingresado en un objeto DTOProveedor
             if (provDTO != null)
             {
-                listProv.Add(provDTO);
+                listProv.Add(provDTO); //lo agrego a una lista auxiliar para mostrarlo en un gridview
             }
             grdProveedor.DataSource = listProv;
             WCF_Servicio.OperacionesServiciosClient proxyServ = new WCF_Servicio.OperacionesServiciosClient();
-            if (stringEsSoloNumeros(unRut))
+            if (stringEsSoloNumeros(unRut))//si ingresa un rut con el formato correcto
             {
                 lblError.Visible = false;
-                DTOServicio [] arrayServ = proxyServ.RetornarServiciosProveedor(unRut);
+                DTOServicio [] arrayServ = proxyServ.RetornarServiciosProveedor(unRut);//se cargan los Servicios del proveedor con el rut ingresado
                 grdServicios.DataSource = arrayServ;
-                if (listProv.Count == 0)
+                if (listProv.Count == 0)//si la lista auxiliar esta vacia quiere decir que no se encontro un Proveedor con el rut ingresado
                 {
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
                     lblMensaje.Visible = true;

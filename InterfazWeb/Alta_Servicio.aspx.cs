@@ -25,7 +25,7 @@ namespace InterfazWeb
         }
         protected void CargarTipoServicios()
         {
-            ddlTipoServicios.DataSource = Fachada.DevolverTipoServicios();
+            ddlTipoServicios.DataSource = Fachada.DevolverTipoServicios();//Recupero la lista de TipoServicios de la BD y la cargo en el dropdownlist
             ddlTipoServicios.DataValueField = "Nombre";
             ddlTipoServicios.DataBind();
         }
@@ -33,41 +33,45 @@ namespace InterfazWeb
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
             auxRutProveedor = txtRut.Text;
-            WCF_Proveedor.OperacionesProveedoresClient proxyProv = new WCF_Proveedor.OperacionesProveedoresClient();
-            DTOProveedor dtoProv = proxyProv.RetornarProveedorPorRut(auxRutProveedor);
-            if(dtoProv != null && dtoProv.Activo)
+            if (stringEsSoloNumeros(auxRutProveedor))//Si se ingresa un rut con el formato correcto
             {
-                WCF_Servicio.OperacionesServiciosClient proxyServ = new WCF_Servicio.OperacionesServiciosClient();
-                DTOServicio[] listSer = proxyServ.RetornarServiciosProveedor(auxRutProveedor);
-                if (stringEsSoloNumeros(auxRutProveedor))
+                WCF_Proveedor.OperacionesProveedoresClient proxyProv = new WCF_Proveedor.OperacionesProveedoresClient();
+                DTOProveedor dtoProv = proxyProv.RetornarProveedorPorRut(auxRutProveedor); //Recupero los datos del Proveedor con el rut ingresado por parametro y lo guardo en un objeto DTOProveedor
+                if (dtoProv != null)//si se encontro un Proveedor con el rut ingresado
                 {
-                    if (listSer.Count() == 0)
+                    if (dtoProv.Activo)//si el Proveedor se encuentra activo
                     {
-                        lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
-                        lblMsjProveedor.Text = "El Rut ingresado no esta asociado a ningun proveedor registrado";
+                        WCF_Servicio.OperacionesServiciosClient proxyServ = new WCF_Servicio.OperacionesServiciosClient();
+                        DTOServicio[] listSer = proxyServ.RetornarServiciosProveedor(auxRutProveedor); //Recupero los Servicios del Proveedor
+                        lblMsjProveedor.Text = string.Empty;
+                        pnlNuevoServicio.Visible = true; //muestro el panel para agregar un nuevo Servicio
+                        grdServicios.DataSource = listSer; //cargo el gridview con los servicios actuales del Proveedor
+                        grdServicios.DataBind();
                     }
                     else
                     {
-                        lblMsjProveedor.Text = string.Empty;
-                        pnlNuevoServicio.Visible = true;
+                        lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
+                        lblMsjProveedor.Text = "El Rut del proveedor ingresado no se encuentra activo.";
                     }
-                    grdServicios.DataSource = listSer;
-                    grdServicios.DataBind();
                 }
                 else
                 {
                     lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
-                    lblMsjProveedor.Text = "El campo solo admite numeros";
+                    lblMsjProveedor.Text = "No existe un Proveedor con el Rut ingresado.";
                 }
+               
+
             }
             else
             {
                 lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
-                lblMsjProveedor.Text = "El Rut del proveedor ingresado no se encuentra activo.";
+                lblMsjProveedor.Text = "El campo solo admite numeros";
             }
-
             
         }
+
+            
+        
         public bool stringEsSoloNumeros(string unString) //metodo que valida que un string ingresado solo contenga numeros
         {
             foreach (char c in unString)
@@ -79,24 +83,24 @@ namespace InterfazWeb
             }
             return true;
         }
-        private bool extensionArchivoOK(string nombreArchivo)
+        private bool extensionArchivoOK(string nombreArchivo) //metodo que valida que la imagen ingreasa posea una extension admitida
         {
             bool ok = false;
-            string fileExtension =
-                    System.IO.Path.GetExtension(nombreArchivo).ToLower();
-            string[] allowedExtensions =
-                {".gif", ".png", ".jpeg", ".jpg"};
-            for (int i = 0; i < allowedExtensions.Length; i++)
+            string extension =
+                    System.IO.Path.GetExtension(nombreArchivo).ToLower();//obtengo la extension del archivo subido y lo guardo en una variable para su posterior validacion
+            string[] extensionesPermitidas =
+                {".gif", ".png", ".jpeg", ".jpg"}; //string que contiene las extensiones admitidas
+            for (int i = 0; i < extensionesPermitidas.Length; i++)
             {
-                if (fileExtension == allowedExtensions[i])
+                if (extension == extensionesPermitidas[i]) //comparo la extension del archivo subido con las admitidas que se encuentras dentro del string
                 {
-                    ok = true;
+                    ok = true; //en caso que el archivo posea una extension admitida retorno true, caso contrario false como fue definido al comienzo del metodo
                 }
             }
             return ok;
-        }//verifica extension de la imagen
+        }
 
-        protected void btnUpload_Click(object sender, ImageClickEventArgs e)
+        protected void btnUpload_Click(object sender, ImageClickEventArgs e) //si la extension del archivo ingresado es admitida, se procede a guardar el mismo
         {
             if (extensionArchivoOK(fupImagenServicio.FileName))
             {
@@ -106,7 +110,7 @@ namespace InterfazWeb
                 imgImagenServicio.ImageUrl = "img\\" + fupImagenServicio.FileName;
                 lblErrorFoto.Visible = false;
             }
-            else
+            else //caso contrario se le da aviso al usuario
             {
                 lblErrorFoto.Visible = true;
                 lblErrorFoto.Text = "Formato de imagen admitido .gif/.png/.jpeg/.jpg";
@@ -116,29 +120,30 @@ namespace InterfazWeb
 
         protected void btnServicio_Click(object sender, EventArgs e)
         {
-            if (imgImagenServicio.ImageUrl != "")
+            if (imgImagenServicio.ImageUrl != "") //Si el usuario subio una imagen
             {
+                //Guardo la informacion ingresada en los TextBox
                 string nombreSer = txtNombreServicio.Text;
                 string descripcionSer = txtDescripcionServicio.Text;
                 string imagenSer = imgImagenServicio.ImageUrl;
                 string stringTipo = ddlTipoServicios.SelectedItem.Value;
                 string rutProveedor = auxRutProveedor;
-                List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios();
+                List<TipoServicio> listTipoServicio = Fachada.DevolverTipoServicios(); //Recupero la lista de TipoServicio de la BD
                 TipoServicio aux = null;
                 foreach (TipoServicio tmpTipo in listTipoServicio)
                 {
-                    if (tmpTipo.Nombre == stringTipo)
+                    if (tmpTipo.Nombre == stringTipo) //si el nombre seleccionado en el dropdownlist coincide con un nombre de la lista de los TipoServicio
                     {
-                        aux = tmpTipo;
+                        aux = tmpTipo; //guardo el objeto TipoServicio
                     }
                 }
                 if (aux != null)
                 {
-                    Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux);
+                    Servicio tmpServicio = Fachada.AltaServicio(rutProveedor, nombreSer, imagenSer, descripcionSer, aux); //doy de alta el Servicio en memoria
                     WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
                     if (tmpServicio != null)
                     {
-                        if (!tmpServicio.Guardar())
+                        if (!tmpServicio.Guardar())//Guardo el Servicio en la BD, si ya existe un servicio con el nombre ingresado(para el rut ingresado) devuelvo error
                         {
                             lblMsjServicio.ForeColor = System.Drawing.Color.Red;
                             lblMsjServicio.Text = "Ya existe un servicio con ese nombre para el rut ingresado";
@@ -148,11 +153,13 @@ namespace InterfazWeb
                             lblMsjServicio.ForeColor = System.Drawing.Color.Green;
                             lblMsjServicio.Text = "El servicio fue dado de alta con exito";
                             WCF_Servicio.OperacionesServiciosClient proxyServ = new WCF_Servicio.OperacionesServiciosClient();
+                            //actualizo el gridview con los Servicios del Proveedor
                             DTOServicio[] listSer = proxyServ.RetornarServiciosProveedor(auxRutProveedor);
                             grdServicios.DataSource = listSer;
                             grdServicios.DataBind();
-                            limpiarCampos(Page.Controls);
-                            Fachada.GuardarProvEnTxt(); //actualizo txt
+                            limpiarCampos(Page.Controls);//limpio los campos
+                            //actualizo archivos .txt
+                            Fachada.GuardarProvEnTxt(); 
                             Fachada.GuardarServiciosEnTxt();
                         }
                     }
@@ -175,7 +182,7 @@ namespace InterfazWeb
             }
 
         }
-        protected void limpiarCampos(ControlCollection ctrls)
+        protected void limpiarCampos(ControlCollection ctrls) //metodo que se encarga de limpiar los campos de la pagina
         {
             foreach (Control ctrl in ctrls)
             {
