@@ -16,8 +16,8 @@ namespace ServiciosObligatorioWCF
         DTOServicio[] IOperacionesServicios.RetornarServicios()
         {
             List<DTOServicio> aux = new List<DTOServicio>();
-            List<Servicio> tmpListServ = Fachada.DevolverServicios();
-            foreach (Servicio tmpServ in tmpListServ)
+            List<Servicio> tmpListServ = Fachada.DevolverServicios(); //recupero la lista de Servicios de la BD
+            foreach (Servicio tmpServ in tmpListServ) //por cada Servicio en la lista creo un objeto DTOServicio
             {
                 DTOServicio auxDTO = new DTOServicio()
                 {
@@ -27,7 +27,7 @@ namespace ServiciosObligatorioWCF
                     Descripcion = tmpServ.Descripcion,
                     TipoServicio = tmpServ.TipoServicioString
                 };
-                aux.Add(auxDTO);
+                aux.Add(auxDTO); //Agrego el nuevo objeto a la lista para devolver
             }
             DTOServicio[] retorno = aux.ToArray();
             return retorno;
@@ -35,10 +35,10 @@ namespace ServiciosObligatorioWCF
 
         DTOServicio[] IOperacionesServicios.RetornarServiciosProveedor(string unRut)
         {
-            List<DTOServicio> aux = new List<DTOServicio>(); //creo lista a devolver
-            foreach (Servicio tmpServ in Fachada.DevolverServiciosProveedor(unRut)) // le pido a la fachada me devuelva lso servicios del proveedor y la recorro creando un DTOServicio por cada uno que contenga la lista
-            {
-                DTOServicio auxDTO = new DTOServicio()
+            List<DTOServicio> aux = new List<DTOServicio>(); 
+            foreach (Servicio tmpServ in Fachada.DevolverServiciosProveedor(unRut)) //recupero la lista de Servicios del Proveedor con el rut ingresado por parametro
+            { //por cada objeto Servicio creo un DTOServicio con sus datos
+                DTOServicio auxDTO = new DTOServicio() 
                 {
                     RutProveedor = tmpServ.RutProveedor,
                     Nombre = tmpServ.Nombre,
@@ -46,14 +46,17 @@ namespace ServiciosObligatorioWCF
                     Descripcion = tmpServ.Descripcion,
                     TipoServicio = tmpServ.TipoServicioString
                 };
-                aux.Add(auxDTO); // agrego el DTO servicio para devolverselo a la capa Interfaz
+                aux.Add(auxDTO); //Agrego el nuevo objeto a la lista para devolver
             }
             DTOServicio[] retorno = aux.ToArray();
             return retorno;
         }
         bool IOperacionesServicios.AltaProveedor(Proveedor unProv, Usuario unUsu, Servicio unServ)
         {
-            return Fachada.AltaProvUsuSerTransaccional(unProv, unUsu, unServ);
+            return Fachada.AltaProvUsuSerTransaccional(unProv, unUsu, unServ); //Guardo transaccionalmente en BD Usuario,Proveedor y un Servicio
+        }
+        void IOperacionesServicios.GuardarServiciosEnTxt() {
+            Fachada.GuardarServiciosEnTxt();
         }
     }
 }

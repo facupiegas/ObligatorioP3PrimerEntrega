@@ -3,11 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-    Alta de un nuevo servicio</p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Alta de un nuevo servicio
+    </p>
+
 <asp:Panel ID="pnlProveedor" runat="server">
     <p>
-        Por favor ingrese un Rut. Tenga en cuenta que para agregar un nuevo servicio al Rut ingresado el mismo debe estar registrado en el sistema</p>
+        Por favor ingrese un Rut. Tenga en cuenta que para agregar un nuevo servicio al Rut ingresado el mismo debe estar registrado en el sistema y encontrarse activo
+    </p>
     <p>
         Rut:
         <asp:TextBox ID="txtRut" runat="server" MaxLength="15"></asp:TextBox>

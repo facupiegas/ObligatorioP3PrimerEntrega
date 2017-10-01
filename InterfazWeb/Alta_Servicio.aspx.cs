@@ -33,27 +33,40 @@ namespace InterfazWeb
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
             auxRutProveedor = txtRut.Text;
-            WCF_Servicio.OperacionesServiciosClient proxyServ = new WCF_Servicio.OperacionesServiciosClient();
-            DTOServicio[] listSer = proxyServ.RetornarServiciosProveedor(auxRutProveedor);
-            if (stringEsSoloNumeros(auxRutProveedor))
+            WCF_Proveedor.OperacionesProveedoresClient proxyProv = new WCF_Proveedor.OperacionesProveedoresClient();
+            DTOProveedor dtoProv = proxyProv.RetornarProveedorPorRut(auxRutProveedor);
+            if(dtoProv != null && dtoProv.Activo)
             {
-                if (listSer.Count() == 0)
+                WCF_Servicio.OperacionesServiciosClient proxyServ = new WCF_Servicio.OperacionesServiciosClient();
+                DTOServicio[] listSer = proxyServ.RetornarServiciosProveedor(auxRutProveedor);
+                if (stringEsSoloNumeros(auxRutProveedor))
                 {
-                    lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
-                    lblMsjProveedor.Text = "El Rut ingresado no esta asociado a ningun proveedor registrado";
+                    if (listSer.Count() == 0)
+                    {
+                        lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
+                        lblMsjProveedor.Text = "El Rut ingresado no esta asociado a ningun proveedor registrado";
+                    }
+                    else
+                    {
+                        lblMsjProveedor.Text = string.Empty;
+                        pnlNuevoServicio.Visible = true;
+                    }
+                    grdServicios.DataSource = listSer;
+                    grdServicios.DataBind();
                 }
                 else
                 {
-                    lblMsjProveedor.Text = string.Empty;
-                    pnlNuevoServicio.Visible = true;
+                    lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
+                    lblMsjProveedor.Text = "El campo solo admite numeros";
                 }
-                grdServicios.DataSource = listSer;
-                grdServicios.DataBind();
             }
-            else {
+            else
+            {
                 lblMsjProveedor.ForeColor = System.Drawing.Color.Red;
-                lblMsjProveedor.Text = "El campo solo admite numeros";
+                lblMsjProveedor.Text = "El Rut del proveedor ingresado no se encuentra activo.";
             }
+
+            
         }
         public bool stringEsSoloNumeros(string unString) //metodo que valida que un string ingresado solo contenga numeros
         {
@@ -139,8 +152,8 @@ namespace InterfazWeb
                             grdServicios.DataSource = listSer;
                             grdServicios.DataBind();
                             limpiarCampos(Page.Controls);
-                            
-
+                            Fachada.GuardarProvEnTxt(); //actualizo txt
+                            Fachada.GuardarServiciosEnTxt();
                         }
                     }
                     else

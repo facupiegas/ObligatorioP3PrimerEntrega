@@ -13,8 +13,6 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
-
-            //Console.WriteLine("aca estamo en la consola");
             //Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
             //DateTime fecha = new DateTime(2017,11,11);
             //Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
@@ -31,14 +29,6 @@ namespace ConsoleAppObligatorioP3
             double tmpPorcentajeVip = Convert.ToDouble(Console.ReadLine());
             if (proxyOpProv.ModificarPorcentajeVip(tmpPorcentajeVip)) Console.WriteLine("Cambio realizado con exito!");
             else Console.WriteLine("El cambio no pudo ser efectuado, por favor ingrese valores mayores o igual a 0 (cero)");
-
-            //Fachada.ModificarArancelProveedor(tmpArancel);
-            //Fachada.ModificarPorcentajeVip(tmpPorcentajeVip);
-
-            Console.WriteLine("Nuevos valores(wcf): \n -Arancel: " + proxyOpProv.DevolverArancelActual() + "\n -Porcentaje Vip: " + proxyOpProv.DevolverPorcentajeVipActual());
-            Console.WriteLine("Nuevos valores(clase): \n -Arancel: " + Proveedor.Arancel + "\n -Porcentaje Vip: " + Proveedor.PorcentajePorVipActual);
-            Console.WriteLine("Nuevos valores(fachada): \n-Arancel: " + Fachada.DevolverArancelActual() + "\n-Porcentaje Vip: " + Fachada.DevolverPorcentajeVipActual());
-
 
             Console.WriteLine("\n-------------Obtener Proveedor Por Rut servicio wcf------------------\n");
             Console.WriteLine("Ingrese un Rut: ");

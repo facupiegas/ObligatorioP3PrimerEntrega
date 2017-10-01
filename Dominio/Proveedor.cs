@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,7 +88,7 @@ namespace Dominio
         public override bool Guardar()
         {
             SqlConnection conn = this.ObtenerConexion();
-            string cmdText = "Proveedores_Insert";//Sentencia a ejecutar 
+            string cmdText = "Proveedores_Insert";
             CommandType cmdType = CommandType.StoredProcedure;
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@Rut", this.Rut));
@@ -102,10 +103,11 @@ namespace Dominio
            
         }
 
-        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
+        public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion)
+        { //para guardar el Proveedor utilizando una transaccion
 
             SqlConnection conn = unaConn;
-            string cmdText = "Proveedores_Insert";//Sentencia a ejecutar 
+            string cmdText = "Proveedores_Insert";
             CommandType cmdType = CommandType.StoredProcedure;
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@Rut", this.Rut));
@@ -117,17 +119,11 @@ namespace Dominio
             parametros.Add(new SqlParameter("@porcentajePorVip", this.PorcentajePorVip));
             parametros.Add(new SqlParameter("@usuario", this.Usuario.Nombre));
             return this.EjecutarNoQuery(conn, cmdText, cmdType, parametros, unaTransaccion) != 0;
-
         }
 
         public List<Servicio> DevolverServicios() {
             List<Servicio> retorno = new List<Servicio>();
             SqlConnection connection = this.ObtenerConexion();
-
-            //string connectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            //string connectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver
-            //connection.ConnectionString = connectionString;
-
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
             cmd.CommandType = CommandType.StoredProcedure;
@@ -137,8 +133,14 @@ namespace Dominio
             connection.Open();
             drResults = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (drResults.Read()) {
-                //string aux = drResults["nombre"].ToString() + " | " + drResults["descripcion"].ToString()+" | "+drResults["tipoServicio"].ToString();
-                Servicio auxSer = new Servicio(){Nombre = drResults["nombre"].ToString(), Descripcion= drResults["descripcion"].ToString(),TipoServicio = new TipoServicio() {Nombre= drResults["tipoServicio"].ToString() } ,Imagen = drResults["imagen"].ToString() };
+                
+                Servicio auxSer = new Servicio(){
+                    Nombre = drResults["nombre"].ToString(),
+                    Descripcion = drResults["descripcion"].ToString(),
+                    TipoServicio = new TipoServicio() {
+                        Nombre = drResults["tipoServicio"].ToString() } ,
+                    Imagen = drResults["imagen"].ToString()
+                };
                 retorno.Add(auxSer);
             }
             drResults.Close();
@@ -190,10 +192,8 @@ namespace Dominio
         {
             List<Proveedor> lstTmp = new List<Proveedor>();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Proveedores_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
-            //string sConnectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            //string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
+            cmd.CommandType = CommandType.StoredProcedure; 
+            cmd.CommandText = "Proveedores_SelectAll";  
             SqlConnection conn = this.ObtenerConexion();
             SqlDataReader drResults;
             cmd.Connection = conn;
@@ -223,8 +223,8 @@ namespace Dominio
         {
             List<Proveedor> lstTmp = new List<Proveedor>();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Proveedores_SelectActiveOnly"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            cmd.CommandType = CommandType.StoredProcedure; 
+            cmd.CommandText = "Proveedores_SelectActiveOnly"; 
             SqlConnection conn = this.ObtenerConexion();
             SqlDataReader drResults;
             cmd.Connection = conn;
@@ -248,7 +248,7 @@ namespace Dominio
             drResults.Close();
             conn.Close();
             return lstTmp;
-        } //al no estar definido en PERSISTENTE ya que solo trae los Proveedores activos, no hago override
+        } 
 
         public override bool Modificar()
         {
@@ -274,8 +274,8 @@ namespace Dominio
         {
             double retorno = -1;
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Auxiliar_Devolver_Arancel"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Auxiliar_Devolver_Arancel"; 
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
             SqlDataReader drResults;
             cmd.Connection = conn;
@@ -294,8 +294,8 @@ namespace Dominio
         {
             double retorno = -1;
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Auxiliar_Devolver_PorcentajeVip"; //indico el nombre del procedimiento almacenado a ejecutar, en este caso LISTAR
+            cmd.CommandType = CommandType.StoredProcedure;  
+            cmd.CommandText = "Auxiliar_Devolver_PorcentajeVip"; 
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
             SqlDataReader drResults;
             cmd.Connection = conn;
@@ -315,11 +315,11 @@ namespace Dominio
             double retorno = -1;
             SqlCommand cmd = new SqlCommand();
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
-            cmd.CommandText = "Auxiliar_Arancel_Update";//Sentencia a ejecutar 
+            cmd.CommandText = "Auxiliar_Arancel_Update"; 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = conn;//le asigno la conexion al parametro
+            cmd.Connection = conn;
             cmd.Parameters.Add(new SqlParameter("@arancel", unArancel));
-            conn.Open(); //open conection
+            conn.Open();
             if (cmd.ExecuteNonQuery() != 0 ){
                 retorno = unArancel;
             }
@@ -327,7 +327,7 @@ namespace Dominio
             {
                 retorno = Proveedor.DevolverArancelActual();
             }
-            conn.Close(); //close
+            conn.Close(); 
             return retorno;
         }
 
@@ -336,11 +336,11 @@ namespace Dominio
             double retorno = -1;
             SqlCommand cmd = new SqlCommand();
             SqlConnection conn = new SqlConnection() { ConnectionString = Persistente.ConnString };
-            cmd.CommandText = "Auxiliar_PorcentajeVip_Update";//Sentencia a ejecutar 
+            cmd.CommandText = "Auxiliar_PorcentajeVip_Update";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = conn;//le asigno la conexion al parametro
+            cmd.Connection = conn;
             cmd.Parameters.Add(new SqlParameter("@porcentajeVip", unPorcentaje));
-            conn.Open();//abro la conexion
+            conn.Open();
             if (cmd.ExecuteNonQuery() != 0)
             {
                 retorno = unPorcentaje;
@@ -349,8 +349,40 @@ namespace Dominio
             {
                 retorno = Proveedor.DevolverPorcentajeVipActual();
             }
-            conn.Close(); //cierro
+            conn.Close();
             return retorno;
+        }
+
+        public void GuardarProveedoresEnTxt()
+        {
+            List<Proveedor> proveedores = TraerTodo();
+            using (StreamWriter file =
+            new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Proveedores.txt", false))//Propiedad Append=false para sobreescribir el archivo
+            foreach(Proveedor p in proveedores)
+                {
+                    file.Write(p.Rut);
+                    file.Write("#" + p.NomFantasia);
+                    file.Write("#" + p.Email);
+                    file.Write("#" + p.Telefono);
+                    p.ServiciosOfrecidos = p.DevolverServicios(); //cargo la lista del proveedor con los servicios que el mismo oferce.
+                    if (p.ServiciosOfrecidos.Count != 0) { file.Write(" | "); }
+                    for (int i = 0; i < p.ServiciosOfrecidos.Count; i++)
+                    {
+                        if (i != p.ServiciosOfrecidos.Count-1)
+                        {
+                            file.Write(p.ServiciosOfrecidos[i].Nombre + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Descripcion + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Imagen + ":");
+                        }
+                        else // no agrego los : al final del ultimo servicio y agrego un salto de linea para comenzar con el siguinete proveedor
+                        {
+                            file.Write(p.ServiciosOfrecidos[i].Nombre + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Descripcion + ":");
+                            file.Write(p.ServiciosOfrecidos[i].Imagen);
+                            file.WriteLine("");
+                        }                        
+                    }
+                }
         }
         #endregion
     }

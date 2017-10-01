@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using CapaFachada;
+using ServiciosObligatorioWCF;
 
 namespace InterfazWeb
 {
@@ -13,7 +14,7 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+                  
         }
 
         protected void controlLogin_Authenticate(object sender, AuthenticateEventArgs e)

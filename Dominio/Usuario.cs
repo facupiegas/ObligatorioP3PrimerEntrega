@@ -40,7 +40,7 @@ namespace Dominio
             
             SqlConnection connection = this.ObtenerConexion();
             string cmdText = "Usuarios_Insert";
-            CommandType cmdType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
+            CommandType cmdType = CommandType.StoredProcedure;
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@nombre", this.Nombre));
             parametros.Add(new SqlParameter("@pass", this.Pass));
@@ -50,7 +50,7 @@ namespace Dominio
         public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
             SqlConnection connection = unaConn;
             string cmdText = "Usuarios_Insert";
-            CommandType cmdType = CommandType.StoredProcedure;//Tipo de query // agregamos parametros 
+            CommandType cmdType = CommandType.StoredProcedure;
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@nombre", this.Nombre));
             parametros.Add(new SqlParameter("@pass", this.Pass));
@@ -105,11 +105,9 @@ namespace Dominio
         {
             List<Usuario> ListaAux = new List<Usuario>();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure; //indico que voy a ejecutar un procedimiento almacenado en la bd 
-            cmd.CommandText = "Usuarios_SelectAll"; //indico el nombre del procedimiento almacenado a ejecutar
-            //string sConnectionString = @"Server =.\SQLEXPRESS; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            string sConnectionString = @"Server =.\; DataBase = ObligatorioP3PrimerEntrega; User Id = sa; Password = Admin1234!"; //chequee nombre de servidor, Base de datos y usuario de Sqlserver 
-            SqlConnection connection = new SqlConnection(sConnectionString);
+            cmd.CommandType = CommandType.StoredProcedure; 
+            cmd.CommandText = "Usuarios_SelectAll";
+            SqlConnection connection = this.ObtenerConexion();
             SqlDataReader drResults;
             cmd.Connection = connection;
             connection.Open();
