@@ -42,6 +42,8 @@ insert into ServiciosTipoEventos
 values('Aprovisionamiento','Asado')
 insert into ServiciosTipoEventos
 values('Animacion','Cumpleaños Infantil')
+Insert into ServiciosTipoEventos 
+values('Fotografia','Cumpleaños Infantil')
 
 /*Inserto datos en tabla Servicios*/
 /*inserto servicios al rut: 210000123477 */

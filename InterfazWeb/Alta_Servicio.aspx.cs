@@ -153,6 +153,7 @@ namespace InterfazWeb
                             grdServicios.DataBind();
                             limpiarCampos(Page.Controls);
                             Fachada.GuardarProvEnTxt(); //actualizo txt
+                            Fachada.GuardarServiciosEnTxt();
                         }
                     }
                     else

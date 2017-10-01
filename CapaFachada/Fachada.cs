@@ -183,6 +183,7 @@ namespace CapaFachada
                             ok = true;
                             retorno = true;
                             GuardarProvEnTxt(); //una vez que el proveedor fue guardado actuazlizo el txt
+                            GuardarServiciosEnTxt();
                         }
                         else
                         {
@@ -219,6 +220,10 @@ namespace CapaFachada
         {
             Proveedor tmp = new Dominio.Proveedor();
             tmp.GuardarProveedoresEnTxt();
+        }
+        public static void GuardarServiciosEnTxt() {
+            Servicio tmpServ = new Servicio();
+            tmpServ.GuardarServiciosEnTxt();
         }
     }
 }

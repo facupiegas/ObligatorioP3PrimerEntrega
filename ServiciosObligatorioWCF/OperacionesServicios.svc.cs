@@ -55,5 +55,8 @@ namespace ServiciosObligatorioWCF
         {
             return Fachada.AltaProvUsuSerTransaccional(unProv, unUsu, unServ);
         }
+        void IOperacionesServicios.GuardarServiciosEnTxt() {
+            Fachada.GuardarServiciosEnTxt();
+        }
     }
 }
