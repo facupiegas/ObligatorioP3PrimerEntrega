@@ -47,6 +47,7 @@ namespace Dominio
             parametros.Add(new SqlParameter("@rol", this.Rol.ToString()));
             return this.EjecutarNoQuery(connection, cmdText, cmdType,parametros)!=0;
         }
+
         public bool GuardarTrans(SqlConnection unaConn, SqlTransaction unaTransaccion) {
             SqlConnection connection = unaConn;
             string cmdText = "Usuarios_Insert";

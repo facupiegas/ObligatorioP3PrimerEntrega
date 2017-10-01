@@ -14,18 +14,26 @@ namespace Dominio
         public string Nombre { get; set; }
 
         public string Descripcion { get; set; }
+
         public List<TipoServicio> TipoServicios { get; set; }
         #endregion
 
-        #region Metodos
-        public TipoEvento(string unNombre,string unaDescripcion) {
+        #region Constructores
+        public TipoEvento(string unNombre, string unaDescripcion)
+        {
             this.Nombre = unNombre;
             this.Descripcion = unaDescripcion;
             this.TipoServicios = new List<TipoServicio>();
         }
-        public TipoEvento() {
+
+        public TipoEvento()
+        {
             this.TipoServicios = new List<TipoServicio>();
         }
+
+        #endregion
+
+        #region Metodos
 
         public override bool Leer()
         {
@@ -88,3 +96,4 @@ namespace Dominio
         #endregion
     }
 }
+    
