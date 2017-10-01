@@ -13,7 +13,7 @@
     <p>
         &nbsp;</p>
     <p>
-        Si desea registrarse como proveedor por favor haga
+        Aun no resgistrado ?
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Alta_Proveedor.aspx">click aqui</asp:HyperLink>
 </p>
 </asp:Content>
