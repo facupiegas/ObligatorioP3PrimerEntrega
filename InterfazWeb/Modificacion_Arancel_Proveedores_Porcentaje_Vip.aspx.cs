@@ -24,40 +24,40 @@ namespace InterfazWeb
             lblMensajeVip.Visible = false;
         }
 
-        protected void ActualizarPorcentajesActuales()
+        protected void ActualizarPorcentajesActuales() //metodo que obtiene los valores actuales de los porcentajes para mostrarlos en los text box
         {
             WCF_Proveedor.OperacionesProveedoresClient proxy = new WCF_Proveedor.OperacionesProveedoresClient();
             txtArancelActual.Text = proxy.DevolverArancelActual().ToString();
             txtPorcentajeVipActual.Text = proxy.DevolverPorcentajeVipActual().ToString();
         }
 
-        protected void btnActualizarArancel_Click(object sender, EventArgs e)
+        protected void btnActualizarArancel_Click(object sender, EventArgs e) //metodo que modifica el arancel de los proveedores
         {
             string arancel = txtArancelNuevo.Text;
-            if (stringEsSoloNumeros(arancel) && arancel != "")
+            if (stringEsSoloNumeros(arancel) && arancel != "") //valido que el usuario haya ingresado un valor numerico
             {
                 lblMensajeArancel.Visible = false;
                 lblErrorArancel.Visible = false;
                 double tmpValor = Convert.ToDouble(arancel);
-                if (tmpValor >= 0 && tmpValor < 101)
+                if (tmpValor >= 0 && tmpValor < 101) //valido que el valor ingresado este dentro del rango admitido
                 {
                     lblErrorArancel.Visible = false;
                     WCF_Proveedor.OperacionesProveedoresClient proxy = new WCF_Proveedor.OperacionesProveedoresClient();
                     lblMensajeArancel.Visible = true;
-                    proxy.ModificarArancelProveedor(tmpValor);
+                    proxy.ModificarArancelProveedor(tmpValor); //si es un valor valido, mediante el proxy modifico el valor
                     lblMensajeArancel.ForeColor = System.Drawing.Color.Green;
                     lblMensajeArancel.Text = "El arancel fue modificado existosamente";
                     txtArancelNuevo.Text = ""; //no encontre .Clear
                     ActualizarPorcentajesActuales();
                 }
-                else
+                else //doy aviso que no es un porcentaje valido
                 {
                     lblErrorArancel.Visible = true;
                     lblErrorArancel.ForeColor = System.Drawing.Color.Red;
                     lblErrorArancel.Text = "Por favor ingrese un valor entero entre 0 y 100";
                 }
             }
-            else
+            else //doy aviso que no es un porcentaje valido
             {
                 lblErrorArancel.Visible = true;
                 lblErrorArancel.ForeColor = System.Drawing.Color.Red;
@@ -65,33 +65,33 @@ namespace InterfazWeb
             }
         }
 
-        protected void btnPorcentajeVip_Click(object sender, EventArgs e)
+        protected void btnPorcentajeVip_Click(object sender, EventArgs e) //metodo que modifica el porcentaje de los proveedores vip
         {
             string porcVip = txtPorcentajeVipNuevo.Text;
-            if (stringEsSoloNumeros(porcVip) && porcVip != "")
+            if (stringEsSoloNumeros(porcVip) && porcVip != "") //valido que el usuario haya ingresado un valor numerico
             {
                 lblMensajeVip.Visible = false;
                 lblErrorVip.Visible = false;
                 double tmpValorVip = Convert.ToDouble(porcVip);
-                if (tmpValorVip >= 0 && tmpValorVip < 101)
+                if (tmpValorVip >= 0 && tmpValorVip < 101) //valido que el valor ingresado este dentro del rango admitido
                 {
                     lblErrorVip.Visible = false;
                     WCF_Proveedor.OperacionesProveedoresClient proxy = new WCF_Proveedor.OperacionesProveedoresClient();
-                    proxy.ModificarPorcentajeVip(tmpValorVip);
+                    proxy.ModificarPorcentajeVip(tmpValorVip); //si es un valor valido, mediante el proxy modifico el valor
                     lblMensajeVip.Visible = true;
                     lblMensajeVip.ForeColor = System.Drawing.Color.Green;
                     lblMensajeVip.Text = "El porcentaje fue modificado existosamente";
                     txtPorcentajeVipNuevo.Text = ""; //no encontre .Clear
                     ActualizarPorcentajesActuales();
                 }
-                else
+                else //doy aviso que no es un porcentaje valido
                 {
                     lblErrorVip.Visible = true;
                     lblErrorVip.ForeColor = System.Drawing.Color.Red;
                     lblErrorVip.Text = "Por favor ingrese un valor entero entre 0 y 100";
                 }
             }
-            else
+            else //doy aviso que no es un porcentaje valido
             {
                 lblErrorVip.Visible = true;
                 lblErrorVip.ForeColor = System.Drawing.Color.Red;

@@ -21,11 +21,11 @@ namespace InterfazWeb
             CargarListadoProveedoresActivos();
         }
 
-        protected void CargarListadoProveedoresActivos()
+        protected void CargarListadoProveedoresActivos() //metodo que obtiene una lista de proveedores activos (a traves del proxy) para mostrarlos en el grid view
         {
             WCF_Proveedor.OperacionesProveedoresClient proxyOpProv = new WCF_Proveedor.OperacionesProveedoresClient();
             DTOProveedor[] listaDTOProveedoresActivosWCF = proxyOpProv.RetornarProveedoresActivos();
-            if(listaDTOProveedoresActivosWCF.Count() != 0) {
+            if(listaDTOProveedoresActivosWCF.Count() != 0) { //se carga el grid view unicamente si se encuentran proveedores activos en el sistema
                 grdProveedoresActivos.Visible = true;
                 grdProveedoresActivos.DataSource = listaDTOProveedoresActivosWCF;
                 grdProveedoresActivos.DataBind();
@@ -44,10 +44,10 @@ namespace InterfazWeb
             
         }
 
-        protected void btnDesactivar_Click(object sender, EventArgs e)
+        protected void btnDesactivar_Click(object sender, EventArgs e) //metodo que desactiva el proveedor seleccionado del grid view
         {
             lblMensaje.Visible = false;
-            WCF_Proveedor.OperacionesProveedoresClient proxyOpProv = new WCF_Proveedor.OperacionesProveedoresClient();
+            WCF_Proveedor.OperacionesProveedoresClient proxyOpProv = new WCF_Proveedor.OperacionesProveedoresClient(); //creo el proxy
             if (grdProveedoresActivos.SelectedRow != null) //debo manejar la excepcion que surge si el usuario aprieta el boton desactivar sin haber seleccionado una fila
             { 
                 string rut = grdProveedoresActivos.SelectedRow.Cells[1].Text;//no valido !=null porque si selecciono una fila quiere decir que el proveedor esta activo y por ende tiene un rut, le programa no se caerá
@@ -55,10 +55,10 @@ namespace InterfazWeb
                 {
                     lblMensaje.ForeColor = System.Drawing.Color.Green;
                     lblMensaje.Text = "El proveedor fue desactivado exitosamente";
-                    CargarListadoProveedoresActivos();
+                    CargarListadoProveedoresActivos(); //vuelvo a mostrar los proveedores activos que ahora no contienen al que acabo de desactivar
                 }
             }
-            else
+            else //doy aviso al usuario de que no ha seleccionado ningun proveedor
             {
                 lblMensaje.Visible = true;
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
