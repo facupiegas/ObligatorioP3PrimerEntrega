@@ -35,14 +35,14 @@ namespace ServiciosObligatorioWCF
 
         bool IOperacionesProveedores.DesactivarProveedor(string unRut)
         {
-            return Fachada.DesactivarProveedor(unRut);//le paso el rut a la fachada para que le pido al proveedor que se elimine
+            return Fachada.DesactivarProveedor(unRut);
         }
 
         DTOProveedor[] IOperacionesProveedores.RetornarProveedores()
         {
             List<DTOProveedor> aux = new List<DTOProveedor>();
-            List<Proveedor> tmpListProv = Fachada.DevolverProveedores();
-            foreach (Proveedor tmpProv in tmpListProv)
+            List<Proveedor> tmpListProv = Fachada.DevolverProveedores(); //recupero la lista completa de proveedores de la BD
+            foreach (Proveedor tmpProv in tmpListProv) //por cada Proveedor creo un DTOProveedor con sus datos
             {
                 DTOProveedor auxDTO = new DTOProveedor()
                 {
@@ -56,7 +56,7 @@ namespace ServiciosObligatorioWCF
                     PorcentajePorVip = tmpProv.PorcentajePorVip,
                     Usuario = tmpProv.Usuario
                 };
-                aux.Add(auxDTO);
+                aux.Add(auxDTO); //agrego el DTOProveedor a la lista para devolver
             }
             DTOProveedor[] retorno = aux.ToArray();
             return retorno;
@@ -65,10 +65,10 @@ namespace ServiciosObligatorioWCF
         DTOProveedor IOperacionesProveedores.RetornarProveedorPorRut(string unRut)
         {
             DTOProveedor aux = null;
-            Proveedor tmpProv = Fachada.BuscarProveedor(unRut);
-            if (tmpProv != null)
+            Proveedor tmpProv = Fachada.BuscarProveedor(unRut); //busco un Proveedor con el rut ingresado por parametro
+            if (tmpProv != null) //si lo encontre
             {
-                aux = new DTOProveedor()
+                aux = new DTOProveedor() //creo un objeto DTOProveedor con los datos del Proveedor encontrado
                 {
                     Rut = tmpProv.Rut,
                     NomFantasia = tmpProv.NomFantasia,
@@ -81,14 +81,14 @@ namespace ServiciosObligatorioWCF
                     Usuario = tmpProv.Usuario
                 };
             }
-            return aux; //null si no existe o con sus datos si lo encontre
+            return aux; 
         }
 
         DTOProveedor[] IOperacionesProveedores.RetornarProveedoresActivos()
         {
             List<DTOProveedor> aux = new List<DTOProveedor>();
-            List<Proveedor> tmpListProv = Fachada.DevolverProveedoresActivos();
-            foreach (Proveedor tmpProv in tmpListProv)
+            List<Proveedor> tmpListProv = Fachada.DevolverProveedoresActivos(); //Devuelvo la lista de Proveedores Activos de la BD
+            foreach (Proveedor tmpProv in tmpListProv) //Por cada Proveedor en la lista creo un DTOProveedor
             {
                 DTOProveedor auxDTO = new DTOProveedor()
                 {
@@ -102,7 +102,7 @@ namespace ServiciosObligatorioWCF
                     PorcentajePorVip = tmpProv.PorcentajePorVip,
                     Usuario = tmpProv.Usuario
                 };
-                aux.Add(auxDTO);
+                aux.Add(auxDTO); //agrego el DTOProveedor a la lista para devolver
             }
             DTOProveedor[] retorno = aux.ToArray();
             return retorno;
@@ -110,10 +110,10 @@ namespace ServiciosObligatorioWCF
 
         bool IOperacionesProveedores.AltaProveedor(string unNombreUsuario, string unaContrasena, string unRut, string unNomFantasia, string unEmail, string unTelefono, bool esVip)
         {
-            Usuario tmpUser = Fachada.AltaUsuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor);
-            Proveedor tmpVendor = Fachada.AltaProveedor(unRut, unNomFantasia, unEmail, unTelefono, DateTime.Now.Date, esVip, tmpUser);
-            bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser);
-            bool saveVendor = Fachada.GuardarProveedorEnBD(tmpVendor);
+            Usuario tmpUser = Fachada.AltaUsuario(unNombreUsuario, unaContrasena, Usuario.EnumRol.Proveedor); //doy de alta el Usuario en memoria
+            Proveedor tmpVendor = Fachada.AltaProveedor(unRut, unNomFantasia, unEmail, unTelefono, DateTime.Now.Date, esVip, tmpUser); //doy de alta el Proveedor en memoria
+            bool saveUser = Fachada.GuardarUsuarioEnBD(tmpUser); //Guardo el Usuario en la BD
+            bool saveVendor = Fachada.GuardarProveedorEnBD(tmpVendor); //Guardo el Proveedor en la BD
             return saveUser && saveVendor;
         }
 
