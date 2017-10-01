@@ -22,5 +22,7 @@ namespace ServiciosObligatorioWCF
 
         [OperationContract]
         bool AltaProveedor(Proveedor unProv, Usuario unUsu, Servicio unServ);
+        [OperationContract]
+        void GuardarServiciosEnTxt();
     }
 }

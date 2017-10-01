@@ -32,6 +32,12 @@ namespace InterfazWeb.WCF_Servicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/AltaProveedor", ReplyAction="http://tempuri.org/IOperacionesServicios/AltaProveedorResponse")]
         System.Threading.Tasks.Task<bool> AltaProveedorAsync(Dominio.Proveedor unProv, Dominio.Usuario unUsu, Dominio.Servicio unServ);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/GuardarServiciosEnTxt", ReplyAction="http://tempuri.org/IOperacionesServicios/GuardarServiciosEnTxtResponse")]
+        void GuardarServiciosEnTxt();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/GuardarServiciosEnTxt", ReplyAction="http://tempuri.org/IOperacionesServicios/GuardarServiciosEnTxtResponse")]
+        System.Threading.Tasks.Task GuardarServiciosEnTxtAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +89,14 @@ namespace InterfazWeb.WCF_Servicio {
         
         public System.Threading.Tasks.Task<bool> AltaProveedorAsync(Dominio.Proveedor unProv, Dominio.Usuario unUsu, Dominio.Servicio unServ) {
             return base.Channel.AltaProveedorAsync(unProv, unUsu, unServ);
+        }
+        
+        public void GuardarServiciosEnTxt() {
+            base.Channel.GuardarServiciosEnTxt();
+        }
+        
+        public System.Threading.Tasks.Task GuardarServiciosEnTxtAsync() {
+            return base.Channel.GuardarServiciosEnTxtAsync();
         }
     }
 }

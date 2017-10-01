@@ -40,17 +40,20 @@ namespace Dominio
             TipoEvento tmpTipoEv = new TipoEvento();
             List<TipoEvento> tmpListTipoEv =  tmpTipoEv.TraerTodo();
             string ruta = "serviciosConEventos.txt";
-            StreamWriter writer = new StreamWriter(ruta, false);
+            StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + ruta, false);
             string linea = "";
             List<Servicio> listServ = this.TraerTodo();
-            foreach (Servicio tmpServ in listServ) {
+            foreach (Servicio tmpServ in listServ)
+            {
                 linea += tmpServ.Nombre + "#";
-                foreach (TipoEvento auxTipoEv in tmpListTipoEv) {
-                    foreach (TipoServicio auxTipoServ in auxTipoEv.TipoServicios) {
-                        if (auxTipoServ.Nombre == tmpServ.TipoServicio.Nombre) {
+                foreach (TipoEvento auxTipoEv in tmpListTipoEv)
+                {
+                    foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)
+                    {
+                        if(tmpTipoServ.Nombre == tmpServ.TipoServicio.Nombre)
                             linea += auxTipoEv.Nombre + ":";
-                        }
-                    }
+                    }             
+                    
                 }
                 writer.WriteLine(linea);
                 linea = "";
