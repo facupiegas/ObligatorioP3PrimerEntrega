@@ -84,7 +84,7 @@ insert into Servicios
 values('210000123400','Asado del Pepe','Los mejores cortes de carne','img\asadoDelPepe.jpg','Aprovisionamiento')
 
 insert into Servicios 
-values('210000123400','La vaca y el pollito','Los mejores pollos y cortes de carne','img\lavacayelpollito','Aprovisionamiento')
+values('210000123400','La vaca y el pollito','Los mejores pollos y cortes de carne','img\lavacayelpollito.jpg','Aprovisionamiento')
 
 
 /*inserto servicios al rut: 210000123402 */
