@@ -17,7 +17,7 @@ insert into TiposEventos values('Fiesta de quince','Fiestas para festejar los qu
 insert into TiposEventos values('Asado','Asado con amigos.')
 insert into TiposEventos values('Casamiento','Fiesta para festejar un casamiento.')
 insert into TiposEventos values('Cumpleaños Infantil','Fiesta para festejar el cumpleaños de un niño.')
-insert into TiposEventos values('Bautisimo','Fiesta para festejar un bautisimo.')
+insert into TiposEventos values('Bautismo','Fiesta para festejar un bautisimo.')
 
 /*Inserto datos en Proveedor*/
 insert into Proveedores values('210000123477','La comilona','lacomi@lona.com','24090000','12/12/2017',1,1,50,'prov')
