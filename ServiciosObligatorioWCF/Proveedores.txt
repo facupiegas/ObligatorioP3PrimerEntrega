@@ -1,3 +1,0 @@
-210000123400#Carniceria Carnasa#carne@carnasa.com#24090021 | Asado del Pepe:Los mejores cortes de carne:img\asadoDelPepe.jpg
-210000123401#Farmacia del Pepe#farma@delpepe.com#24092026210000123402#Animadon#anima@payaso.com#24092087 | Animate!:Servicio de payasos:img\payaso.jpg
-210000123477#Almacen de la esquina#almacenDeLaEsquina@almacen.com#24090000 | El Gloton:Mucha comida:img\elGloton.jpg:Fotasas:Las mejores fotos:img\fotasas.jpg
