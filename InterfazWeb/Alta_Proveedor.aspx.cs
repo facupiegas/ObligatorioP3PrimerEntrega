@@ -144,10 +144,10 @@ namespace InterfazWeb
                         else //si el alta no es posible se le solicita al usuario revisar los datos
                         { 
                             lblMsjServicio.ForeColor = System.Drawing.Color.Red;
-                            lblMsjServicio.Text = "Algunos de los datos fueron erroreos, el proveedor,usuario y servicio no fueron dados de alta";
+                            lblMsjServicio.Text = "Algunos de los datos fueron erroreos, el proveedor,usuario y servicio no fueron dados de alta. Por favor vuelva a intentarlo (Recargue la pagina)";
                         }
                     }
-                    else //si el tipo servicio no pudo ser cerado se le da aviso al usuario
+                    else //si el tipo servicio no pudo ser creado se le da aviso al usuario
                     {
                         lblMsjServicio.ForeColor = System.Drawing.Color.Red;
                         lblMsjServicio.Text = "El servicio no pudo ser creado";
