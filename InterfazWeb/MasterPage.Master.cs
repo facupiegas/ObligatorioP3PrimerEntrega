@@ -37,7 +37,7 @@ namespace InterfazWeb
                     menuOrg.Visible = true;
                 }
             }
-            else //si el login no valido lso datos ingresados no muestro ninguno de las barras de navegacion
+            else //si el login no valido los datos ingresados no muestro ninguno de las barras de navegacion
             {
                 menuAdmin.Visible = false;
                 menuProveedor.Visible = false;

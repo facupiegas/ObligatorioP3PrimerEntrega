@@ -16,7 +16,10 @@ namespace InterfazWeb
         {
             if ((string)Session["TipoDeUsuario"] != "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
             {
-                Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
+                Session.Clear();
+                Session.Abandon();
+                Session.RemoveAll();
+                Response.Redirect("Login.aspx"); //si no se logueó o quiso ingresar con otras credenciales, lo redirijo a Login y deslogueo
             }
             CargarListadoProveedoresActivos();
         }
