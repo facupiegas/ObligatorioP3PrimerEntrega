@@ -13,9 +13,9 @@ namespace Dominio
     public class Proveedor:Persistente<Proveedor>
     {
             #region Atributos y Properties
-        public static double porcentajePorVipActual;
+        private static double porcentajePorVipActual;
 
-        public static double arancel;
+        private static double arancel;
 
         public string Rut { get; set; }
 
