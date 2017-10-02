@@ -142,6 +142,7 @@ namespace CapaFachada
                 retorno = null;
             return retorno;
         }
+
         public static Servicio AltaServicio(string unRutProveedor,string unNombre,string unaImagen,string unaDescripcion,TipoServicio unTipoServicio)
         {
             Servicio retorno = null;
@@ -157,10 +158,12 @@ namespace CapaFachada
             }
             return retorno;
         }
+
         public static bool GuardarServicioEnBD(Servicio unServicio)
         {
             return unServicio.Guardar(); //guardo el Servicio en la BD
         }
+
         public static List<TipoServicio> DevolverTipoServicios() {
             TipoServicio tmpTipoSer = new TipoServicio();
             return tmpTipoSer.TraerTodo();//devuelvo la lista de TipoServicio de la BD
@@ -206,6 +209,7 @@ namespace CapaFachada
             Proveedor tmp = new Proveedor();
             tmp.GuardarProveedoresEnTxt(); //Guardo los proveedores y sus servicios en el archivo .txt
         }
+
         public static void GuardarServiciosEnTxt() {
             Servicio tmpServ = new Servicio();
             tmpServ.GuardarServiciosEnTxt(); //Guardo los Servicios con sus TipoEvento correspondientes
