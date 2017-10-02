@@ -48,6 +48,7 @@ namespace InterfazWeb
             bool esVip = false;
             if (radVipN.Checked || radVipS.Checked) //se define si el usuario sera VIP o no
             {
+                lbErrorlVip.Visible = false;
                 if (radVipS.Checked)
                 {
                     esVip = true;
