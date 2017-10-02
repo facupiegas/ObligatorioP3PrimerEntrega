@@ -12,11 +12,12 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+            lblMensaje.Visible = false;
             if ((string)Session["TipoDeUsuario"] != "Administrador") //Valido que el usuario se haya logueado y no se saltee la autentificación
             {
                 Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
-                lblError.Visible = false;
-                lblMensaje.Visible = false;
+                
             }
         }
 
