@@ -19,10 +19,10 @@ namespace InterfazWeb
             {
                 Response.Redirect("Login.aspx"); //si no se logueó, lo redirijo a Login
             }
-            CargarListadoProveedores();
+            CargarListadoProveedores(); //se invoca al metodo para cargar el grid view
         }
 
-        protected void CargarListadoProveedores()
+        protected void CargarListadoProveedores() //metodo que obtiene la lista de proveedores para mostrar en el grid view proveedores
         {
             WCF_Proveedor.OperacionesProveedoresClient proxyOpProv = new WCF_Proveedor.OperacionesProveedoresClient();
             DTOProveedor[] listaDTOProveedoresWCF = proxyOpProv.RetornarProveedores();
@@ -30,7 +30,7 @@ namespace InterfazWeb
             grdListadoProveedores.DataBind();
         }
 
-        protected void grdServicios_SelectedIndexChanged(object sender, EventArgs e)
+        protected void grdServicios_SelectedIndexChanged(object sender, EventArgs e) //metodo que muestra en otro grid view los servicios que el proveedor ofrece
         {
             string rut = grdListadoProveedores.SelectedRow.Cells[1].Text;
             WCF_Servicio.OperacionesServiciosClient proxySer = new WCF_Servicio.OperacionesServiciosClient();

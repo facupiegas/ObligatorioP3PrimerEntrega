@@ -12,7 +12,7 @@ namespace Dominio
 {
     public class Proveedor:Persistente<Proveedor>
     {
-        #region Atributos y Properties
+            #region Atributos y Properties
         public static double porcentajePorVipActual;
 
         public static double arancel;
