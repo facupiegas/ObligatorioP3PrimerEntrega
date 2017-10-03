@@ -14,7 +14,7 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-                
+            Fachada.GuardarServiciosEnTxt();
         }
 
         protected void controlLogin_Authenticate(object sender, AuthenticateEventArgs e)

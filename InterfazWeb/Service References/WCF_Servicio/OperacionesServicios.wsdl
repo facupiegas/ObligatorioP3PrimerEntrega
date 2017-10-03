@@ -14,6 +14,18 @@
   <wsdl:message name="IOperacionesServicios_RetornarServicios_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetornarServiciosResponse" />
   </wsdl:message>
+  <wsdl:message name="IOperacionesServicios_RetornarTipoServicios_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarTipoServicios" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesServicios_RetornarTipoServicios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarTipoServiciosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesServicios_RetornarTipoEventos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarTipoEventos" />
+  </wsdl:message>
+  <wsdl:message name="IOperacionesServicios_RetornarTipoEventos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetornarTipoEventosResponse" />
+  </wsdl:message>
   <wsdl:message name="IOperacionesServicios_RetornarServiciosProveedor_InputMessage">
     <wsdl:part name="parameters" element="tns:RetornarServiciosProveedor" />
   </wsdl:message>
@@ -37,6 +49,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarServicios" message="tns:IOperacionesServicios_RetornarServicios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarServiciosResponse" message="tns:IOperacionesServicios_RetornarServicios_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RetornarTipoServicios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarTipoServicios" message="tns:IOperacionesServicios_RetornarTipoServicios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarTipoServiciosResponse" message="tns:IOperacionesServicios_RetornarTipoServicios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornarTipoEventos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarTipoEventos" message="tns:IOperacionesServicios_RetornarTipoEventos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarTipoEventosResponse" message="tns:IOperacionesServicios_RetornarTipoEventos_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RetornarServiciosProveedor">
       <wsdl:input wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarServiciosProveedor" message="tns:IOperacionesServicios_RetornarServiciosProveedor_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOperacionesServicios/RetornarServiciosProveedorResponse" message="tns:IOperacionesServicios_RetornarServiciosProveedor_OutputMessage" />
@@ -54,6 +74,24 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="RetornarServicios">
       <soap:operation soapAction="http://tempuri.org/IOperacionesServicios/RetornarServicios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornarTipoServicios">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesServicios/RetornarTipoServicios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornarTipoEventos">
+      <soap:operation soapAction="http://tempuri.org/IOperacionesServicios/RetornarTipoEventos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

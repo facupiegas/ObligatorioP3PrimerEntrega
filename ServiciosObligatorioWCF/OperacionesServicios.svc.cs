@@ -58,5 +58,44 @@ namespace ServiciosObligatorioWCF
         void IOperacionesServicios.GuardarServiciosEnTxt() {
             Fachada.GuardarServiciosEnTxt();
         }
+
+        DTOTipoServicio[] IOperacionesServicios.RetornarTipoServicios()
+        {
+            List<DTOTipoServicio> aux = new List<DTOTipoServicio>();
+            List<TipoServicio> tmpListTipoServ = Fachada.DevolverTipoServicios(); //recupero la lista de Servicios de la BD
+            foreach (TipoServicio tmpServ in tmpListTipoServ) //por cada Servicio en la lista creo un objeto DTOServicio
+            {
+                DTOTipoServicio auxDTO = new DTOTipoServicio()
+                {
+                    Nombre = tmpServ.Nombre,
+                    Descripcion = tmpServ.Descripcion
+                };
+                aux.Add(auxDTO); //Agrego el nuevo objeto a la lista para devolver
+            }
+            DTOTipoServicio[] retorno = aux.ToArray();
+            return retorno;
+        }
+
+        DTOTipoEvento[] IOperacionesServicios.RetornarTipoEventos()
+        {
+            List<DTOTipoEvento> aux = new List<DTOTipoEvento>();
+            List<TipoEvento> tmpListTipoEv = Fachada.DevolverTipoEvento(); //recupero la lista de Servicios de la BD
+            foreach (TipoEvento tmpServ in tmpListTipoEv) //por cada Servicio en la lista creo un objeto DTOServicio
+            {
+                List<TipoServicio> listTmp = new List<TipoServicio>();
+                foreach (TipoServicio tmpTipoServ in tmpServ.TipoServicios) {
+                    listTmp.Add(tmpTipoServ);
+                }
+                DTOTipoEvento auxDTO = new DTOTipoEvento()
+                {
+                    Nombre = tmpServ.Nombre,
+                    Descripcion = tmpServ.Descripcion,
+                    TipoServicios = listTmp
+                };
+                aux.Add(auxDTO); //Agrego el nuevo objeto a la lista para devolver
+            }
+            DTOTipoEvento[] retorno = aux.ToArray();
+            return retorno;
+        }
     }
 }

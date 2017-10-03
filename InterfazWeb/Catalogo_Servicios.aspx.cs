@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ServiciosObligatorioWCF;
+using Dominio;
 
 
 namespace InterfazWeb
@@ -21,16 +22,30 @@ namespace InterfazWeb
                 Response.Redirect("Login.aspx"); //si no se logueó o quiso ingresar con otras credenciales, lo redirijo a Login y deslogueo
             }
             if (!IsPostBack) {
-                CargarServicios();
+                CargarTipoServicios();
             }
         }
-        protected void CargarServicios() //metodo que obtiene la lista de servicios para mostrar en el grid view
+        protected void CargarTipoServicios() //metodo que obtiene la lista de servicios para mostrar en el grid view
         {
             WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
-            grdServicios.DataSource = proxy.RetornarServicios();
-            grdServicios.DataBind();
+            grdTipoServicios.DataSource = proxy.RetornarTipoServicios();
+            grdTipoServicios.DataBind();
         }
 
-
+        protected void grdTipoServicios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WCF_Servicio.OperacionesServiciosClient proxy = new WCF_Servicio.OperacionesServiciosClient();
+            DTOTipoEvento[] listTipoEventos = proxy.RetornarTipoEventos();
+            List<DTOTipoEvento> aux = new List<DTOTipoEvento>();
+            foreach (DTOTipoEvento tmpTipoEv in listTipoEventos) {
+                foreach (TipoServicio tmpTipoSer in tmpTipoEv.TipoServicios) {
+                    if (grdTipoServicios.SelectedRow.Cells[1].Text == tmpTipoSer.Nombre) {
+                        aux.Add(tmpTipoEv);
+                    }
+                }
+            }
+            grdTipoEvento.DataSource = aux;
+            grdTipoEvento.DataBind();
+        }
     }
 }

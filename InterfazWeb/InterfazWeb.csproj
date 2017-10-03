@@ -81,6 +81,8 @@
     <Content Include="MasterPage.Master" />
     <Content Include="Properties\DataSources\ServiciosObligatorioWCF.DTOProveedor.datasource" />
     <Content Include="Properties\DataSources\ServiciosObligatorioWCF.DTOServicio.datasource" />
+    <Content Include="Properties\DataSources\ServiciosObligatorioWCF.DTOTipoEvento.datasource" />
+    <Content Include="Properties\DataSources\ServiciosObligatorioWCF.DTOTipoServicio.datasource" />
     <None Include="Service References\WCF_Proveedor\OperacionesProveedores.wsdl" />
     <None Include="Service References\WCF_Proveedor\OperacionesProveedores.xsd">
       <SubType>Designer</SubType>
