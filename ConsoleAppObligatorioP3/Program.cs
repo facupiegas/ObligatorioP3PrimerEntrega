@@ -13,41 +13,16 @@ namespace ConsoleAppObligatorioP3
     {
         static void Main(string[] args)
         {
+
+            //ESTO ES SOLO UN CLIENTE DE PRUEBA. TODAS LAS FUNCIONALIDADES COMPLETAS SE ENCUENTRAN EN LA INTERFAZ WEB
+
+
+
+            Console.WriteLine("ESTO ES SOLO UN CLIENTE DE PRUEBA. TODAS LAS FUNCIONALIDADES COMPLETAS SE ENCUENTRAN EN LA INTERFAZ WEB");
             //Usuario us = new Usuario("prov2","123",Usuario.EnumRol.Proveedor);
             //DateTime fecha = new DateTime(2017,11,11);
             //Proveedor prov = new Proveedor("210001432188","Ancap","ancap@ancap.com","24090001",fecha,true,us);
             //Console.WriteLine(prov.Guardar());
-            Console.WriteLine("\n-------------prueba------------------\n");
-            Console.WriteLine("ingrese nombre: ");
-            string nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese pass: ");
-            string pass = Console.ReadLine();
-            Usuario usua = new Usuario(nombre, pass, Usuario.EnumRol.Administrador);
-            List<Usuario> prueba = new List<Usuario>();
-            prueba.Add(usua);
-            Console.WriteLine("ingrese nombre para buscar: ");
-            string nombre2 = Console.ReadLine();
-            Console.WriteLine("Ingrese pass para buscar: ");
-            string pass2 = Console.ReadLine();
-            foreach (Usuario us in prueba) {
-                if (nombre2 == us.Nombre) {
-                    string salada = us.Sal;
-                    Usuario conf = new Usuario() { Nombre =nombre2,Rol=us.Rol};
-                    conf.Sal = salada;
-                    conf.Pass = Usuario.GenerarSHA256Hash(pass2, salada);
-                    if (us.Pass == conf.Pass)
-                    {
-                        Console.WriteLine(us.Pass);
-                        Console.WriteLine(conf.Pass);
-                        Console.WriteLine(salada);
-                    }
-                }
-            }
-            
-
-
-
-
 
             Console.WriteLine("\n-------------Modificar Arancel y Porcentaje Vip (Proveedor) servicio wcf------------------\n");
             OperacionesProveedores.OperacionesProveedoresClient proxyOpProv = new OperacionesProveedores.OperacionesProveedoresClient();
