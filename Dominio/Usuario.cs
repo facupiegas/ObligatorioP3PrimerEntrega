@@ -75,6 +75,7 @@ namespace Dominio
             parametros.Add(new SqlParameter("@nombre", this.Nombre));
             parametros.Add(new SqlParameter("@pass", this.Pass));
             parametros.Add(new SqlParameter("@rol", this.Rol.ToString()));
+            parametros.Add(new SqlParameter("@sal", this.Sal));
             return this.EjecutarNoQuery(connection, cmdText, cmdType, parametros, unaTransaccion) != 0;
         }
 
