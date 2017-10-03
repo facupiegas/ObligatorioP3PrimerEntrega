@@ -13,12 +13,21 @@ namespace InterfazWeb {
     public partial class Catalogo_Servicios {
         
         /// <summary>
-        /// grdServicios control.
+        /// grdTipoServicios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdServicios;
+        protected global::System.Web.UI.WebControls.GridView grdTipoServicios;
+        
+        /// <summary>
+        /// grdTipoEvento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdTipoEvento;
     }
 }

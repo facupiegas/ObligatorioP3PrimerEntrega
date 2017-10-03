@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:13922/OperacionesServicios.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Dominio" />
   <xs:complexType name="ArrayOfDTOServicio">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOServicio" nillable="true" type="tns:DTOServicio" />
@@ -16,4 +17,31 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DTOServicio" nillable="true" type="tns:DTOServicio" />
+  <xs:complexType name="ArrayOfDTOTipoServicio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOTipoServicio" nillable="true" type="tns:DTOTipoServicio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOTipoServicio" nillable="true" type="tns:ArrayOfDTOTipoServicio" />
+  <xs:complexType name="DTOTipoServicio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOTipoServicio" nillable="true" type="tns:DTOTipoServicio" />
+  <xs:complexType name="ArrayOfDTOTipoEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOTipoEvento" nillable="true" type="tns:DTOTipoEvento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOTipoEvento" nillable="true" type="tns:ArrayOfDTOTipoEvento" />
+  <xs:complexType name="DTOTipoEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="TipoServicios" nillable="true" type="q1:ArrayOfTipoServicio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOTipoEvento" nillable="true" type="tns:DTOTipoEvento" />
 </xs:schema>

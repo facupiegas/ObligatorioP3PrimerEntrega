@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Dominio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Dominio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfTipoServicio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoServicio" nillable="true" type="tns:TipoServicio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoServicio" nillable="true" type="tns:ArrayOfTipoServicio" />
+  <xs:complexType name="TipoServicio">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistenteOfTipoServiciokMUe2phu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoServicio" nillable="true" type="tns:TipoServicio" />
+  <xs:complexType name="PersistenteOfTipoServiciokMUe2phu">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="PersistenteOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Dominio" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TipoServicio" Namespace="http://schemas.datacontract.org/2004/07/Dominio" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Persistente">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PersistenteOfTipoServiciokMUe2phu" nillable="true" type="tns:PersistenteOfTipoServiciokMUe2phu" />
+  <xs:complexType name="Persistente">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Persistente" nillable="true" type="tns:Persistente" />
   <xs:complexType name="Proveedor">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:PersistenteOfProveedorkMUe2phu">
@@ -33,10 +69,6 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="PersistenteOfProveedorkMUe2phu" nillable="true" type="tns:PersistenteOfProveedorkMUe2phu" />
-  <xs:complexType name="Persistente">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="Persistente" nillable="true" type="tns:Persistente" />
   <xs:complexType name="ArrayOfServicio">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Servicio" nillable="true" type="tns:Servicio" />
@@ -72,32 +104,6 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="PersistenteOfServiciokMUe2phu" nillable="true" type="tns:PersistenteOfServiciokMUe2phu" />
-  <xs:complexType name="TipoServicio">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:PersistenteOfTipoServiciokMUe2phu">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="TipoServicio" nillable="true" type="tns:TipoServicio" />
-  <xs:complexType name="PersistenteOfTipoServiciokMUe2phu">
-    <xs:annotation>
-      <xs:appinfo>
-        <GenericType Name="PersistenteOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Dominio" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="TipoServicio" Namespace="http://schemas.datacontract.org/2004/07/Dominio" />
-        </GenericType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Persistente">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="PersistenteOfTipoServiciokMUe2phu" nillable="true" type="tns:PersistenteOfTipoServiciokMUe2phu" />
   <xs:complexType name="Usuario">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:PersistenteOfUsuariokMUe2phu">
@@ -105,6 +111,7 @@
           <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Pass" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Rol" type="tns:Usuario.EnumRol" />
+          <xs:element minOccurs="0" name="Sal" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

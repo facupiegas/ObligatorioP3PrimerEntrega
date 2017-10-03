@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="DTOProveedor.cs" />
     <Compile Include="DTOServicio.cs" />
+    <Compile Include="DTOTipoEvento.cs" />
+    <Compile Include="DTOTipoServicio.cs" />
     <Compile Include="IOperacionesProveedores.cs" />
     <Compile Include="IOperacionesServicios.cs" />
     <Compile Include="OperacionesProveedores.svc.cs">

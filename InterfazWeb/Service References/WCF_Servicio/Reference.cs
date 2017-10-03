@@ -21,6 +21,18 @@ namespace InterfazWeb.WCF_Servicio {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarServicios", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarServiciosResponse")]
         System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOServicio[]> RetornarServiciosAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarTipoServicios", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarTipoServiciosResponse")]
+        ServiciosObligatorioWCF.DTOTipoServicio[] RetornarTipoServicios();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarTipoServicios", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarTipoServiciosResponse")]
+        System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOTipoServicio[]> RetornarTipoServiciosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarTipoEventos", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarTipoEventosResponse")]
+        ServiciosObligatorioWCF.DTOTipoEvento[] RetornarTipoEventos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarTipoEventos", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarTipoEventosResponse")]
+        System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOTipoEvento[]> RetornarTipoEventosAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOperacionesServicios/RetornarServiciosProveedor", ReplyAction="http://tempuri.org/IOperacionesServicios/RetornarServiciosProveedorResponse")]
         ServiciosObligatorioWCF.DTOServicio[] RetornarServiciosProveedor(string unRut);
         
@@ -73,6 +85,22 @@ namespace InterfazWeb.WCF_Servicio {
         
         public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOServicio[]> RetornarServiciosAsync() {
             return base.Channel.RetornarServiciosAsync();
+        }
+        
+        public ServiciosObligatorioWCF.DTOTipoServicio[] RetornarTipoServicios() {
+            return base.Channel.RetornarTipoServicios();
+        }
+        
+        public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOTipoServicio[]> RetornarTipoServiciosAsync() {
+            return base.Channel.RetornarTipoServiciosAsync();
+        }
+        
+        public ServiciosObligatorioWCF.DTOTipoEvento[] RetornarTipoEventos() {
+            return base.Channel.RetornarTipoEventos();
+        }
+        
+        public System.Threading.Tasks.Task<ServiciosObligatorioWCF.DTOTipoEvento[]> RetornarTipoEventosAsync() {
+            return base.Channel.RetornarTipoEventosAsync();
         }
         
         public ServiciosObligatorioWCF.DTOServicio[] RetornarServiciosProveedor(string unRut) {

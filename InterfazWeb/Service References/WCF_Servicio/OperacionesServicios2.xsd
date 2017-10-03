@@ -14,6 +14,30 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RetornarTipoServicios">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetornarTipoServiciosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" minOccurs="0" name="RetornarTipoServiciosResult" nillable="true" type="q2:ArrayOfDTOTipoServicio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetornarTipoEventos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetornarTipoEventosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" minOccurs="0" name="RetornarTipoEventosResult" nillable="true" type="q3:ArrayOfDTOTipoEvento" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RetornarServiciosProveedor">
     <xs:complexType>
       <xs:sequence>
@@ -24,16 +48,16 @@
   <xs:element name="RetornarServiciosProveedorResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" minOccurs="0" name="RetornarServiciosProveedorResult" nillable="true" type="q2:ArrayOfDTOServicio" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ServiciosObligatorioWCF" minOccurs="0" name="RetornarServiciosProveedorResult" nillable="true" type="q4:ArrayOfDTOServicio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AltaProveedor">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="unProv" nillable="true" type="q3:Proveedor" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="unUsu" nillable="true" type="q4:Usuario" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="unServ" nillable="true" type="q5:Servicio" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="unProv" nillable="true" type="q5:Proveedor" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="unUsu" nillable="true" type="q6:Usuario" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Dominio" minOccurs="0" name="unServ" nillable="true" type="q7:Servicio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

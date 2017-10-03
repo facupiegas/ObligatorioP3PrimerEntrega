@@ -183,7 +183,11 @@ namespace CapaFachada
             TipoServicio tmpTipoSer = new TipoServicio();
             return tmpTipoSer.TraerTodo();//devuelvo la lista de TipoServicio de la BD
         }
-
+        public static List<TipoEvento> DevolverTipoEvento()
+        {
+            TipoEvento tmpTipoEv = new TipoEvento();
+            return tmpTipoEv.TraerTodo();//devuelvo la lista de TipoEvento de la BD
+        }
         public static bool AltaProvUsuSerTransaccional(Proveedor unProv,Usuario unUsu,Servicio unServ) {
             bool retorno = false;
             SqlTransaction trans = null;
