@@ -1,4 +1,3 @@
-begin --CREACION DB
 set dateformat dmy;
 /*
 USE master;
@@ -6,26 +5,29 @@ GO
 ALTER DATABASE ObligatorioP3PrimerEntrega SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 GO
 drop dataBase ObligatorioP3PrimerEntrega
+
+Delete from Auxiliar
+Delete from Organizadores
+Delete from Eventos
+Delete from ServiciosTipoEventos
+Delete from TiposEventos
+Delete from Servicios
+Delete from TipoServicios
+Delete from Proveedores
+Delete from Usuarios
 */
+
+-----------------------------------------------------------CREACION DB----------------------------------------------------------------
+
 create database ObligatorioP3PrimerEntrega
 use ObligatorioP3PrimerEntrega
-/*
-drop table Servicio
-drop table TipoEvento
-drop table ServicioTipoEvento
-drop table Usuarios
-drop table Organizador
-drop table Proveedor
-drop table ServicioDeProveedor
-drop table Evento
-*/
+
 create table Usuarios(nombre varchar(20),
-					pass varchar(20),
+					pass varchar(70),
 					rol varchar(20),
+					sal varchar(10),
 					constraint PK_Usuarios primary key(nombre),
 					constraint CK_RolUsuarios check(rol in ('Administrador','Proveedor','Organizador')))
-alter table Usuarios alter column pass varchar(70)
-alter table Usuarios add sal varchar(10)
 
 create table Organizadores(nombre varchar(20),
 						email varchar(20),
@@ -85,9 +87,9 @@ create table Eventos(nombre varchar(20),
 
 create table Auxiliar(porcentaje_Arancel decimal (10,0),
 					  porcentaje_Vip decimal (10,0))
-end
 
-begin --PRECARGA DATOS PRUEBA
+
+-------------------------------------------------------------------------------PRECARGA DATOS PRUEBA-----------------------------------------------------------------
 
 /*Inserto valores en AUxiliar (Utilizados por la clase proveedor*/
 insert into Auxiliar  values (10,10) 
@@ -177,7 +179,6 @@ values('210000123400','Asado del Pepe','Los mejores cortes de carne','img\asadoD
 insert into Servicios 
 values('210000123400','La vaca y el pollito','Los mejores pollos y cortes de carne','img\lavacayelpollito.jpg','Aprovisionamiento')
 
-
 /*inserto servicios al rut: 210000123402 */
 insert into Servicios 
 values('210000123402','Payasada','Servicio de payasos','img\payaso.jpg','Animacion')
@@ -206,4 +207,183 @@ values('210000123403','Que burguer','Deliciosas hamburguesas','img\queburguer.jp
 
 insert into Servicios
 values('210000123401','Decora2','Servicio de decoracion','img\decora2.jpg','Decoracion')
+
+
+------------------------------------------------------CREACION STORED PROCEDURES---------------------------------------------------------------
+
+go
+create procedure dbo.Usuarios_SelectAll
+as
+begin
+ select nombre,pass,rol,sal from Usuarios
 end
+go
+create procedure dbo.Usuarios_SelectByNombre
+	@nombre as varchar(20)
+
+as
+begin
+
+	select * from Usuarios
+	where nombre=@nombre
+
+end
+go
+CREATE procedure dbo.Usuarios_Insert
+ @nombre as varchar(20),
+ @pass varchar(70),
+ @rol varchar(20),
+ @sal varchar(10)
+as
+begin
+
+insert into Usuarios
+   values
+    (@nombre,@pass,@rol,@sal)
+end
+go
+create procedure TiposEventos_SelectAll
+
+as
+begin
+	Select * from TiposEventos
+end
+go
+create procedure TipoServicios_SelectByNombre
+	@nombre as varchar(20)
+as
+begin 
+	select * from TipoServicios
+	where nombre=@nombre
+end
+go
+create procedure TipoServicios_SelectAll
+as
+begin
+	Select * from TipoServicios
+end
+go
+create procedure ServiciosTipoEventos_SelectByEvento
+	@nombreTipoEvento as varchar(20)
+as
+begin
+	select nombreTipoServicio
+	from ServiciosTipoEventos
+	where nombreTipoEvento=@nombreTipoEvento
+end
+go
+create procedure Servicios_SelectServiciosByRut
+	@rut varchar(20)
+as
+begin
+	select nombre,descripcion,tipoServicio,imagen 
+	from Servicios
+	where rutProveedor = @rut
+end
+go
+create procedure Servicios_SelectByRutAndNombre
+	@rutProveedor as varchar(15),
+	@nombre as varchar(20)
+as
+begin
+	select * from Servicios
+	where rutProveedor=@rutProveedor and nombre=@nombre
+end
+go
+create procedure Servicios_SelectAll
+as
+begin
+	select * from Servicios
+end
+go
+create procedure Servicios_Insert
+	@rutProveedor as varchar(15),
+	@nombre as varchar(20),
+	@descripcion as varchar(150),
+	@imagen as varchar(100),
+	@tipoServicio as varchar(20)
+
+as
+begin
+	insert into Servicios
+    values(@rutProveedor,@nombre,@descripcion,@imagen,@tipoServicio)
+end
+go
+create procedure Proveedores_SelectByRut
+	@rut varchar(15)
+as
+begin
+	Select *
+	from Proveedores
+	where rut=@rut
+end
+go
+CREATE PROCEDURE dbo.Proveedores_SelectAll
+AS
+BEGIN
+	SELECT rut,nomFantasia,email,telefono,fecha,activo,vip,porcentajePorVip,nomUsuario FROM Proveedores
+END
+GO
+CREATE PROCEDURE dbo.Proveedores_SelectActiveOnly
+AS
+BEGIN
+	SELECT rut,nomFantasia,email,telefono,fecha,activo,vip,porcentajePorVip,nomUsuario 
+	FROM Proveedores
+	WHERE Proveedores.Activo = 1
+END
+GO
+CREATE procedure dbo.Proveedores_Insert
+ @rut as varchar(12),
+ @nomFantasia varchar(30),
+ @email varchar(30),
+ @telefono varchar(10),
+ @fecha datetime,
+ @vip bit,
+ @porcentajePorVip decimal(10),
+ @usuario char(20)
+ 
+as
+begin
+
+insert into Proveedores
+   values
+    (@rut,@nomFantasia,@email,@telefono,@fecha,1,@vip,@porcentajePorVip,@usuario)
+end
+go
+create procedure Proveedores_BajaByRut
+	@rut as varchar(15)
+as
+begin
+	UPDATE Proveedores
+	SET activo = 0
+	WHERE rut=@rut
+end
+go
+create procedure Auxiliar_PorcentajeVip_Update
+	@porcentajeVip as decimal(10,0)
+as
+begin
+	update Auxiliar
+    SET porcentaje_Vip = @porcentajeVip
+end
+go
+create procedure Auxiliar_Arancel_Update
+	@arancel as decimal(10,0)
+as
+begin
+	update Auxiliar
+    SET porcentaje_Arancel = @arancel
+end
+go
+create procedure dbo.Auxiliar_Devolver_PorcentajeVip
+as
+begin
+	select Auxiliar.porcentaje_Vip from Auxiliar
+end
+go
+create procedure dbo.Auxiliar_Devolver_Arancel
+as
+begin
+	select Auxiliar.porcentaje_Arancel from Auxiliar
+end
+go

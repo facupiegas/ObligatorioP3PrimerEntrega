@@ -1,8 +1,7 @@
+122#321#321#321 | 321:321:img\a.jpg
 210000123400#Carniceria Carnasa#carne@carnasa.com#24090021 | Asado del Pepe:Los mejores cortes de carne:img\asadoDelPepe.jpg:La vaca y el pollito:Los mejores pollos y cortes de carne:img\lavacayelpollito.jpg
 210000123401#DecorArte#deco@arte.com#24092026 | Decora2:Servicio de decoracion:img\decora2.jpg
 210000123402#Animadon#anima@payaso.com#24092087 | Animate!:Servicio de animadores para chicos y grandes:img\animate.jpg:Fotasas:Las mejores fotos:img\fotasas.jpg:Payasada:Servicio de payasos:img\payaso.jpg:Reboton:Servicio de cama elastica y castillo inflable:img\reboton.jpg
 210000123403#Comida Express#morfi@rapido.com#24098745 | Alto Chivo:El mejor chivito:img\chivito.jpg:Pizzas XXL:Servicio de pizzas gigantes:img\pizza.jpg:Que burguer:Deliciosas hamburguesas:img\queburguer.jpg
 210000123477#La comilona#lacomi@lona.com#24090000 | El Gloton:Mucha comida:img\elGloton.jpg:EL Lunch:Para chuparse los dedos:img\lunch.jpg:Picadinha:Los mejores productos para tu picada:img\picadinha.jpg
-321#321#321#321 | 61:32:img\a.jpg
-654#654#65#465 | 35:65:img\a.jpg
-654654#654654#654654#654654 | 654654:654654:img\a.jpg
+321321321321#321321#321321#3213

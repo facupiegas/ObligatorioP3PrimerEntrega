@@ -13,11 +13,13 @@ namespace Dominio
         public DateTime Fecha { get; set; }
         public TipoEvento TipoEvento{ get; set; }
         public string Direccion{ get; set; }
+        public List<ServicioContratado> ServiciosContratados { get; set; }
         #endregion
 
         #region Metodos
         public Evento(String unNombre, DateTime unaFecha, TipoEvento unTipoEvento, string unaDireccion)
         {
+            this.ServiciosContratados = new List<ServicioContratado>();
             this.Nombre = unNombre;
             this.Fecha = unaFecha;
             this.TipoEvento = unTipoEvento;
