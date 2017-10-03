@@ -36,29 +36,29 @@ namespace Dominio
             return "-Nombre Servicio: "+Nombre +" | Tipo Servicio: "+TipoServicio.Nombre;
         }
 
-        public void GuardarServiciosEnTxt(){
-            TipoEvento tmpTipoEv = new TipoEvento();
-            List<TipoEvento> tmpListTipoEv =  tmpTipoEv.TraerTodo();//recupero la lista de todos los TipoEventos desde BD
-            StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "serviciosConEventos.txt", false);//Propiedad Append=false para sobreescribir el archivo
-            string linea = "";
-            List<Servicio> listServ = this.TraerTodo();//recupero la lista de todos los Servicio desde BD
-            foreach (Servicio tmpServ in listServ) //por cada Servicio
-            {
-                linea += tmpServ.Nombre + "#"; //guardo el nombre del Servicio en la linea a escribir en el archivo .txt
-                foreach (TipoEvento auxTipoEv in tmpListTipoEv)
-                {
-                    foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)//recorro la lista de TipoServicio de cada TipoEvento(es la lista de los TipoServicio adecuados para dicho TipoEvento)
-                    {
-                        if(tmpTipoServ.Nombre == tmpServ.TipoServicio.Nombre)//si el Nombre del TipoServicio actual == al Nombre del TipoServicio del Servicio seleccionado en el momento(primer foreach)
-                            linea += auxTipoEv.Nombre + ":"; //guardo en la variable a escribir en el archivo .txt
-                    }             
+        //public void GuardarServiciosEnTxt(){
+        //    TipoEvento tmpTipoEv = new TipoEvento();
+        //    List<TipoEvento> tmpListTipoEv =  tmpTipoEv.TraerTodo();//recupero la lista de todos los TipoEventos desde BD
+        //    StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "serviciosConEventos.txt", false);//Propiedad Append=false para sobreescribir el archivo
+        //    string linea = "";
+        //    List<Servicio> listServ = this.TraerTodo();//recupero la lista de todos los Servicio desde BD
+        //    foreach (Servicio tmpServ in listServ) //por cada Servicio
+        //    {
+        //        linea += tmpServ.Nombre + "#"; //guardo el nombre del Servicio en la linea a escribir en el archivo .txt
+        //        foreach (TipoEvento auxTipoEv in tmpListTipoEv)
+        //        {
+        //            foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)//recorro la lista de TipoServicio de cada TipoEvento(es la lista de los TipoServicio adecuados para dicho TipoEvento)
+        //            {
+        //                if(tmpTipoServ.Nombre == tmpServ.TipoServicio.Nombre)//si el Nombre del TipoServicio actual == al Nombre del TipoServicio del Servicio seleccionado en el momento(primer foreach)
+        //                    linea += auxTipoEv.Nombre + ":"; //guardo en la variable a escribir en el archivo .txt
+        //            }             
                     
-                }
-                writer.WriteLine(linea); //escribo la variable en el archivo.txt
-                linea = ""; //devuelvo la variable a su estado original para el proximo Servicio
-            }
-            writer.Close();
-        }
+        //        }
+        //        writer.WriteLine(linea); //escribo la variable en el archivo.txt
+        //        linea = ""; //devuelvo la variable a su estado original para el proximo Servicio
+        //    }
+        //    writer.Close();
+        //}
 
         public override List<Servicio> TraerTodo()
         {

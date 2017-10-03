@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Dominio
 {
@@ -91,6 +92,31 @@ namespace Dominio
         public override bool Eliminar()
         {
             throw new NotImplementedException();
+        }
+
+        public void GuardarServiciosEnTxt()
+        {
+            TipoEvento tmpTipoEv = new TipoEvento();
+            TipoServicio tmpTipServ = new TipoServicio();
+            List<TipoEvento> tmpListTipoEv = tmpTipoEv.TraerTodo();//recupero la lista de todos los TipoEventos desde BD
+            StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "serviciosConEventos.txt", false);//Propiedad Append=false para sobreescribir el archivo
+            string linea = "";
+            List<TipoServicio> tmpListTipServ = tmpTipServ.TraerTodo();//recupero lista de TipoServicios de la BD
+            foreach (TipoServicio ts in tmpListTipServ) //por cada Servicio
+            {
+                linea += ts.Nombre + "#"; //guardo el nombre del Servicio en la linea a escribir en el archivo .txt
+                foreach (TipoEvento auxTipoEv in tmpListTipoEv)
+                {
+                    foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)//recorro la lista de TipoServicio de cada TipoEvento(es la lista de los TipoServicio adecuados para dicho TipoEvento)
+                    {
+                        if (tmpTipoServ.Nombre == ts.Nombre)//si el Nombre del TipoServicio actual es igual al que contiene el evento para el cual es adecuado
+                            linea += auxTipoEv.Nombre + ":"; //guardo en la variable a escribir en el archivo .txt
+                    }
+                }
+                writer.WriteLine(linea); //escribo la variable en el archivo.txt
+                linea = ""; //devuelvo la variable a su estado original para el proximo Servicio
+            }
+            writer.Close();
         }
         #endregion
     }
