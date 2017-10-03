@@ -110,9 +110,10 @@ namespace Dominio
                     foreach (TipoServicio tmpTipoServ in auxTipoEv.TipoServicios)//recorro la lista de TipoServicio de cada TipoEvento(es la lista de los TipoServicio adecuados para dicho TipoEvento)
                     {
                         if (tmpTipoServ.Nombre == ts.Nombre)//si el Nombre del TipoServicio actual es igual al que contiene el evento para el cual es adecuado
-                            linea += auxTipoEv.Nombre + ":"; //guardo en la variable a escribir en el archivo .txt
+                            linea += ":" + auxTipoEv.Nombre; //guardo en la variable a escribir en el archivo .txt
                     }
                 }
+                linea = linea.TrimEnd(':'); //remuevo los ultimos ":" del string
                 writer.WriteLine(linea); //escribo la variable en el archivo.txt
                 linea = ""; //devuelvo la variable a su estado original para el proximo Servicio
             }
