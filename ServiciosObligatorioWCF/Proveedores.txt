@@ -1,4 +1,4 @@
-1#a#a#1 | Eso de ahora:Lo que va en pastas:img\a.jpg
+12312#asdjasdj#uashdi#72834 | prueba:prueba:img\a.jpg
 210000123400#Carniceria Carnasa#carne@carnasa.com#24090021 | Asado del Pepe:Los mejores cortes de carne:img\asadoDelPepe.jpg:La vaca y el pollito:Los mejores pollos y cortes de carne:img\lavacayelpollito.jpg
 210000123401#DecorArte#deco@arte.com#24092026 | Decora2:Servicio de decoracion:img\decora2.jpg
 210000123402#Animadon#anima@payaso.com#24092087 | Animate!:Servicio de animadores para chicos y grandes:img\animate.jpg:Fotasas:Las mejores fotos:img\fotasas.jpg:Payasada:Servicio de payasos:img\payaso.jpg:Reboton:Servicio de cama elastica y castillo inflable:img\reboton.jpg
