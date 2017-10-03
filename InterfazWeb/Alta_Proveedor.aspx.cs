@@ -211,7 +211,6 @@ namespace InterfazWeb
                 else if (ctrl is DropDownList) ((DropDownList)ctrl).ClearSelection();
                 else if (ctrl is Calendar) ((Calendar)ctrl).SelectedDates.Clear();
                 else if (ctrl is ListBox) ((ListBox)ctrl).ClearSelection();
-                else if (ctrl is Image) ((Image)ctrl).ImageUrl = "";
                 limpiarCampos(ctrl.Controls);
             }
         }
