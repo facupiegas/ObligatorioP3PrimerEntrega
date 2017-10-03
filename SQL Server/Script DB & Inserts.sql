@@ -24,6 +24,7 @@ create table Usuarios(nombre varchar(20),
 					rol varchar(20),
 					constraint PK_Usuarios primary key(nombre),
 					constraint CK_RolUsuarios check(rol in ('Administrador','Proveedor','Organizador')))
+
 alter table Usuarios alter column pass varchar(70)
 alter table Usuarios add sal varchar(10)
 

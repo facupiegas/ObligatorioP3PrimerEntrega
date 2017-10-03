@@ -14,7 +14,7 @@ namespace InterfazWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Fachada.GuardarServiciosEnTxt();
+            Fachada.GuardarServiciosEnTxt(); //guardo el catalogo de servicios en un txt
         }
 
         protected void controlLogin_Authenticate(object sender, AuthenticateEventArgs e)

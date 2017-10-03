@@ -1,4 +1,3 @@
-
 create procedure dbo.Usuarios_SelectAll
 as
 begin
