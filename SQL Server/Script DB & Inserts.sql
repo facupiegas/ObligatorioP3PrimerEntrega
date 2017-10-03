@@ -24,6 +24,8 @@ create table Usuarios(nombre varchar(20),
 					rol varchar(20),
 					constraint PK_Usuarios primary key(nombre),
 					constraint CK_RolUsuarios check(rol in ('Administrador','Proveedor','Organizador')))
+alter table Usuarios alter column pass varchar(70)
+alter table Usuarios add sal varchar(10)
 
 create table Organizadores(nombre varchar(20),
 						email varchar(20),
@@ -91,15 +93,15 @@ begin --PRECARGA DATOS PRUEBA
 insert into Auxiliar  values (10,10) 
 
 /*Inserto datos en Usuario*/
-insert into Usuarios values('admin','123','Administrador')
-insert into Usuarios values('administrador','admin','Administrador')
-insert into Usuarios values('prov','123','Proveedor')
-insert into Usuarios values('prov2','123','Proveedor')
-insert into Usuarios values('prov3','123','Proveedor')
-insert into Usuarios values('prov4','123','Proveedor')
-insert into Usuarios values('prov5','123','Proveedor')
-insert into Usuarios values('org','123','Organizador')
-insert into Usuarios values('org2','123','Organizador')
+insert into Usuarios values('admin','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Administrador','tyWfxHTW')
+insert into Usuarios values('administrador','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Administrador','tyWfxHTW')
+insert into Usuarios values('prov','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Proveedor','tyWfxHTW')
+insert into Usuarios values('prov2','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Proveedor','tyWfxHTW')
+insert into Usuarios values('prov3','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Proveedor','tyWfxHTW')
+insert into Usuarios values('prov4','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Proveedor','tyWfxHTW')
+insert into Usuarios values('prov5','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Proveedor','tyWfxHTW')
+insert into Usuarios values('org','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Organizador','tyWfxHTW')
+insert into Usuarios values('org2','q29hHeIOfhphUo7XE+okCwd6baA2vhPaRTuMVrekHRM=','Organizador','tyWfxHTW')
 
 /*Inserto datos en TipoEvento*/
 insert into TiposEventos values('Fiesta de quince','Fiestas para festejar los quince anios de las mujeres.')

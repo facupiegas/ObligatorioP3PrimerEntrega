@@ -21,12 +21,27 @@ namespace CapaFachada
             return retorno;
         }
 
+        //public static Usuario ValidarUsuario(string nombre, string pass)
+        //{
+        //    Usuario tmpUsuario = new Usuario { Nombre = nombre };
+        //    Usuario retorno = null;
+        //    if (tmpUsuario.Leer() && tmpUsuario.Pass == pass)//si el Usuario existe en la BD y la contraseña es igual a la ingresada por parametro devuelvo el objeto Usuario
+        //        retorno = tmpUsuario;
+        //    return retorno;
+        //}
+
         public static Usuario ValidarUsuario(string nombre, string pass)
         {
             Usuario tmpUsuario = new Usuario { Nombre = nombre };
             Usuario retorno = null;
-            if (tmpUsuario.Leer() && tmpUsuario.Pass == pass)//si el Usuario existe en la BD y la contraseña es igual a la ingresada por parametro devuelvo el objeto Usuario
-                retorno = tmpUsuario;
+            if (tmpUsuario.Leer())
+            { //si el Usuario existe en la BD y la contraseña es igual a la ingresada por parametro devuelvo el objeto Usuario
+                string sal = tmpUsuario.Sal;
+                if (Usuario.GenerarSHA256Hash(pass, sal) == tmpUsuario.Pass) {
+                    retorno = tmpUsuario;
+                }
+                
+            }
             return retorno;
         }
 
@@ -211,8 +226,8 @@ namespace CapaFachada
         }
 
         public static void GuardarServiciosEnTxt() {
-            Servicio tmpServ = new Servicio();
-            tmpServ.GuardarServiciosEnTxt(); //Guardo los Servicios con sus TipoEvento correspondientes
+            TipoServicio tmpTipoServ = new TipoServicio();
+            tmpTipoServ.GuardarServiciosEnTxt(); //Guardo los Servicios con sus TipoEvento correspondientes
         }
     }
 }

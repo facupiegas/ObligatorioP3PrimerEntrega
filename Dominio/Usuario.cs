@@ -16,20 +16,38 @@ namespace Dominio
         public string Nombre { set; get; }
         public string Pass { set; get; }
         public EnumRol Rol { set; get; }
+        public string Sal { get; set; }
         #endregion
 
         #region Constructores
         public Usuario(string unNombre, string unaPass,EnumRol unRol)
         {
-            
+            this.Sal = GenerarSal();
+            string hash = GenerarSHA256Hash(unaPass, this.Sal);
             this.Nombre = unNombre;
-            this.Pass = unaPass;
+            this.Pass = hash;
             this.Rol = unRol;
         }
         public Usuario() { }
         #endregion
 
         #region Otros metodos
+        public static String GenerarSal()
+        {
+            var random = new System.Security.Cryptography.RNGCryptoServiceProvider();
+            var bytes = new byte[6];
+            random.GetBytes(bytes);
+            return Convert.ToBase64String(bytes);
+
+        }
+        public static String GenerarSHA256Hash(String pass, String sal)
+        {
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(pass + sal);
+            System.Security.Cryptography.SHA256Managed sha256hashstring = new System.Security.Cryptography.SHA256Managed();
+            byte[] hash = sha256hashstring.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
+
         public EnumRol ObtenerTipo()
         {
             return this.Rol;
@@ -45,6 +63,7 @@ namespace Dominio
             parametros.Add(new SqlParameter("@nombre", this.Nombre));
             parametros.Add(new SqlParameter("@pass", this.Pass));
             parametros.Add(new SqlParameter("@rol", this.Rol.ToString()));
+            parametros.Add(new SqlParameter("@sal", this.Sal));
             return this.EjecutarNoQuery(connection, cmdText, cmdType,parametros)!=0;
         }
 
@@ -86,6 +105,7 @@ namespace Dominio
                             this.Rol = EnumRol.Organizador;
                             break;
                     }
+                    this.Sal = reader["sal"].ToString();
                     retorno = true;
                 }
             }
@@ -124,6 +144,7 @@ namespace Dominio
                     rol = EnumRol.Organizador;
 
                 Usuario tmpUsuario = new Usuario(drResults["nombre"].ToString(), drResults["pass"].ToString(), rol);
+                tmpUsuario.Sal = drResults["sal"].ToString();
                 ListaAux.Add(tmpUsuario);
             }
             drResults.Close();
